@@ -1,8 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/main/Hero.astro";
+import Components from "../components/main/Components.astro";
+import Background from "../components/Background.astro";
+import Backgrounds from "../components/main/Backgrounds.astro";
+import Effects from "../components/main/Effects.astro";
+import Div from "../components/main/Div.astro";
 ---
 
-<Layout>
+<Layout class="bg-primary">
+  <Background />
   <Hero />
+  <Components />
+  <Div />
+  <Backgrounds />
+  <Div />
+  <Effects />
 </Layout>

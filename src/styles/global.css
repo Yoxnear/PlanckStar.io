@@ -1,7 +1,13 @@
 @import "tailwindcss";
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @theme {
-  --color-primary: #121213;
-  --color-secondary: #023c4e;
+  --color-primary: #050506;
+  --color-secondary: #389bd9;
   --color-tertiary: #d3daec;
+  --color-quaternary: #0b0b0c;
 }

@@ -1,55 +1,100 @@
 ---
-const items = [
-  { text: "Astro", svg: "../../assets/icons/astro.svg" },
-  { text: "Tailwind", svg: "../../assets/icons/tailwindcss.svg" },
-  { text: "Three.js", svg: "../../assets/icons/threedotjs.svg" },
-];
-const step = 5.5;
+
 ---
 
-<main class="w-full h-screen">
-  <section
-    class="text-tertiary w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-center h-full"
+<section
+  class="text-tertiary w-full h-screen border-b border-tertiary/30 grid grid-cols-1 md:grid-cols-2 items-center justify-center bg-primary"
+>
+  <div
+    class="relative flex flex-col items-center justify-center text-center border-r border-tertiary/30 h-full px-12"
   >
-    <div
-      class="flex items-center justify-center border-r border-tertiary/30 h-full"
-    >
-      <h1>UI components for your website</h1>
-      <p>Your journey to excellence starts here.</p>
-      <a href="/get-started" class="btn">Just copy and paste!</a>
-    </div>
+    <h1 class="text-5xl font-bold">UI components for your website</h1>
+    <p class="text-lg pt-8">Just copy and paste!</p>
 
-    <div class="flex items-center justify-center flex-col h-full">
-      <div class="overflow-hidden h-[5.5rem] w-full">
+    <div
+      class="absolute flex justify-center items-center bottom-0 right-0 border-t border-l border-tertiary/30 bg-quaternary"
+    >
+      <a href="" class="py-4 px-6 font-light text-lg">Explore</a>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1"
+        stroke="currentColor"
+        class="size-6 mr-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div
+    class="relative flex items-center justify-center flex-col py-25 w-full border-y border-tertiary/30 mt-15"
+  >
+    <p
+      class="absolute top-0 left-0 translate-y-[calc(-100%-1px)] py-4 px-8 border-t border-r border-tertiary/30 bg-quaternary"
+    >
+      V1.0.0
+    </p>
+    <div
+      class="absolute top-6 left-6 border-t border-l border-tertiary w-4 h-4"
+    >
+    </div>
+    <div
+      class="absolute top-6 right-6 border-t border-r border-tertiary w-4 h-4"
+    >
+    </div>
+    <div
+      class="absolute bottom-6 left-6 border-b border-l border-tertiary w-4 h-4"
+    >
+    </div>
+    <div
+      class="absolute bottom-6 right-6 border-b border-r border-tertiary w-4 h-4"
+    >
+    </div>
+    <div class="overflow-hidden h-[5.5rem] w-full">
+      <div
+        id="wordList"
+        class="flex flex-col transition-transform duration-700 ease-in-out"
+      >
         <div
-          id="wordList"
-          class="flex flex-col transition-transform duration-700 ease-in-out"
+          class="h-[5.5rem] flex items-center justify-center gap-5 text-6xl font-bold"
         >
-          {
-            items.map((item) => (
-              <div class="h-[5.5rem] flex items-center justify-center gap-4 text-6xl font-bold">
-                <img src={item.svg} alt={item.text} class="size-15" />
-                <span>{item.text}</span>
-              </div>
-            ))
-          }
+          <img
+            src="/src/assets/icons/astro.svg"
+            alt="Astro SVG"
+            class="h-[80%] fill-tertiary"
+          />
+          <span>Astro</span>
+        </div>
+        <div
+          class="h-[5.5rem] flex items-center justify-center gap-4 text-6xl font-bold"
+        >
+          <img
+            src="/src/assets/icons/tailwindcss.svg"
+            alt="Tailwind SVG"
+            class="h-[80%]"
+          />
+          <span>Tailwind</span>
+        </div>
+        <div
+          class="h-[5.5rem] flex items-center justify-center gap-4 text-6xl font-bold"
+        >
+          <img
+            src="/src/assets/icons/threedotjs.svg"
+            alt="Three.js SVG"
+            class="h-[80%]"
+          />
+          <span>Three.js</span>
         </div>
       </div>
-
-      <a href="#" class="mt-20 px-4 py-2 bg-secondary rounded-lg">Get Started</a
-      >
     </div>
-  </section>
-</main>
 
-<script type="module">
-  const wordList = document.getElementById("wordList");
-  let index = 0;
-  const interval = 2000;
-  const step = 5.5;
+    <a href="#" class="mt-20 px-4 py-2 bg-secondary rounded-lg">Get Started</a>
+  </div>
+</section>
 
-  setInterval(() => {
-    index = (index + 1) % items.length;
-    wordList.style.transform = `translateY(-${index * step}rem)`;
-  }, interval);
-</script>
+<script src="../../scripts/heroTranslate.ts"></script>

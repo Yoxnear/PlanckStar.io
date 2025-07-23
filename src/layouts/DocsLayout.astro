@@ -1,0 +1,23 @@
+---
+import SideBar from "../components/components/SideBar.astro";
+import NavBar from "../components/NavBar.astro";
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+  </head>
+  <body class="flex min-h-screen bg-primary">
+    <NavBar />
+    <aside class="overflow-auto">
+      <SideBar />
+    </aside>
+    <main class="flex-1 p-6 prose max-w-3xl mx-auto">
+      <slot />
+    </main>
+  </body>
+</html>
