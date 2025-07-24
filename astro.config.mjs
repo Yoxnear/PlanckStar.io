@@ -19,9 +19,32 @@ export default defineConfig({
     starlight({
       title: 'PlanckStar UI',
             disable404Route: true,
-      customCss: [
-        // Path to your Tailwind base styles:
-        './src/styles/global.css',
+
+    social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/Axolotlfire/PlanckStarUI.io',
+        },
+        { icon: 'x.com', label: 'X.com', href: 'https://x.com/Ramas_te' },
+      ],
+       sidebar: [
+        {
+          label: 'Get started',
+          autogenerate: { directory: 'Get started' },
+        },
+        {
+          label: 'Components',
+          autogenerate: { directory: 'Components' },
+        },
+        {
+          label: 'Backgrounds',
+          autogenerate: { directory: 'Backgrounds' },
+        },
+        {
+          label: 'Effects',
+          autogenerate: { directory: 'Effects' },
+        }
       ],
     }),
   ],
