@@ -1,83 +1,30 @@
-import * as THREE from 'three';
+  const canvas = document.getElementById('grid-bg');
+  const ctx = canvas.getContext('2d');
 
-export function createParticleGrid(canvasId = 'three-canvas') {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) {
-    console.error(`Canvas with id "${canvasId}" not found.`);
-    return;
-  }
+  let gridSize = 8; // Cambia este valor para hacer el grid más grande o más pequeño
 
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x000000);
+  function drawGrid(size = gridSize, color = 'rgba(0,0,0,2)') {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
-  camera.position.z = 60;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
 
-  const renderer = new THREE.WebGLRenderer({ canvas });
-  renderer.setSize(window.innerWidth, window.innerHeight);
+    for (let x = 0; x < canvas.width; x += size) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, canvas.height);
+      ctx.stroke();
+    }
 
-  // Crear partículas en cuadrícula
-  const cols = 80;
-  const rows = 40;
-  const spacing = 3;
-  const positions = [];
-  const baseZ = [];
-
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const posX = (x - cols / 2) * spacing;
-      const posY = (y - rows / 2) * spacing;
-      const posZ = 0;
-
-      positions.push(posX, posY, posZ);
-      baseZ.push(posX, posY); // guardamos X e Y para el efecto onda
+    for (let y = 0; y < canvas.height; y += size) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
     }
   }
 
-  const geometry = new THREE.BufferGeometry();
-  const positionAttr = new THREE.Float32BufferAttribute(positions, 3);
-  geometry.setAttribute('position', positionAttr);
-
-  const material = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: 0.35,
-    transparent: true,
-    opacity: 0.85,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-
-  const points = new THREE.Points(geometry, material);
-  scene.add(points);
-
-  // Animación con efecto de onda
-  let time = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    time += 0.02;
-
-    const pos = geometry.attributes.position;
-    for (let i = 0; i < pos.count; i++) {
-      const x = baseZ[i * 2];
-      const y = baseZ[i * 2 + 1];
-      const z = Math.sin((x + time * 5) * 0.1) * Math.cos((y + time * 5) * 0.1) * 1.5;
-      pos.setZ(i, z);
-    }
-    pos.needsUpdate = true;
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-}
+  window.addEventListener('resize', drawGrid);
+  drawGrid();

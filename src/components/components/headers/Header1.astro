@@ -1,0 +1,118 @@
+---
+const navItems = [
+  { href: "/components", label: "Components" },
+  { href: "/backgrounds", label: "Backgrounds" },
+  { href: "/effects", label: "Effects" },
+];
+---
+
+<header
+  class="fixed top-28 z-10 w-full px-4 shadow-md border-b border-t border-tertiary/30 backdrop-blur-sm text-tertiary bg-background/80"
+>
+  <nav
+    class="flex w-full max-w-screen-xl mx-auto justify-between items-center h-16"
+  >
+    <a href="/" class="text-lg font-semibold tracking-wide text-white py-2">
+      Planckstar UI
+    </a>
+
+    <button
+      id="menu-toggle"
+      class="md:hidden text-xl focus:outline-none cursor-pointer"
+      aria-label="Toggle menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      </svg>
+    </button>
+
+    <ul class="hidden md:flex items-center h-full space-x-6">
+      {
+        navItems.map((item) => (
+          <li class="flex items-center justify-center h-full">
+            <a
+              href={item.href}
+              class="px-3 py-2 hover:text-white/50 transition-colors transition-duration-50"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden fixed right-0 top-0 h-screen w-[80%] bg-background border-l border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
+    >
+      <ul class="space-y-2 pl-8">
+        <button
+          id="close-toggle"
+          class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6"
+          aria-label="Toggle menu close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block py-2 text-base hover:text-white/50"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeToggle = document.getElementById("close-toggle");
+
+    if (!toggle || !mobileMenu || !closeToggle) return;
+
+    toggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    closeToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    const mobileLinks = mobileMenu.querySelectorAll("a");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+  });
+</script>

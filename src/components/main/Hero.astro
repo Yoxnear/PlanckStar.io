@@ -1,12 +1,14 @@
 ---
-
+import Button from "../../components/main/Button.astro";
+import pkg from "../../../package.json";
+const version = pkg.version;
 ---
 
 <section
-  class="text-tertiary w-full h-screen border-b border-tertiary/30 grid grid-cols-1 md:grid-cols-2 items-center justify-center bg-primary"
+  class="text-tertiary w-full h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-center"
 >
   <div
-    class="relative flex flex-col items-center justify-center text-center border-r border-tertiary/30 h-full px-12"
+    class="relative flex flex-col items-center justify-center text-center border-r border-tertiary/30 h-full px-12 bg-primary"
   >
     <h1 class="text-5xl font-bold">UI components for your website</h1>
     <p class="text-lg pt-8">Just copy and paste!</p>
@@ -32,7 +34,7 @@
   </div>
 
   <div
-    class="relative flex items-center justify-center flex-col py-25 w-full border-y border-tertiary/30 mt-15"
+    class="relative flex items-center justify-center flex-col py-25 w-full border-y border-tertiary/30 mt-15 bg-primary"
   >
     <p
       class="absolute top-0 left-0 translate-y-[calc(-100%-1px)] py-4 px-8 border-t border-r border-tertiary/30 bg-quaternary"
@@ -93,7 +95,7 @@
       </div>
     </div>
 
-    <a href="#" class="mt-20 px-4 py-2 bg-secondary rounded-lg">Get Started</a>
+    <Button href="/get-started" text="Get Started" />
   </div>
 </section>
 
