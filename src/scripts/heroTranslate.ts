@@ -1,5 +1,3 @@
-
-
   const wordList = document.getElementById("wordList");
   let index = 0;
   const interval = 2000;

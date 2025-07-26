@@ -1,10 +1,11 @@
 ---
 import Button from "./Button.astro";
+import Section from "./Sections.astro";
+import ComponentsGrid from "./ComponentsGrid.astro";
 ---
 
-<section
-  class="relative flex flex-col w-[80%] mx-auto h-[60vh] border-x border-tertiary/30 text-tertiary bg-primary justify-center items-center"
->
+<Section>
+  <ComponentsGrid />
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -20,8 +21,10 @@ import Button from "./Button.astro";
     ></path>
   </svg>
 
-  <h3 class="text-2xl font-regular text-center">
+  <h3 class="text-2xl font-regular text-center z-2">
     Explore our catalog and add fully functional <br /> components to your website
   </h3>
-  <Button href="/components" text="Components" />
-</section>
+  <Button href="/components" text="Components" classAdd="z-2" />
+</Section>
+
+<script src="../../scripts/componentsPreview.js"></script>

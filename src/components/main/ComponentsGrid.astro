@@ -1,0 +1,53 @@
+---
+import HeaderOne from "../components/Headers/Header1.astro";
+import HeaderTwo from "../components/Headers/Header2.astro";
+import HeaderThree from "../components/Headers/Header3.astro";
+---
+
+<div
+  class="absolute top-0 left-0 w-full h-full grid grid-cols-5 grid-rows-6 overflow-hidden"
+>
+  <div class="absolute inset-0 bg-quaternary/70 z-1"></div>
+
+  <!-- ------Headers------ -->
+
+  <div
+    id="header-one"
+    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center"
+  >
+    <HeaderOne />
+  </div>
+  <div
+    id="header-two"
+    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center translate-x-full"
+  >
+    <HeaderTwo />
+  </div>
+  <div
+    id="header-three"
+    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center translate-x-full"
+  >
+    <HeaderThree />
+  </div>
+
+  <!-- ------Cards------ -->
+
+  <div class="col-span-1 row-span-4 border-r border-tertiary/30"></div>
+
+  <!-- ------Div------ -->
+
+  <div class="col-start-4 col-span-1 row-span-4 border-r border-tertiary/30">
+  </div>
+
+  <!-- ------Buttons------ -->
+
+  <div
+    class="col-start-5 row-start-3 col-span-1 row-span-1 border-y border-tertiary/30"
+  >
+  </div>
+
+  <!-- ------Footers------ -->
+
+  <div class="row-start-6 col-span-5 row-span-1 border-t border-tertiary/30">
+  </div>
+</div>

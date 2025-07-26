@@ -1,7 +1,10 @@
 ---
-const { href, text } = Astro.props;
+const { href, text, classAdd } = Astro.props;
 ---
 
-<a href={href} class="mt-16 px-4 py-2 bg-secondary text-primary rounded-lg">
+<a
+  href={href}
+  class=`mt-16 px-4 py-2 bg-secondary text-primary rounded-lg ${classAdd}`
+>
   {text}
 </a>

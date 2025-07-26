@@ -26,5 +26,5 @@
     }
   }
 
-  window.addEventListener('resize', drawGrid);
+window.addEventListener('resize', drawGrid);
   drawGrid();
