@@ -1,8 +1,9 @@
 ---
-const { href, text, classAdd } = Astro.props;
+const { idButton, href, text, classAdd } = Astro.props;
 ---
 
 <a
+  id={idButton}
   href={href}
   class=`mt-16 px-4 py-2 bg-secondary text-primary rounded-lg ${classAdd}`
 >

@@ -11,3 +11,7 @@
   --color-tertiary: #d3daec;
   --color-quaternary: #0b0b0c;
 }
+
+html {
+  scroll-behavior: smooth;
+}

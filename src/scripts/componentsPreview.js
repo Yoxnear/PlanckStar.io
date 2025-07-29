@@ -1,3 +1,6 @@
+  const button = document.getElementById('hoverButton');
+  const target = document.getElementById('targetHover');
+
 const headerOne = document.getElementById('header-one');
 const headerTwo = document.getElementById('header-two');
 const headerThree = document.getElementById('header-three');
@@ -26,3 +29,11 @@ setInterval(() => {
 }, headerInterval);
 
 
+
+  button.addEventListener('mouseenter', () => {
+    target.classList.remove('bg-quaternary/70');
+  });
+
+  button.addEventListener('mouseleave', () => {
+    target.classList.add('bg-quaternary/70');
+  });

@@ -26,5 +26,8 @@
     }
   }
 
-window.addEventListener('resize', drawGrid);
   drawGrid();
+
+        window.addEventListener('resize', () => {
+            drawGrid(gridSize); // Pasamos el gridSize para mantener consistencia
+        });

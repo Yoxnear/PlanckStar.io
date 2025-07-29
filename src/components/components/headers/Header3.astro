@@ -1,4 +1,8 @@
 ---
+import githubIcon from "/src/assets/icons/github.svg";
+import xIcon from "/src/assets/icons/x.svg";
+import blackberryIcon from "/src/assets/icons/blackberry.svg";
+
 const navItems = [
   { href: "/components", label: "Components" },
   { href: "/backgrounds", label: "Backgrounds" },
@@ -7,14 +11,19 @@ const navItems = [
 
 const navIcons = [
   {
-    href: "https://github.com/planckstar",
+    href: "#",
     label: "GitHub",
-    icon: "/icons/github.svg",
+    icon: githubIcon,
   },
   {
-    href: "https://twitter.com/planckstar",
-    label: "Twitter",
-    icon: "/icons/twitter.svg",
+    href: "#",
+    label: "X",
+    icon: xIcon,
+  },
+  {
+    href: "#",
+    label: "Blackberry (??)",
+    icon: blackberryIcon,
   },
 ];
 ---
@@ -69,16 +78,10 @@ const navIcons = [
 
     <ul class="hidden md:flex items-center h-full space-x-6">
       {
-        navIcons.map((social) => (
-          <li>
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              class="hover:opacity-80 transition-opacity text-xs"
-            >
-              <img src={social.icon} alt={social.label} class="w-5 h-5" />
+        navIcons.map((item) => (
+          <li class="flex">
+            <a href={item.href} aria-label={item.label}>
+              <item.icon width="auto" height="24" class="" />
             </a>
           </li>
         ))
@@ -124,19 +127,10 @@ const navIcons = [
       </ul>
       <ul class="flex items-center space-x-4 mt-16 pl-8 text-xs mb-2">
         {
-          navIcons.map((social) => (
-            <li>
-              <a
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-              >
-                <img
-                  src={social.icon}
-                  alt={social.label}
-                  class="w-5 h-5 hover:opacity-80 transition-opacity"
-                />
+          navIcons.map((item) => (
+            <li class="flex">
+              <a href={item.href} aria-label={item.label}>
+                <item.icon width="auto" height="24" class="" />
               </a>
             </li>
           ))
