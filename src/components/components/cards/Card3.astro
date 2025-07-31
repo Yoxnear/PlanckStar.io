@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import yourCardImage from "../../../assets/images/Lorem.jpg";
+---
+
+<div class="w-90 border border-white/30 rounded-xl flex flex-col">
+  <Image
+    src={yourCardImage}
+    alt="An axolotl programming intensely"
+    class="w-full h-1% rounded-t-xl cont"
+  />
+  <div
+    class="w-full border-b border-white/50 border-dashed p-4 flex justify-center items-center"
+  >
+    <p
+      class="h-full w-full border border-white/30 text-white border-dashed text-center font-light text-xl"
+    >
+      Header Ipsum
+    </p>
+  </div>
+  <div
+    class="p-6 text-start text-white font-light border-b border-white/30 border-dashed"
+  >
+    <p class="border border-white/50 border-dashed text-lg">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu turpis
+      et justo sodales aliquam. Suspendisse lacinia mauris sapien, at tincidunt
+      magna faucibus a.
+    </p>
+  </div>
+
+  <div class="px-6 py-4 w-full flex text-white font-extralight">
+    <p class="border border-white/50 border-dashed w-full text-xs">
+      Aliquam non pretium dolor
+    </p>
+  </div>
+</div>
