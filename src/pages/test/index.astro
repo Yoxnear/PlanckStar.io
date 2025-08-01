@@ -3,6 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import CardOne from "../../components/components/cards/Card1.astro";
 import CardTwo from "../../components/components/cards/Card2.astro";
 import CardThree from "../../components/components/cards/Card2.astro";
+
+const scale = 2; //  Modify this line to change the size
+
+const width = 10 * scale;
+const height = 6 * scale;
 ---
 
 <Layout>
@@ -11,4 +16,17 @@ import CardThree from "../../components/components/cards/Card2.astro";
     <CardTwo />
     <CardThree />
   </section>
+
+  <!-- Rounded switch -->
+  <label class="relative inline-flex items-center cursor-pointer">
+    <input type="checkbox" value="" class="sr-only peer" />
+    <div
+      class={`w-[${width}rem] h-[${height}rem] bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:bg-blue-500 transition-all`}
+    >
+    </div>
+    <div
+      class={`absolute left-1 top-1 bg-white w-[${height - 2}rem] h-[${height - 2}rem] rounded-full transition-all peer-checked:translate-x-full`}
+    >
+    </div>
+  </label>
 </Layout>
