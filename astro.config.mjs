@@ -18,8 +18,12 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'PlanckStar UI',
-            disable404Route: true,
-
+      logo: {
+        src: '/src/assets/icons/planckstar.svg',
+        replacesTitle: true,
+      },
+      disable404Route: true,
+    
     social: [
         {
           icon: 'github',
