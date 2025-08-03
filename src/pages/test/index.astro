@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import CardOne from "../../components/components/cards/Card1.astro";
 import CardTwo from "../../components/components/cards/Card2.astro";
 import CardThree from "../../components/components/cards/Card2.astro";
+import FooterOne from "../../components/components/footers/Footer1.astro";
 
 const scale = 2; //  Modify this line to change the size
 
@@ -25,8 +26,10 @@ const height = 6 * scale;
     >
     </div>
     <div
-      class={`absolute left-1 top-1 bg-white w-[${height - 2}rem] h-[${height - 2}rem] rounded-full transition-all peer-checked:translate-x-full`}
+      class={`absolute left-1 top-1 bg-white w-[${height}rem] h-[${height}rem] rounded-full transition-all peer-checked:translate-x-full`}
     >
     </div>
   </label>
+
+  <FooterOne />
 </Layout>

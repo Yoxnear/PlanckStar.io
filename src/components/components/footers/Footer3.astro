@@ -1,0 +1,102 @@
+---
+// 10 Instructions in this component
+
+import { Image } from "astro:assets";
+
+//Start editing the component here ↓, choose the path to your logo. ❶
+
+import yourLogo from "../../../assets/icons/planckstar.svg";
+
+// ↓ Here you can add as many columns as you want to your footer. ❷
+
+const links = [
+  {
+    title: "Main", //← Edit here the name/title of the column. ❸
+    sublinks: [
+      { subtitle: "Home", href: "#" }, //------ Add your links here wherever you like, ❹
+      { subtitle: "Products", href: "#" }, //-- including a label (subtitle) for each one
+      { subtitle: "Services", href: "#" }, //-- along with its corresponding path (href).
+      { subtitle: "About", href: "#" },
+      { subtitle: "Contact", href: "#" },
+    ],
+  },
+  {
+    title: "Second", //---------------------------|
+    sublinks: [
+      { subtitle: "Support", href: "#" }, //------|
+      { subtitle: "Security", href: "#" }, //-----| ← Add more columns using this format ❺
+      { subtitle: "Accessibility", href: "#" }, //|
+      { subtitle: "Careers", href: "#" }, //------|
+    ], //-----------------------------------------|
+  },
+];
+
+//Here you add the path to your social media icons ↓. ❻
+
+import socialLogoFirst from "../../../assets/icons/x.svg";
+import socialLogoSecond from "../../../assets/icons/github.svg";
+import socialLogoThird from "../../../assets/icons/blackberry.svg";
+
+//↓ You can add as many icons as you like here, along with their links and alt text to follow accessibility best practices. ❼
+
+const socialItems = [
+  { icon: socialLogoFirst, href: "x.com", alt: "Icon -----" },
+  { icon: socialLogoSecond, href: "github.com", alt: "Icon -----" },
+  { icon: socialLogoThird, href: "/blackberry.com", alt: "Icon -----" },
+];
+---
+
+<!-- Here is where the HTML begins. ❽ -->
+<footer class="w-full text-white border-t border-white/30">
+  <div class="grid grid-cols-[2fr_5fr] w-full my-12 gap-12 px-[10%]">
+    <div class="flex w-full justify-center items-center">
+      <Image class="w-[20%]" src={yourLogo} alt="_Your Logo_" />
+    </div>
+
+    <div class="flex justify-around">
+      {
+        links.map((section) => (
+          <div>
+            <p class="uppercase text-sm">{section.title}</p>
+            <ul class="mt-4">
+              {section.sublinks.map((link) => (
+                <li class="my-2">
+                  <a
+                    href={link.href}
+                    class="font-light text-gray-400 hover:text-gray-500"
+                  >
+                    {link.subtitle}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <div class="flex flex-col items-center">
+        <p class="uppercase text-sm">Social</p>
+        <ul class="flex mt-6">
+          {
+            socialItems.map((icon) => (
+              <li class="flex items-center justify-center h-full">
+                <a href={icon.href} class="px-3">
+                  <Image src={icon.icon} alt={icon.alt} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex justify-between border-y border-white/30 w-full px-6 py-4 text-xs"
+  >
+    <!-- ----------↓ Here you can add your company name ❾ -->
+    <p>Copyright "_Edit_Here_" © 2025 All Rights Reserved</p>
+
+    <!-- ----------↓ Also add your privacy policy page (if you want to) ❿ -->
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>

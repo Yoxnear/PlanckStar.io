@@ -26,6 +26,9 @@ const navIcons = [
     icon: blackberryIcon,
   },
 ];
+
+import { Image } from "astro:assets";
+import planckstar from "../../../assets/icons/planckstar.svg";
 ---
 
 <header
@@ -34,8 +37,8 @@ const navIcons = [
   <nav
     class="flex w-full max-w-screen-2xl mx-auto justify-between items-center h-16"
   >
-    <a href="/" class="text-lg font-semibold tracking-wide text-white py-2">
-      Planckstar UI
+    <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
+      <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
     </a>
 
     <button
@@ -127,7 +130,7 @@ const navIcons = [
           navIcons.map((item) => (
             <li class="flex">
               <a href={item.href} aria-label={item.label}>
-              <item.icon width="auto" height="24" class="" />
+                <item.icon width="auto" height="24" class="" />
               </a>
             </li>
           ))
