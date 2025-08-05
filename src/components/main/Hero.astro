@@ -8,22 +8,28 @@ const version = pkg.version;
   class="text-tertiary w-full h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-center"
 >
   <div
-    class="relative flex flex-col items-center justify-center text-center border-r border-tertiary/30 h-full px-12 bg-primary"
+    class="relative flex flex-col items-center justify-center mt-32 md:mt-0 text-center border-r border-tertiary/30 h-full px-12 bg-primary"
   >
-    <h1 class="text-5xl font-bold">UI components for your website</h1>
+    <h1 class="text-3xl md:text-5xl font-bold">
+      UI components for your website
+    </h1>
     <p class="text-lg pt-8">Just copy and paste!</p>
 
     <div
       class="absolute flex justify-center items-center bottom-0 right-0 border-t border-l border-tertiary/30 bg-quaternary"
     >
-      <a href="#components" class="py-4 px-6 font-light text-lg">Explore</a>
+      <a
+        href="#components"
+        class="px-4 py-4 md:px-6 font-light text-shadow-sm md:text-lg"
+        >Explore</a
+      >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1"
         stroke="currentColor"
-        class="size-6 mr-6"
+        class="size-4 mr-4 md:size-6 md:mr-6"
       >
         <path
           stroke-linecap="round"
@@ -37,7 +43,7 @@ const version = pkg.version;
     class="relative flex items-center justify-center flex-col py-25 w-full border-y border-tertiary/30 mt-15 bg-primary"
   >
     <p
-      class="absolute top-0 left-0 translate-y-[calc(-100%-1px)] py-4 px-8 border-t border-r border-tertiary/30 bg-quaternary"
+      class="absolute text-sm md:text-[1rem] top-0 left-0 translate-y-[calc(-100%-1px)] py-4 px-8 border-t border-r border-tertiary/30 bg-quaternary"
     >
       V 0.23.0
     </p>
