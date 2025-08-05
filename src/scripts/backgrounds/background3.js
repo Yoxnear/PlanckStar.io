@@ -10,7 +10,7 @@
 
         // Cámara perspectiva para profundidad
         const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-        camera.position.z = 12; // Distancia para ver el grid completo
+        camera.position.z = 10; // Distancia para ver el grid completo
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(width, height);

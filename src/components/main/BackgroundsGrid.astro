@@ -1,14 +1,18 @@
 <div
-  class="absolute top-0 left-0 w-full h-full grid grid-cols-3 grid-rows-2 overflow-hidden"
+  class="absolute top-0 left-0 w-full h-full grid md:grid-cols-3 grid-rows-4 md:grid-rows-2 overflow-hidden"
 >
   <div
     id="three-container1"
-    class="col-span-2 border-b border-r border-tertiary/30"
+    class="md:col-span-2 border-b border-r border-tertiary/30"
   >
   </div>
   <div id="three-container2" class="border-b border-tertiary/30"></div>
-  <div id="three-container3" class="border-r border-tertiary/30"></div>
-  <div id="three-container4" class="col-span-2"></div>
+  <div
+    id="three-container3"
+    class="border-b border-t md:border-b-0 md:border-t-0 md:border-r border-tertiary/30"
+  >
+  </div>
+  <div id="three-container4" class="md:col-span-2"></div>
 </div>
 
 <script src="../../scripts/backgrounds/background1.js"></script>

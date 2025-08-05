@@ -15,7 +15,7 @@ import FooterThree from "../../components/footers/Footer3.astro";
 <div class="absolute top-0 left-0 w-full h-full grid grid-cols-5 grid-rows-6">
   <div
     id="targetHover"
-    class="absolute inset-0 bg-quaternary/70 z-1 transition-all duration-600 ease-out"
+    class="absolute inset-0 z-1 transition-all duration-600 ease-out bg-quaternary/70"
   >
   </div>
 
@@ -35,9 +35,17 @@ import FooterThree from "../../components/footers/Footer3.astro";
       </div>
     </div>
   </div>
+
+  <!-- ------ Divs ------ -->
+
+  <div
+    class="col-start-3 md:col-start-4 row-start-2 border-r row-span-3 border-tertiary/30"
+  >
+  </div>
+
   <!-- ------Buttons------ -->
   <div
-    class="col-start-5 row-start-2 border-l border-b border-tertiary/30 overflow-hidden"
+    class="col-start-4 md:col-start-5 col-span-2 md:col-span-1 row-start-2 md:row-start-3 border-b md:border-t border-tertiary/30 overflow-hidden"
   >
     <div id="buttons" class="transition duration-1000 w-full h-full">
       <div class="w-full h-full flex items-center justify-center">
