@@ -1,43 +1,28 @@
   const button = document.getElementById('hoverButton');
   const target = document.getElementById('targetHover');
 
-const headerOne = document.getElementById('header-one');
-const headerTwo = document.getElementById('header-two');
-const headerThree = document.getElementById('header-three');
-const headers = [headerOne, headerTwo, headerThree];
+const headers = document.getElementById('headers');
+const buttons = document.getElementById('buttons');
+const footers = document.getElementById('footers')
 
-const footerOne = document.getElementById('footer-one');
-const footerTwo = document.getElementById('footer-two');
-const footerThree = document.getElementById('footer-three');
-const footers = [footerOne, footerTwo, footerThree];
-
-let headerIndex = 0;
-const headerInterval = 5000; 
+let Index = 0;
+const Interval = 5000; 
 
 setInterval(() => {
-    headerIndex = headerIndex >= headers.length ? 1 : headerIndex+1;
-    
-    if (headerIndex < headers.length) {
-         headers[headerIndex-1].classList.add('-translate-x-full');
-         headers[headerIndex].classList.remove('translate-x-full');
 
-         footers[headerIndex-1].classList.add('translate-x-full');
-         footers[headerIndex].classList.remove('-translate-x-full');
+    Index = Index >= 3 ? 1 : Index+1;
+    
+    if (Index < 3) {
+       headers.style.transform = `translateX(-${100 * Index}%)`;        
+       buttons.style.transform = `translateY(-${100 * Index}%)`;
+       footers.style.transform = `translateX(+${100 * Index}%)`;
     }
     else{
-      headers.forEach((header, index) => {
-      const footer = footers[index]; 
-
-      if (index !== 0) {
-        header.classList.add('translate-x-full');
-        footer.classList.add('-translate-x-full');
-      }
-
-    header.classList.remove('-translate-x-full');
-    footer.classList.remove('translate-x-full');
-    });
-  }
-}, headerInterval);
+       headers.style.transform = `translateX(0%)`;
+       buttons.style.transform = `translateY(0%)`;
+       footers.style.transform = `translateX(0%)`;
+    };
+}, Interval);
 
 
 

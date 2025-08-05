@@ -4,15 +4,14 @@ import HeaderTwo from "../../components/headers/Header2.astro";
 import HeaderThree from "../../components/headers/Header3.astro";
 
 import Switch from "../../components/switches/Switch1.astro";
+import Combobox from "../../components/comboxes/Combobox1.astro";
 
 import FooterOne from "../../components/footers/Footer1.astro";
 import FooterTwo from "../../components/footers/Footer2.astro";
 import FooterThree from "../../components/footers/Footer3.astro";
 ---
 
-<div
-  class="absolute top-0 left-0 w-full h-full grid grid-cols-5 grid-rows-6 overflow-hidden"
->
+<div class="absolute top-0 left-0 w-full h-full grid grid-cols-5 grid-rows-6">
   <div
     id="targetHover"
     class="absolute inset-0 bg-quaternary/70 z-1 transition-all duration-600 ease-out"
@@ -20,54 +19,56 @@ import FooterThree from "../../components/footers/Footer3.astro";
   </div>
 
   <!-- ------Headers------ -->
-
   <div
-    id="header-one"
-    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center"
+    class="col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex overflow-hidden"
   >
-    <HeaderOne />
+    <div id="headers" class="transition duration-1000 w-full h-full flex">
+      <div class="min-w-full h-full flex items-center justify-center">
+        <HeaderOne />
+      </div>
+      <div class="min-w-full h-full flex items-center justify-center">
+        <HeaderTwo />
+      </div>
+      <div class="min-w-full h-full flex items-center justify-center">
+        <HeaderThree />
+      </div>
+    </div>
   </div>
-  <div
-    id="header-two"
-    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center translate-x-full"
-  >
-    <HeaderTwo />
-  </div>
-  <div
-    id="header-three"
-    class="transition duration-1000 col-start-1 row-start-1 col-span-5 row-span-1 border-b border-tertiary/30 flex items-center justify-center translate-x-full"
-  >
-    <HeaderThree />
-  </div>
-
   <!-- ------Buttons------ -->
-
   <div
-    class="col-start-5 row-start-2 col-span-1 row-span-1 border-b border-l border-tertiary/30"
+    class="col-start-5 row-start-2 border-l border-b border-tertiary/30 overflow-hidden"
   >
-    <Switch />
+    <div id="buttons" class="transition duration-1000 w-full h-full">
+      <div class="w-full h-full flex items-center justify-center">
+        <Switch />
+      </div>
+      <div
+        class="transition duration-1000 w-full h-full flex items-center justify-center"
+      >
+        <Combobox />
+      </div>
+      <div
+        class="transition duration-1000 w-full h-full flex items-center justify-center"
+      >
+        <Combobox />
+      </div>
+    </div>
   </div>
 
   <!-- ------Footers------ -->
-
   <div
-    id="footer-one"
-    class="transition duration-1000 col-start-1 row-start-5 col-span-5 row-span-2 flex items-center justify-center"
+    class="col-start-1 row-start-5 col-span-5 row-span-2 flex overflow-hidden"
   >
-    <FooterOne />
-  </div>
-  <div
-    id="footer-two"
-    class="transition duration-1000 col-start-1 row-start-5 col-span-5 row-span-2 flex items-center justify-center -translate-x-full"
-  >
-    <FooterTwo />
-  </div>
-  <div
-    id="footer-three"
-    class="transition duration-1000 col-start-1 row-start-5 col-span-5 row-span-2 flex items-center justify-center -translate-x-full"
-  >
-    <FooterThree />
+    <div id="footers" class="transition duration-1000 flex -translate-x-[200%]">
+      <div class="min-w-full h-full">
+        <FooterThree />
+      </div>
+      <div class="min-w-full h-full">
+        <FooterTwo />
+      </div>
+      <div class="min-w-full h-full">
+        <FooterOne />
+      </div>
+    </div>
   </div>
 </div>
-
-<style></style>
