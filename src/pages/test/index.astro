@@ -25,5 +25,35 @@ const height = 6 * scale;
   <Button />
   <SwitchOne />
   <Combobox1 />
+  <div class="relative w-full overflow-hidden bg-gray-900 py-6">
+    <div class="absolute top-0 left-0 h-full w-full">
+      <div class="flex w-[200%] animate-[scroll_5s_linear_infinite]">
+        <!-- Logos - se repiten 2 veces para efecto infinito -->
+        <div class="flex w-1/2 items-center justify-around space-x-12">
+          <span class="text-white">Logo 1</span>
+          <span class="text-white">Logo 2</span>
+          <span class="text-white">Logo 3</span>
+          <span class="text-white">Logo 4</span>
+        </div>
+        <div class="flex w-1/2 items-center justify-around space-x-12">
+          <span class="text-white">Logo 1</span>
+          <span class="text-white">Logo 2</span>
+          <span class="text-white">Logo 3</span>
+          <span class="text-white">Logo 4</span>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      @keyframes scroll {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </div>
   <FooterOne />
 </Layout>
