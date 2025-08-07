@@ -1,34 +1,42 @@
 ---
+// 2 Instructions in this component
+
+import { Image } from "astro:assets";
+
+// Start editing the component here ↓, choose the path to your logo. ❶
+import planckstar from "../../../assets/icons/planckstar.svg";
+
+// ↓ Here you can add the navigation social icons for your header. ❷
 import githubIcon from "/src/assets/icons/github.svg";
 import xIcon from "/src/assets/icons/x.svg";
 import blackberryIcon from "/src/assets/icons/blackberry.svg";
 
+// ↓ Here you can add the navigation items for your header. ❸
 const navItems = [
   { href: "/components", label: "Components" },
   { href: "/backgrounds", label: "Backgrounds" },
   { href: "/effects", label: "Effects" },
 ];
 
+// ↓ Here you can add the links, the alternative names, and the icons you imported earlier.❹
+
 const navIcons = [
   {
-    href: "#",
+    href: "https://github.com/",
     label: "GitHub",
     icon: githubIcon,
   },
   {
-    href: "#",
+    href: "https://x.com/",
     label: "X",
     icon: xIcon,
   },
   {
-    href: "#",
+    href: "https://www.blackberry.com/us/en",
     label: "Blackberry (??)",
     icon: blackberryIcon,
   },
 ];
-
-import { Image } from "astro:assets";
-import planckstar from "../../../assets/icons/planckstar.svg";
 ---
 
 <header
@@ -37,10 +45,12 @@ import planckstar from "../../../assets/icons/planckstar.svg";
   <nav
     class="flex w-full max-w-screen-2xl mx-auto justify-between items-center h-16"
   >
+    <!-- Logo  -->
     <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
       <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
     </a>
 
+    <!-- Buutton to toggle the mobile menu -->
     <button
       id="menu-toggle"
       class="md:hidden text-xl focus:outline-none cursor-pointer"
@@ -61,6 +71,7 @@ import planckstar from "../../../assets/icons/planckstar.svg";
       </svg>
     </button>
 
+    <!-- Navigation links -->
     <ul class="hidden md:flex items-center h-full space-x-6">
       {
         navItems.map((item) => (
@@ -76,6 +87,7 @@ import planckstar from "../../../assets/icons/planckstar.svg";
       }
     </ul>
 
+    <!-- Social icons -->
     <ul class="hidden md:flex items-center h-full space-x-6">
       {
         navIcons.map((item) => (
@@ -88,6 +100,7 @@ import planckstar from "../../../assets/icons/planckstar.svg";
       }
     </ul>
 
+    <!-- Mobile menu -->
     <div
       id="mobile-menu"
       class="hidden md:hidden fixed right-0 top-0 h-screen w-[80%] bg-background border-l border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
@@ -139,6 +152,8 @@ import planckstar from "../../../assets/icons/planckstar.svg";
     </div>
   </nav>
 </header>
+
+<!-- Script to toggle the mobile menu visibility.  -->
 
 <!-- <script>
   document.addEventListener("DOMContentLoaded", () => {

@@ -4,15 +4,13 @@ sidebar:
   order: 2
 description: No installation required — just copy and paste. But here’s what you need to get started.
 ---
+import { Steps } from '@astrojs/starlight/components';
 
-
-## 📦 No Package Installation Required
+##  No Package Installation Required
 
 You don’t need to install this project as a dependency — in fact, **there’s no NPM package available (yet)**.
 
-Right now, using the project is as simple as:
-
-> **Copying and pasting the components** into your own project.
+Right now, using the project is as simple as Copying and pasting the components into your own project.
 
 That’s it. No build steps, no complex tooling. Grab what you need and use it however you like.
 
@@ -22,8 +20,7 @@ That’s it. No build steps, no complex tooling. Grab what you need and use it h
 
 Although this project doesn't need to be installed, there are **three essential tools** you'll need to have in your project to make the components work as expected:
 
----
-
+ 
 ### 1. [Astro](https://docs.astro.build)
 
 > The modern framework for building fast, content-driven websites.
@@ -35,6 +32,7 @@ Install Astro with:
 ```bash
 npm create astro@latest
 ```
+Choose a name for your project, select the template you like, and add any dependencies you need.
 
 More details at the [Astro documentation](https://docs.astro.build).
 
@@ -46,15 +44,36 @@ More details at the [Astro documentation](https://docs.astro.build).
 
 Most components in this project are styled using Tailwind CSS. It's fast, flexible, and makes styling your pages a breeze.
 
-To install it in your Astro project:
+<Steps>
 
-```bash
-npm install -D tailwindcss
-npx tailwindcss init
-```
+1. To install it in your Astro project:
+   
+   ```bash
+   npx astro add tailwind
+   ```  
 
-To connect it with Astro, follow the  
-[Tailwind + Astro Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind/)
+2. Then go to your src/styles/global.css file and import Tailwind. If it doesn't exist, create it — it will be useful, especially if you want to define variables or customize Tailwind configurations:
+
+   ```css
+   <!-- src/styles/global.css -->
+   @import "tailwindcss";
+   ```
+
+3. After setting up your global.css, go to your layout file (e.g. src/layouts/Layout.astro) and import it at the top:
+
+   ```js
+   ---
+   <!-- src/layouts/Layout.astro -->
+   import "../styles/global.css";
+   ---
+   ```
+
+4. That's it.
+
+</Steps>
+
+More details at the  
+[Tailwind + Astro Integration Guide](https://docs.astro.build/en/guides/styling/#tailwind)
 
 ---
 
@@ -75,6 +94,4 @@ Learn more at the [Three.js documentation](https://threejs.org/docs/).
 ---
 
 Once these tools are installed, you're good to go!  
-Just copy the components you need into your project and start building ✨
-
-Need help getting started? 
+Just copy the components you need into your project and start building 

@@ -51,8 +51,8 @@
                 // Efecto hover: acercar a la cámara
                 vec2 mouse3D = uMouse * vec2(20.0, 10.0) - vec2(10.0, 5.0); // Mapear a espacio 2D
                 float dist = distance(pos.xy, mouse3D);
-                if (dist < 2.0) {
-                    pos.z += (2.0 - dist) * 2.0 * (sin(uTime * 1.0) * 0.3 + 0.7); // Suave y amplio
+                if (dist < 2.5) {
+                    pos.z += (2.0 - dist) * 2.0 * (sin(uTime * 1.0) * 0.3 + 0.6); // Suave y amplio
                 }
 
                 gl_PointSize = 4.0; // Tamaño para rectángulos pequeños
@@ -103,7 +103,7 @@
             const rect = container.getBoundingClientRect();
             particleMaterial.uniforms.uMouse.value.set(
                 (event.clientX - rect.left) / rect.width,
-                1 - (event.clientY - rect.top) / rect.height
+                1- (event.clientY - rect.top) / rect.height
             );
         });
 

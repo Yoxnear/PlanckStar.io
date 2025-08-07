@@ -7,11 +7,11 @@ description: Learn how to customize styles with Tailwind CSS and visual paramete
 
 Each component in this project is designed to be **easily customizable**, so you can adapt it to your brand, layout, or creative vision without hassle.
 
-You don’t need to dig through complex config files — all the customization happens **directly inside the components**.
+You don’t need to dig through complex config files — all the customization happens **directly inside the components**. You can follow the instructions inside each component, marked with numbers like: ❶❷❸...
 
 ---
 
-## 🧩 Tailwind CSS Customization
+## Tailwind CSS Customization
 
 All UI elements are styled using [Tailwind CSS](https://tailwindcss.com). This means you can:
 
@@ -26,13 +26,19 @@ Every component includes inline class names that you can edit freely. For exampl
 
 ```
 
-Just replace the classes or add your own to match your design.
+If you're using custom TailwindCSS variables, make sure to add them to your global.css file:
 
-If you're using a custom `tailwind.config.js`, you can also define your own color palette, spacing scale, and more.
+```css
+<!-- src/styles/global.css -->
+@theme {
+  --color-primary: #050506;
+}
+
+```
 
 ---
 
-## 🌐 Three.js Parameter Customization
+## Three.js Parameter Customization
 
 For components that use [Three.js](https://threejs.org), you’ll find clear comments and sections inside the code where you can tweak things like:
 
@@ -53,13 +59,13 @@ You can change these values directly to adjust the behavior and appearance of th
 
 ---
 
-## 🔧 How to Know What to Edit
+## How to Know What to Edit
 
 At the top of each component file, you’ll find comments like:
 
 ```jsx
-// 🔧 Customize Tailwind styles below
-// 🎨 Adjust Three.js settings here
+// Customize Tailwind styles below  ❶
+// Adjust Three.js settings here  ❷
 ```
 
 These markers help you quickly locate the parts of the code meant for customization — no need to read the whole file line by line.

@@ -3,9 +3,579 @@ title: Headers
 description: Learn more about my project in this docs site built with Starlight.
 sidebar:
   order: 1 
+  
 ---
-import Header from "../../../components/components/headers/Header1.astro"
 
-<Header></Header>
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import HeaderOne from '../../../components/components/headers/Header1.astro'
+import HeaderTwo from '../../../components/components/headers/Header2.astro'
+import HeaderThree from '../../../components/components/headers/Header3.astro'
+
+Each header is fully functional and responsive. You only need to edit the section at the top — no other code changes are necessary. Just copy and paste it into a component, and add that component wherever you like — it's usually added to the layout.
+
+```jsx
+<!-- src/layouts/Layout.astro -->
 
 ---
+// Import
+import MinimalHeader from "../components/SingularHeader.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    ...
+  </head>
+  <body>
+    <!-- Add Here -->
+    <SingularHeader />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+```
+
+---
+
+## 1. Minimal Header
+
+A simple navigation bar with your site's logo and the sections or pages of your project.
+
+<Tabs>
+  <TabItem label="Preview">
+    <HeaderOne />
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/HeaderMinimal.astro -->
+      ---
+      // 2 Instructions in this component
+
+      import { Image } from "astro:assets";
+
+      // Start editing the component here ↓, choose the path to your logo. ❶
+
+      import planckstar from "../../../assets/icons/planckstar.svg";
+
+      // ↓ Here you can add the navigation items for your header. ❷
+
+      const navItems = [
+        { href: "/components", label: "Components" },
+        { href: "/backgrounds", label: "Backgrounds" },
+        { href: "/effects", label: "Effects" },
+      ];
+      ---
+
+      <header
+        class="fixed top-0 w-full px-4 shadow-md border-b border-t border-tertiary/30 backdrop-blur-sm text-tertiary bg-background/80"
+      >
+        <nav class="flex w-full mx-auto justify-between items-center h-16">
+          <!-- Logo  -->
+          <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
+            <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+          </a>
+
+          <!-- Button to toggle the mobile menu -->
+          <button
+            id="menu-toggle"
+            class="md:hidden text-xl focus:outline-none cursor-pointer"
+            aria-label="Toggle menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+            </svg>
+          </button>
+
+          <!-- Navigation links -->
+
+          <ul class="hidden md:flex items-center h-full space-x-6">
+            {
+              navItems.map((item) => (
+                <li class="flex items-center justify-center h-full">
+                  <a
+                    href={item.href}
+                    class="px-3 py-2 hover:text-white/50 transition-colors transition-duration-50"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+
+          <!-- Mobile menu -->
+
+          <div
+            id="mobile-menu"
+            class="hidden md:hidden fixed right-0 top-0 h-screen w-[80%] bg-background border-l border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
+          >
+            <ul class="space-y-2 pl-8">
+              <button
+                id="close-toggle"
+                class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6"
+                aria-label="Toggle menu close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18 18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+              {
+                navItems.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="block py-2 text-base hover:text-white/50"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Script to toggle the mobile menu visibility.  -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const toggle = document.getElementById("menu-toggle");
+          const mobileMenu = document.getElementById("mobile-menu");
+          const closeToggle = document.getElementById("close-toggle");
+
+          if (!toggle || !mobileMenu || !closeToggle) return;
+
+          toggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+
+          closeToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+
+          const mobileLinks = mobileMenu.querySelectorAll("a");
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+            });
+          });
+        });
+      </script> 
+      ```
+  </TabItem>
+</Tabs>
+
+## 2. Three sections Header 
+
+A navbar with your logo, links to pages and sections of your project, and social media links.
+
+<Tabs>
+   <TabItem label="Preview">
+      <HeaderTwo/>
+   </TabItem>
+   <TabItem label="Code">
+    ```jsx
+    <!-- src/components/ThreeSectionsHeader.astro -->
+    ---
+    // 4 Instructions in this component
+
+    import { Image } from "astro:assets";
+
+    // Start editing the component here ↓, choose the path to your logo. ❶
+    import planckstar from "../../../assets/icons/planckstar.svg";
+
+    // ↓ Here you can add the navigation social icons for your header. ❷
+    import githubIcon from "/src/assets/icons/github.svg";
+    import xIcon from "/src/assets/icons/x.svg";
+    import blackberryIcon from "/src/assets/icons/blackberry.svg";
+
+    // ↓ Here you can add the navigation items for your header. ❸
+    const navItems = [
+      { href: "/components", label: "Components" },
+      { href: "/backgrounds", label: "Backgrounds" },
+      { href: "/effects", label: "Effects" },
+    ];
+
+    // ↓ Here you can add the links, the alternative names, and the icons you imported earlier.❹
+
+    const navIcons = [
+      {
+        href: "https://github.com/",
+        label: "GitHub",
+        icon: githubIcon,
+      },
+      {
+        href: "https://x.com/",
+        label: "X",
+        icon: xIcon,
+      },
+      {
+        href: "https://www.blackberry.com/us/en",
+        label: "Blackberry (??)",
+        icon: blackberryIcon,
+      },
+    ];
+    ---
+
+    <header
+      class="fixed top-0 w-full px-4 shadow-md border-b border-t border-tertiary/30 backdrop-blur-sm text-tertiary bg-background/80"
+    >
+      <nav
+        class="flex w-full max-w-screen-2xl mx-auto justify-between items-center h-16"
+      >
+        <!-- Logo  -->
+        <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
+          <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+        </a>
+
+        <!-- Button to toggle the mobile menu -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-xl focus:outline-none cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </button>
+
+        <!-- Navigation links -->
+        <ul class="hidden md:flex items-center h-full space-x-6">
+          {
+            navItems.map((item) => (
+              <li class="flex items-center justify-center h-full">
+                <a
+                  href={item.href}
+                  class="px-3 py-2 hover:text-white/50 transition-colors transition-duration-50"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- Social icons -->
+        <ul class="hidden md:flex items-center h-full space-x-6">
+          {
+            navIcons.map((item) => (
+              <li class="flex">
+                <a href={item.href} aria-label={item.label}>
+                  <item.icon width="auto" height="24" class="" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- Mobile menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden fixed right-0 top-0 h-screen w-[80%] bg-background border-l border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
+        >
+          <ul class="space-y-2 pl-8">
+            <button
+              id="close-toggle"
+              class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6"
+              aria-label="Toggle menu close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+            {
+              navItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="block py-2 text-base hover:text-white/50"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <ul class="flex items-center space-x-4 mt-16 pl-8 text-xs">
+            {
+              navIcons.map((item) => (
+                <li class="flex">
+                  <a href={item.href} aria-label={item.label}>
+                    <item.icon width="auto" height="24" class="" />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Script to toggle the mobile menu visibility.  -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeToggle = document.getElementById("close-toggle");
+
+        if (!toggle || !mobileMenu || !closeToggle) return;
+
+        toggle.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        closeToggle.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      });
+    </script>
+    ```
+   </TabItem>
+</Tabs>
+
+
+## 3. Singular Header 🕳️
+
+A navigation bar with a logo, navigation links, and social media icons  with a singular touch.
+
+<Tabs>
+  <TabItem label="Preview">
+    <HeaderThree/>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/SingularHeader.astro -->
+    ---
+    // 4 Instructions in this component
+    
+    import { Image } from "astro:assets";
+    
+    // Start editing the component here ↓, choose the path to your logo. ❶
+    import planckstar from "../../../assets/icons/planckstar.svg";
+    
+    // ↓ Here you can add the navigation social icons for your header. ❷
+    
+    import githubIcon from "/src/assets/icons/github.svg";
+    import xIcon from "/src/assets/icons/x.svg";
+    import blackberryIcon from "/src/assets/icons/blackberry.svg";
+    
+    // ↓ Here you can add the navigation items for your header. ❸
+    
+    const navItems = [
+      { href: "/components", label: "Components" },
+      { href: "/backgrounds", label: "Backgrounds" },
+      { href: "/effects", label: "Effects" },
+    ];
+    
+    // ↓ Here you can add the links, the alternative names, and the icons you imported earlier.❹
+    
+    const navIcons = [
+      {
+        href: "#",
+        label: "GitHub",
+        icon: githubIcon,
+      },
+      {
+        href: "#",
+        label: "X",
+        icon: xIcon,
+      },
+      {
+        href: "#",
+        label: "Blackberry (??)",
+        icon: blackberryIcon,
+      },
+    ];
+    ---
+    
+    <header
+      class="fixed flex top-8 z-10 w-[80%] max-w-screen-xl px-12 left-1/2 -translate-x-1/2 shadow-md border rounded-4xl border-tertiary/30 backdrop-blur-sm text-tertiary bg-background/80"
+    > 
+      <nav class="flex w-full mx-auto justify-between items-center h-16">
+        <!-- Logo  -->
+        <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
+          <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+        </a>
+    
+        <!-- Button to toggle the mobile menu -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-xl focus:outline-none cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </button>
+    
+        <!-- Navigation links -->
+        <ul class="hidden md:flex items-center h-full space-x-6">
+          {
+            navItems.map((item) => (
+              <li class="flex items-center justify-center h-full">
+                <a
+                  href={item.href}
+                  class="px-3 py-2 hover:text-white/50 transition-colors transition-duration-50"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+    
+        <!-- Social icons -->
+        <ul class="hidden md:flex items-center h-full space-x-6">
+          {
+            navIcons.map((item) => (
+              <li class="flex">
+                <a href={item.href} aria-label={item.label}>
+                  <item.icon width="auto" height="24" class="" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+    
+        <!-- Mobile menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden fixed right-0 top-0 w-[80%] bg-background rounded-tr-4xl border-x border-b border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
+        >
+          <ul class="space-y-2 pl-8">
+            <button
+              id="close-toggle"
+              class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6"
+              aria-label="Toggle menu close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+            {
+              navItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="block py-2 text-base hover:text-white/50"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <ul class="flex items-center space-x-4 mt-16 pl-8 text-xs mb-2">
+            {
+              navIcons.map((item) => (
+                <li class="flex">
+                  <a href={item.href} aria-label={item.label}>
+                    <item.icon width="auto" height="24" class="" />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- Script to toggle the mobile menu visibility.  -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeToggle = document.getElementById("close-toggle");
+    
+      if (!toggle || !mobileMenu || !closeToggle) return;
+    
+      toggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    
+      closeToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    });
+    </script>
+    ```
+  </TabItem>
+</Tabs>
+

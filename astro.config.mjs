@@ -18,6 +18,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'PlanckStar UI',
+      customCss: [
+        './src/styles/global.css',
+      ],
       logo: {
         src: '/src/assets/icons/planckstar.svg',
         replacesTitle: true,
