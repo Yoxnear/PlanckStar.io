@@ -1,15 +1,14 @@
 ---
-title: Headers
+title: Footers
 description: Learn more about my project in this docs site built with Starlight.
 sidebar:
-  order: 1 
-  
+  order: 99
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
-import HeaderOne from '../../../components/components/headers/Header1.astro'
-import HeaderTwo from '../../../components/components/headers/Header2.astro'
-import HeaderThree from '../../../components/components/headers/Header3.astro'
+import FooterOne from '../../../components/components/footers/Footer1.astro'
+import FooterTwo from '../../../components/components/footers/Footer2.astro'
+import FooterThree from '../../../components/components/footers/Footer3.astro'
 
 Each header is fully functional and responsive. You only need to edit the section at the top — no other code changes are necessary. Just copy and paste it into a component, and add that component wherever you like — it's usually added to the layout.
 
@@ -38,153 +37,119 @@ import MinimalHeader from "../components/SingularHeader.astro";
 
 ---
 
-## 1. Minimal Header
+## 1. Minimal Footer
 
-A simple navigation bar with your site's logo and the sections or pages of your project.
+A simple footer with your site's logo and the sections or pages of your project plus your social media.
 
 <Tabs>
   <TabItem label="Preview">
-    <div >
-      <HeaderOne />
-    </div>
+    <FooterOne />
   </TabItem>
   <TabItem label="Code">
      ```jsx
       <!-- src/components/HeaderMinimal.astro -->
-      ---
-      // 2 Instructions in this component
-
-      import { Image } from "astro:assets";
-
-      // Start editing the component here ↓, choose the path to your logo. ❶
-
-      import planckstar from "../../../assets/icons/planckstar.svg";
-
-      // ↓ Here you can add the navigation items for your header. ❷
-
-      const navItems = [
-        { href: "/components", label: "Components" },
-        { href: "/backgrounds", label: "Backgrounds" },
-        { href: "/effects", label: "Effects" },
-      ];
-      ---
-
-      <header
-        class="fixed top-0 w-full px-4 shadow-md border-b border-t border-tertiary/30 backdrop-blur-sm text-tertiary bg-background/80"
-      >
-        <nav class="flex w-full mx-auto justify-between items-center h-16">
-          <!-- Logo  -->
-          <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
-            <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
-          </a>
-
-          <!-- Button to toggle the mobile menu -->
-          <button
-            id="menu-toggle"
-            class="md:hidden text-xl focus:outline-none cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-            </svg>
-          </button>
-
-          <!-- Navigation links -->
-
-          <ul class="hidden md:flex items-center h-full space-x-6">
-            {
-              navItems.map((item) => (
-                <li class="flex items-center justify-center h-full">
-                  <a
-                    href={item.href}
-                    class="px-3 py-2 hover:text-white/50 transition-colors transition-duration-50"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-
-          <!-- Mobile menu -->
-
-          <div
-            id="mobile-menu"
-            class="hidden md:hidden fixed right-0 top-0 h-screen w-[80%] bg-background border-l border-tertiary/30 px-4 py-4 space-y-3 bg-black/40 backdrop-blur-xs"
-          >
-            <ul class="space-y-2 pl-8">
-              <button
-                id="close-toggle"
-                class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6"
-                aria-label="Toggle menu close"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12"></path>
-                </svg>
-              </button>
+              ---
+        // 10 Instructions in this component
+        
+        import { Image } from "astro:assets";
+        
+        //Start editing the component here ↓, choose the path to your logo. ❶
+        
+        import yourLogo from "../../../assets/icons/planckstar.svg";
+        
+        // ↓ Here you can add as many columns as you want to your footer. ❷
+        
+        const links = [
+          {
+            title: "Main", //← Edit here the name/title of the column. ❸
+            sublinks: [
+              { subtitle: "Home", href: "#" }, //------ Add your links here wherever you like, ❹
+              { subtitle: "Products", href: "#" }, //-- including a label (subtitle) for each one
+              // { subtitle: "Services", href: "#" }, //-- along with its corresponding path (href).
+              // { subtitle: "About", href: "#" },
+              // { subtitle: "Contact", href: "#" },
+            ],
+          },
+          {
+            title: "Second", //---------------------------|
+            sublinks: [
+              { subtitle: "Support", href: "#" }, //------|
+              { subtitle: "Security", href: "#" }, //-----| ← Add more columns using this format ❺
+              // { subtitle: "Accessibility", href: "#" }, //|
+              // { subtitle: "Careers", href: "#" }, //------|
+            ], //-----------------------------------------|
+          },
+        ];
+        
+        //Here you add the path to your social media icons ↓. ❻
+        
+        import socialLogoFirst from "../../../assets/icons/x.svg";
+        import socialLogoSecond from "../../../assets/icons/github.svg";
+        import socialLogoThird from "../../../assets/icons/blackberry.svg";
+        
+        //↓ You can add as many icons as you like here, along with their links and alt text to follow accessibility best practices. ❼
+        
+        const socialItems = [
+          { icon: socialLogoFirst, href: "x.com", alt: "Icon -----" },
+          { icon: socialLogoSecond, href: "github.com", alt: "Icon -----" },
+          { icon: socialLogoThird, href: "/blackberry.com", alt: "Icon -----" },
+        ];
+        ---
+        
+        <!-- Here is where the HTML begins. ❽ -->
+        <footer class="w-full text-white border-t border-white/30">
+          <div class="grid grid-cols-[2fr_5fr] w-full my-12 gap-12 px-[10%]">
+            <div class="flex w-full justify-center items-center">
+              <Image class="w-[20%]" src={yourLogo} alt="_Your Logo_" />
+            </div>
+        
+            <div class="flex justify-around">
               {
-                navItems.map((item) => (
-                  <li>
-                    <a
-                      href={item.href}
-                      class="block py-2 text-base hover:text-white/50"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
+                links.map((section) => (
+                  <div>
+                    <p class="uppercase text-sm">{section.title}</p>
+                    <ul class="mt-4">
+                      {section.sublinks.map((link) => (
+                        <li class="my-2">
+                          <a
+                            href={link.href}
+                            class="font-light text-gray-400 hover:text-gray-500"
+                          >
+                            {link.subtitle}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))
               }
-            </ul>
+        
+              <div class="flex flex-col items-center">
+                <p class="uppercase text-sm">Social</p>
+                <ul class="flex mt-6">
+                  {
+                    socialItems.map((icon) => (
+                      <li class="flex items-center justify-center h-full">
+                        <a href={icon.href} class="px-3">
+                          <Image src={icon.icon} alt={icon.alt} />
+                        </a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
           </div>
-        </nav>
-      </header>
-
-      <!-- Script to toggle the mobile menu visibility.  -->
-
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const toggle = document.getElementById("menu-toggle");
-          const mobileMenu = document.getElementById("mobile-menu");
-          const closeToggle = document.getElementById("close-toggle");
-
-          if (!toggle || !mobileMenu || !closeToggle) return;
-
-          toggle.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-          });
-
-          closeToggle.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-          });
-
-          const mobileLinks = mobileMenu.querySelectorAll("a");
-          mobileLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-              mobileMenu.classList.add("hidden");
-            });
-          });
-        });
-      </script> 
+          <div
+            class="flex justify-between border-y border-white/30 w-full px-6 py-4 text-xs"
+          >
+            <!-- ----------↓ Here you can add your company name ❾ -->
+            <p class="text-xs">Copyright "_Edit_Here_" © 2025 All Rights Reserved</p>
+        
+            <!-- ----------↓ Also add your privacy policy page (if you want to) ❿ -->
+            <a href="#">Privacy Policy</a>
+          </div>
+        </footer>
       ```
   </TabItem>
 </Tabs>
@@ -195,7 +160,7 @@ A navbar with your logo, links to pages and sections of your project, and social
 
 <Tabs>
    <TabItem label="Preview">
-      <HeaderTwo/>
+      <FooterThree/>
    </TabItem>
    <TabItem label="Code">
     ```jsx
@@ -386,15 +351,13 @@ A navbar with your logo, links to pages and sections of your project, and social
 </Tabs>
 
 
-## 3. Singular Header 🕳️
+## 3. Quantum Footer 
 
 A navigation bar with a logo, navigation links, and social media icons  with a singular touch.
 
 <Tabs>
   <TabItem label="Preview">
-    <div class="flex justify-center">
-        <HeaderThree/>
-    </div>
+    <FooterTwo/>
   </TabItem>
   <TabItem label="Code">
     ```jsx

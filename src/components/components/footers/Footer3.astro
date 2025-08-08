@@ -47,20 +47,44 @@ const socialItems = [
 ---
 
 <!-- Here is where the HTML begins. ❽ -->
-<footer class="w-full text-white border-t border-white/30">
-  <div class="grid grid-cols-[2fr_5fr] w-full my-12 gap-12 px-[10%]">
-    <div class="flex w-full justify-center items-center">
-      <Image class="w-[20%]" src={yourLogo} alt="_Your Logo_" />
+<footer class="relative w-full text-white border-t border-white/30">
+  <p class="absolute bottom-4 right-6 text-xs text-gray-400">
+    Copyright "_Edit_Here_" © 2025 All Rights Reserved
+  </p>
+
+  <div class="flex justify-around items-start py-16">
+    <div class="flex flex-col items-center">
+      <Image class="w-16 mb-4" src={yourLogo} alt="_Your Logo_" />
+      <p class="mt-6 mb-4 w-full">
+        Subscribe to our newsletter and stay <br /> up to date with upcoming projects.
+      </p>
+      <form class="font-light" action="/subscribe" method="POST">
+        <div class="relative bg-gray-900 p-4 pr-28 rounded-md">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="outline-none"
+          />
+          <button
+            type="submit"
+            class="absolute top-1 bottom-1 right-1 bg-gray-950 px-2 rounded-md cursor-pointer"
+            >Subscribe</button
+          >
+        </div>
+      </form>
     </div>
 
     <div class="flex justify-around">
       {
         links.map((section) => (
-          <div>
+          <div class="flex flex-col last:ml-20">
             <p class="uppercase text-sm">{section.title}</p>
             <ul class="mt-4">
               {section.sublinks.map((link) => (
-                <li class="my-2">
+                <li class="my-2 ml-2">
                   <a
                     href={link.href}
                     class="font-light text-gray-400 hover:text-gray-500"
@@ -73,30 +97,20 @@ const socialItems = [
           </div>
         ))
       }
-
-      <div class="flex flex-col items-center">
-        <p class="uppercase text-sm">Social</p>
-        <ul class="flex mt-6">
-          {
-            socialItems.map((icon) => (
-              <li class="flex items-center justify-center h-full">
-                <a href={icon.href} class="px-3">
-                  <Image src={icon.icon} alt={icon.alt} />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
-  </div>
-  <div
-    class="flex justify-between border-y border-white/30 w-full px-6 py-4 text-xs"
-  >
-    <!-- ----------↓ Here you can add your company name ❾ -->
-    <p>Copyright "_Edit_Here_" © 2025 All Rights Reserved</p>
-
-    <!-- ----------↓ Also add your privacy policy page (if you want to) ❿ -->
-    <a href="#">Privacy Policy</a>
+    <div class="flex flex-col items-center">
+      <p class="uppercase text-sm">Social</p>
+      <ul class="flex mt-6">
+        {
+          socialItems.map((icon) => (
+            <li class="flex items-center justify-center h-full">
+              <a href={icon.href} class="px-3">
+                <Image src={icon.icon} alt={icon.alt} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </footer>
