@@ -1,0 +1,46 @@
+---
+title: Buttons
+description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 50
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Button from '../../../components/components/buttons/Button1.astro';
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <Button />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    //2 Instructions in this component
+
+    // ↓ Here you can change the label of the button. ❶
+    const labelButton = "Button";
+    ---
+
+    <button
+      id="Button"
+      class="text-gray-400 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-600 rounded-xl transition-colors not-content"
+    >
+      {labelButton}
+    </button>
+
+    <!-- Script -->
+
+    <script>
+      const myButton = document.getElementById("Button");
+
+      myButton.addEventListener("click", () => {
+        console.log("Click");
+        // Here you can add your logic when the button is clicked. ❷
+      });
+    </script>
+    ```
+  </TabItem>
+</Tabs> 
