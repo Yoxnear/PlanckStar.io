@@ -1,5 +1,5 @@
-  const button = document.getElementById('hoverButton');
-  const target = document.getElementById('targetHover');
+const button = document.getElementById('hoverButton');
+const target = document.getElementById('targetHover');
 
 const headers = document.getElementById('headers');
 const buttons = document.getElementById('buttons');
@@ -10,18 +10,12 @@ const Interval = 5000;
 
 setInterval(() => {
 
-    Index = Index >= 3 ? 1 : Index+1;
+   Index = (Index + 1) % 3;
     
-    if (Index < 3) {
-       headers.style.transform = `translateX(-${100 * Index}%)`;        
-       buttons.style.transform = `translateY(-${100 * Index}%)`;
-       footers.style.transform = `translateX(+${100 * Index}%)`;
-    }
-    else{
-       headers.style.transform = `translateX(0%)`;
-       buttons.style.transform = `translateY(0%)`;
-       footers.style.transform = `translateX(0%)`;
-    };
+   headers.style.transform = `translateX(-${100 * Index}%)`;        
+   buttons.style.transform = `translateY(-${100 * Index}%)`;
+   footers.style.transform = `translateX(+${100 * Index}%)`;
+   
 }, Interval);
 
 

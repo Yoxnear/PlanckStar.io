@@ -1,0 +1,39 @@
+---
+const slides = [
+  { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
+  { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
+  { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
+];
+---
+
+<div class="flex overflow-hidden w-full not-content">
+  <div
+    id="carousel1"
+    class="flex transition-transform duration-500 ease-in-out"
+  >
+    {
+      slides.map((slide, i) => (
+        <div class="w-full flex-shrink-0 p-6">
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class="w-full h-auto object-cover rounded-xl"
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const carousel1 = document.getElementById("carousel1");
+
+  let carouselIndex1 = 0;
+  const carouselInterval1 = 5000;
+  const totalSlides1 = carousel1.children.length;
+
+  setInterval(() => {
+    carouselIndex1 = (carouselIndex1 + 1) % totalSlides1;
+    carousel1.style.transform = `translateX(-${100 * carouselIndex1}%)`;
+  }, carouselInterval1);
+</script>

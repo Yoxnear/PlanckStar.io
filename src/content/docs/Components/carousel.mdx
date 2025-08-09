@@ -1,0 +1,72 @@
+---
+title: Carousel
+description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import CarouselOne from "../../../components/components/carousels/Carousel1.astro";
+import CarouselTwo from "../../../components/components/carousels/Carousel2.astro";
+
+The carousel components come with their own built-in script,
+so make sure there are no class or variable conflicts with other components.
+If you are only using components from this library, you shouldn’t encounter any issues.
+
+To implement it, import the Carousel component into your Astro page or component,
+and wrap it in a div with your desired dimensions; the carousel size will depend
+on that container. Finally, edit the images and paths directly inside the Carousel component.
+
+```jsx
+<!-- src/components/Projects.astro -->
+
+---
+// Import
+import Carousel from "../components/Carousel.astro";
+---
+(...)
+<div class="Type your container dimensions here">
+  <Carousel />
+</div>
+(...)
+
+```
+
+---
+
+## 1. Automatic carousel
+
+Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
+
+<Tabs>
+  <TabItem label="Preview">
+    <CarouselOne />
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/Carousel.astro -->
+              ---
+       
+      ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. Carousel with buttons
+
+Add navigation controls so the user can manually move forward or backward between
+slides. Adjust the image paths and customize the button styles to match your project’s design.
+
+<Tabs>
+  <TabItem label="Preview">
+    <CarouselTwo />
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/HeaderMinimal.astro -->
+              ---
+       
+      ```
+  </TabItem>
+</Tabs>

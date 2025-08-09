@@ -1,0 +1,88 @@
+---
+const slides = [
+  { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
+  { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
+  { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
+];
+---
+
+<div class="flex relative overflow-hidden w-full text-white/80 not-content">
+  <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
+    {
+      slides.map((slide) => (
+        <div class="w-full flex-shrink-0 p-6">
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class="w-full h-auto object-cover rounded-xl  filter grayscale-100"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div
+    id="nextBtn"
+    class="absolute overflow-hidden right-6 top-6 flex h-[calc(100%-48px)] w-[20%] justify-end items-center group"
+  >
+    <button
+      class="flex justify-center items-center h-[60%] w-[40%] translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-l-xl"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="prevBtn"
+    class="flex justify-start items-center absolute overflow-hidden left-6 top-6 h-[calc(100%-48px)] w-[20%] group"
+  >
+    <button
+      class="flex justify-center items-center h-[60%] w-[40%] -translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-r-xl"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const carousel = document.getElementById("carousel");
+
+  let carouselIndex = 0;
+  const totalSlides = carousel.children.length;
+
+  nextBtn.addEventListener("click", () => {
+    carouselIndex = (carouselIndex + 1) % totalSlides;
+    carousel.style.transform = `translateX(-${100 * carouselIndex}%)`;
+  });
+
+  prevBtn.addEventListener("click", () => {
+    carouselIndex = (carouselIndex - 1 + totalSlides) % totalSlides;
+    carousel.style.transform = `translateX(-${100 * carouselIndex}%)`;
+  });
+</script>
