@@ -1,4 +1,8 @@
 ---
+// ❶❷❸❹❺❻❼❽❾❿
+//1 Instructions in this component
+
+// ↓ Here you can add the images/slides. ❶
 const slides = [
   { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
   { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
@@ -6,6 +10,7 @@ const slides = [
 ];
 ---
 
+<!-- Carousel -->
 <div class="flex relative overflow-hidden w-full text-white/80 not-content">
   <div
     id="carousel"
@@ -23,6 +28,8 @@ const slides = [
       ))
     }
   </div>
+
+  <!-- Buttons -->
 
   <div
     id="prevBtn"
@@ -70,6 +77,8 @@ const slides = [
     </button>
   </div>
 </div>
+
+<!-- Script -->
 
 <script>
   const nextBtn = document.getElementById("nextBtn");
