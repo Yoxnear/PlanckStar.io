@@ -1,0 +1,87 @@
+---
+title: Combobox
+description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import Combobox from "/src/components/components/comboxes/Combobox1.astro";
+
+The combo box is a simple, ready-to-use component that you can expand with additional
+logic depending on your needs. Simply add it to your Astro page or component, customize
+the items, and integrate your own code to achieve the desired functionality.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+// Import
+import Combobox from "../components/Combobox.astro";
+---
+(...)
+  <Combobox />
+(...)
+
+```
+
+---
+
+## Combobox
+
+Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-full my-12 justify-center items-center">
+      <Combobox />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/Combobox.astro -->
+      ---
+      //1 Instructions in this component
+
+      // Here you can add the items for your combobox ↓. ❶
+      const items = ["Combobox", "Second Item", "Third Item"];
+      ---
+
+      <div id="combo" class="m-10 relative w-64 text-gray-400 not-content">
+
+        <select
+          class="appearance-none w-full bg-gray-950 hover:bg-gray-900 border border-white/10 py-2 pl-4 pr-10 rounded-lg shadow-md focus:border-white/30"
+        >
+          {items.map((item) => <option>{item}</option>)}
+        </select>
+
+        <div
+          class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Script -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const combo = document.getElementById("combo");
+          combo?.addEventListener("change", (e) => {
+            console.log("You selected the:", e.target.value);
+            //-----
+            //Here you can handle the change event and write your logic. ❷
+            //-----
+          });
+        });
+      </script>
+     ```
+
+  </TabItem>
+</Tabs>
