@@ -1,0 +1,35 @@
+---
+// Static data for the table
+
+const labels = ["ID", "Name", "Age", "City"];
+
+const rows = [
+  { id: 1, name: "Alan Ramos", age: 30, city: "Ciudad de México" },
+  { id: 2, name: "Laura Martínez", age: 25, city: "Guadalajara" },
+  { id: 3, name: "Carlos Pérez", age: 28, city: "Monterrey" },
+];
+---
+
+<table class="table-auto w-full text-white not-content">
+  <thead class="bg-gray-950">
+    {
+      labels.map((label) => (
+        <th class="border-y border-white/20 px-6 py-4 md:px-12 md:py-6 font-light">
+          {label}
+        </th>
+      ))
+    }
+  </thead>
+  <tbody>
+    {
+      rows.map((row) => (
+        <tr class="border-y border-white/20 hover:border-white/50 transition-colors duration-200">
+          <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.id}</td>
+          <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.name}</td>
+          <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.age}</td>
+          <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.city}</td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

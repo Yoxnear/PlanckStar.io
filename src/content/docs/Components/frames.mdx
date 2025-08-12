@@ -11,24 +11,25 @@ import FrameTwo from "/src/components/components/frames/Frame2.astro";
 import FrameThree from "/src/components/components/frames/Frame3.astro";
 import FrameFour from "/src/components/components/frames/Frame4.astro";
 
-The carousel components come with their own built-in script,
-so make sure there are no class or variable conflicts with other components.
-If you are only using components from this library, you shouldn’t encounter any issues.
+Frames add an extra touch to your design and help highlight containers and sections.
 
-To implement it, import the Carousel component into your Astro page or component,
-and wrap it in a div with your desired dimensions; the carousel size will depend
-on that container. Finally, edit the images and paths directly inside the Carousel component.
+You can apply them directly to your container—just place them inside, and the frame will automatically
+adapt to the container’s dimensions. Also, the container must have the relative
+class for it to work properly.
 
 ```jsx
 <!-- src/components/Projects.astro -->
 
 ---
 // Import
-import Carousel from "../components/Carousel.astro";
+import Frame from "../components/Frame.astro";
 ---
 (...)
-<div class="Type your container dimensions here">
-  <Carousel />
+<div class="relative + Type your container dimensions here">
+  (...)
+  <-- You can add it anywhere you want, as long as it’s inside the container -->
+  <Frame />
+  (...)
 </div>
 (...)
 
@@ -36,7 +37,7 @@ import Carousel from "../components/Carousel.astro";
 
 ---
 
-## 1. Automatic carousel
+## 1. Crossed Corners
 
 Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
 
@@ -46,51 +47,28 @@ Adjust the time interval and image paths so the carousel runs automatically with
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/Carousel.astro -->
-       ---
-       //2 Instructions in this component
-       
-       // ↓ Here you can add the images/slides. ❶
-       
-       const slides = [
-       { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
-       { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
-       { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
-       ];
-       
-       ---
-       
-       <div class="flex overflow-hidden w-full not-content">
-         <div
-           id="carousel1"
-           class="flex transition-transform duration-500 ease-in-out"
-         >
-           {slides.map((slide, i) => (
-             <div class="w-full flex-shrink-0 p-6">
-               <img
-                 src={slide.src}
-                 alt={slide.alt}
-                 class="w-full h-auto object-cover rounded-xl"
-               />
-             </div>
-           ))}
-         </div>
-       </div>
-       
-       <!-- Script to translate de element -->
-       
-       <script>
-         const carousel1 = document.getElementById("carousel1");
-       
-         let carouselIndex1 = 0;
-         const carouselInterval1 = 5000; //Here you can set the time. ❷
-         const totalSlides1 = carousel1.children.length;
-       
-         setInterval(() => {
-           carouselIndex1 = (carouselIndex1 + 1) % totalSlides1;
-           carousel1.style.transform = `translateX(-${100 * carouselIndex1}%)`;
-         }, carouselInterval1);
-       </script>
+        <!-- src/components/CrossedFrame.astro -->
+        <div class="relative w-full h-80 border border-white/10 not-content">
+          <div>
+            <!-- Top -->
+            <!-- ---Left -->
+            <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
+            <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
+
+            <!-- ---Right -->
+            <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
+            <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
+
+            <!-- Bottom -->
+            <!-- ---Left -->
+            <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
+            <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
+
+            <!-- ---Right -->
+            <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
+            <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
+          </div>
+        </div>
       ```
 
   </TabItem>
@@ -98,7 +76,7 @@ Adjust the time interval and image paths so the carousel runs automatically with
 
 ---
 
-## 2. Carousel with buttons
+## 2. Half-Square
 
 Add navigation controls so the user can manually move forward or backward between
 slides. Adjust the image paths and customize the button styles to match your project’s design.
@@ -109,109 +87,117 @@ slides. Adjust the image paths and customize the button styles to match your pro
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/HeaderMinimal.astro -->
-      
-        ---
-        //1 Instruction in this component
-
-        // ↓ Here you can add the images/slides. ❶
-        const slides = [
-          { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
-          { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
-          { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
-        ];
-        ---
-
-        <!-- Carousel -->
-
-        <div class="flex relative overflow-hidden w-full text-white/80 not-content">
-          <div
-            id="carousel"
-            class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
-          >
-            {
-              slides.map((slide) => (
-                <div class="w-full flex-shrink-0">
-                  <img
-                    src={slide.src}
-                    alt={slide.alt}
-                    class="w-full h-auto object-cover rounded-xl filter"
-                  />
-                </div>
-              ))
-            }
-          </div>
-
-          <!-- Buttons -->
-
-          <div
-            id="prevBtn"
-            class="absolute overflow-hidden left-0 top-0 h-full w-[20%] flex justify-start items-center group"
-          >
-            <button
-              class="flex justify-center items-center size-12 -translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-full"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                class="size-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div
-            id="nextBtn"
-            class="absolute overflow-hidden right-0 top-0 h-full w-[20%] flex justify-end items-center group"
-          >
-            <button
-              class="flex justify-center items-center size-12 translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-full"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                class="size-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-              </svg>
-            </button>
-          </div>
+      <!-- src/components/HalfSquareFrame.astro -->
+      <div>
+        <!-- Top -->
+        <!-- ---Left -->
+        <div class="absolute top-4 left-4 size-4 border-t border-l border-white">
         </div>
 
-        <!-- Script -->
+        <!-- ---Right -->
+        <div class="absolute top-4 right-4 size-4 border-t border-r border-white">
+        </div>
 
-        <script>
-          const nextBtn = document.getElementById("nextBtn");
-          const prevBtn = document.getElementById("prevBtn");
-          const carousel = document.getElementById("carousel");
+        <!-- Bottom -->
+        <!-- ---Left -->
+        <div class="absolute bottom-4 left-4 size-4 border-b border-l border-white">
+        </div>
 
-          let carouselIndex = 0;
-          const totalSlides = carousel.children.length;
+        <!-- ---Right -->
+        <div
+          class="absolute bottom-4 right-4 size-4 border-b border-r border-white"
+        >
+        </div>
+      </div>
 
-          nextBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex + 1) % totalSlides;
-            carousel.style.transform = `translateX(-${100 * carouselIndex}%)`;
-          });
+      ```
 
-          prevBtn.addEventListener("click", () => {
-            carouselIndex = (carouselIndex - 1 + totalSlides) % totalSlides;
-            carousel.style.transform = `translateX(-${100 * carouselIndex}%)`;
-          });
-        </script>
+  </TabItem>
+</Tabs>
 
+---
+
+## 3. Dotted
+
+Add navigation controls so the user can manually move forward or backward between
+slides. Adjust the image paths and customize the button styles to match your project’s design.
+
+<Tabs>
+  <TabItem label="Preview">
+    <FrameThree/>
+  </TabItem>
+    <TabItem label="Code">
+       ```jsx
+      <!-- src/components/HeaderMinimal.astro -->
+      <div>
+        <!-- Top -->
+        <!-- ---Left -->
+        <div class="absolute top-2 left-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute top-2 left-6 size-1 rounded-full bg-white"></div>
+        <div class="absolute top-6 left-2 size-1 rounded-full bg-white"></div>
+
+        <!-- ---Right -->
+        <div class="absolute top-6 right-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute top-2 right-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute top-2 right-6 size-1 rounded-full bg-white"></div>
+
+        <!-- Bottom -->
+        <!-- ---Left -->
+        <div class="absolute bottom-6 right-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute bottom-2 right-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute bottom-2 right-6 size-1 rounded-full bg-white"></div>
+
+        <!-- ---Right -->
+        <div class="absolute bottom-6 left-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute bottom-2 left-2 size-1 rounded-full bg-white"></div>
+        <div class="absolute bottom-2 left-6 size-1 rounded-full bg-white"></div>
+    </div>
+
+      ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 4. Curved Horizon
+
+Add navigation controls so the user can manually move forward or backward between
+slides. Adjust the image paths and customize the button styles to match your project’s design.
+
+<Tabs>
+  <TabItem label="Preview">
+    <FrameFour/>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+    <!-- src/components/HeaderMinimal.astro -->
+    <div>
+        <!-- Top -->
+        <!-- ---Left -->
+        <div
+          class="absolute top-0 left-0 size-4 bg-white [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+        >
+        </div>
+
+        <!-- ---Right -->
+        <div
+          class="absolute top-0 right-0 size-4 bg-white rotate-90 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+        >
+        </div>
+
+        <!-- Bottom -->
+        <!-- ---Left -->
+        <div
+          class="absolute bottom-0 left-0 size-4 bg-white rotate-[270deg] [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+        >
+        </div>
+
+        <!-- ---Right -->
+        <div
+          class="absolute bottom-0 right-0 size-4 bg-white rotate-180 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+        >
+    </div>
 
       ```
 
