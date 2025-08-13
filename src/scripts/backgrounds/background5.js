@@ -1,40 +1,47 @@
+import * as THREE from "three";
 
-  import * as THREE from "three";
-  const container = document.getElementById("canvas-container");
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-  );
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+// Get the container element where the scene will be rendered
+const container = document.getElementById("canvas-container");
+
+// Create a new Three.js scene
+const scene = new THREE.Scene();
+
+// Create a perspective camera
+const camera = new THREE.PerspectiveCamera(
+  75, // Field of view
+  container.clientWidth / container.clientHeight, // Aspect ratio
+  0.1, // Near clipping plane
+  1000 // Far clipping plane
+);
+
+// Create and configure the WebGL renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
+
+// Adjust renderer and camera when the window is resized
+window.addEventListener("resize", () => {
   renderer.setSize(container.clientWidth, container.clientHeight);
-  container.appendChild(renderer.domElement);
+  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.updateProjectionMatrix();
+});
 
-  // Ajustar al cambio de tamaño
-  window.addEventListener("resize", () => {
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-  });
-
-  // Shader de aurora boreal
-  const planeGeometry = new THREE.PlaneGeometry(10, 10);
-  const shaderMaterial = new THREE.ShaderMaterial({
-    vertexShader: `
+// Aurora Borealis shader setup
+const planeGeometry = new THREE.PlaneGeometry(10, 10); // Plane to display the shader
+const shaderMaterial = new THREE.ShaderMaterial({
+  vertexShader: `
     varying vec2 vUv;
     void main() {
-      vUv = uv;
+      vUv = uv; // Pass UV coordinates to fragment shader
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,
-    fragmentShader: `
+  fragmentShader: `
     varying vec2 vUv;
     uniform float time;
     uniform vec2 resolution;
 
-    // Ruido Perlin 2D (adaptado de https://github.com/ashima/webgl-noise)
+    // 2D Perlin noise implementation (adapted from https://github.com/ashima/webgl-noise)
     vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
@@ -62,30 +69,50 @@
     }
 
     void main() {
-      vec2 uv = vUv * resolution / resolution.y; // Normalizar según resolución
-      float t = time * 0.3; // Velocidad de animación
-      float noise = snoise(uv * 2.0 + vec2(t, t * 0.5)); // Ruido animado
-      float wave = sin(uv.y * 5.0 + noise + t) * 0.2 + 0.5; // Ondas suaves
-      vec3 color = mix(vec3(0.0, 0.01, 0.1), vec3(0.01, 0.7, 0.5), wave); // Colores de aurora
-      color += vec3(0.1, 0.3, 0.2) * noise * 1.0; // Detalle de ruido
+      // Normalize UV coordinates according to resolution
+      vec2 uv = vUv * resolution / resolution.y;
+
+      // Animation speed control
+      float t = time * 0.3;
+
+      // Animated Perlin noise for dynamic patterns
+      float noise = snoise(uv * 2.0 + vec2(t, t * 0.5));
+
+      // Smooth sine waves for aurora movement
+      float wave = sin(uv.y * 5.0 + noise + t) * 0.2 + 0.5;
+
+      // Gradient mix between deep blue and teal-green
+      vec3 color = mix(vec3(0.0, 0.01, 0.1), vec3(0.01, 0.7, 0.5), wave);
+
+      // Add extra noise-based detail to the aurora
+      color += vec3(0.1, 0.3, 0.2) * noise * 1.0;
+
       gl_FragColor = vec4(color, 1.0);
     }
   `,
-    uniforms: {
-      time: { value: 0.0 },
-      resolution: {
-        value: new THREE.Vector2(container.clientWidth, container.clientHeight),
-      },
+  uniforms: {
+    time: { value: 0.0 }, // Controls animation over time
+    resolution: {
+      value: new THREE.Vector2(container.clientWidth, container.clientHeight), // Keeps resolution consistent
     },
-  });
-  const plane = new THREE.Mesh(planeGeometry, shaderMaterial);
-  scene.add(plane);
+  },
+});
 
-  camera.position.z = 5;
+// Create the mesh and add it to the scene
+const plane = new THREE.Mesh(planeGeometry, shaderMaterial);
+scene.add(plane);
 
-  function animate() {
-    requestAnimationFrame(animate);
-    shaderMaterial.uniforms.time.value += 0.01;
-    renderer.render(scene, camera);
-  }
-  animate();
+// Move camera back so the plane is visible
+camera.position.z = 5;
+
+// Main render loop
+function animate() {
+  requestAnimationFrame(animate);
+  
+  // Update the time uniform for animation
+  shaderMaterial.uniforms.time.value += 0.01;
+  
+  // Render the scene from the camera's perspective
+  renderer.render(scene, camera);
+}
+animate();
