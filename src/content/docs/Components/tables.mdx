@@ -9,25 +9,21 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 import TableOne from "/src/components/components/tables/Table1.astro";
 import TableTwo from "/src/components/components/tables/Table2.astro";
 
-Frames add an extra touch to your design and help highlight containers and sections.
+You can customize the tables as needed by adding columns and rows at your convenience.
 
-You can apply them directly to your container—just place them inside, and the frame will automatically
-adapt to the container’s dimensions. Also, the container must have the relative
-class for it to work properly.
+To include it in your project, you can add it directly or inside a container.
+You’ll probably need to manually adjust the component’s width.
 
 ```jsx
-<!-- src/components/Projects.astro -->
+<!-- src/components/Statistics.astro -->
 
 ---
 // Import
-import Frame from "../components/Frame.astro";
+import Table from "../components/Table.astro";
 ---
 (...)
-<div class="relative + Type your container dimensions here">
-  (...)
-  <-- You can add it anywhere you want, as long as it’s inside the container -->
-  <Frame />
-  (...)
+<div class="You can use: flex justify-center items-center + Type your container dimensions here">
+  <Table />
 </div>
 (...)
 
@@ -35,7 +31,7 @@ import Frame from "../components/Frame.astro";
 
 ---
 
-## 1. Crossed Corners
+## 1. S/T Table
 
 Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
 
@@ -46,27 +42,44 @@ Adjust the time interval and image paths so the carousel runs automatically with
   <TabItem label="Code">
      ```jsx
         <!-- src/components/CrossedFrame.astro -->
-        <div class="relative w-full h-80 border border-white/10 not-content">
-          <div>
-            <!-- Top -->
-            <!-- ---Left -->
-            <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
+        ---
+        //2 Instruction in this component
 
-            <!-- ---Right -->
-            <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
+        // Here you can edit and add the column titles ↓. ❶
+        const labels = ["ID", "Name", "Age", "City"];
 
-            <!-- Bottom -->
-            <!-- ---Left -->
-            <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
+        // Here you can edit and add the rows ↓. ❷
+        const rows = [
+          { id: 1, name: "Alan Ramos", age: 30, city: "Ciudad de México" },
+          { id: 2, name: "Laura Martínez", age: 25, city: "Guadalajara" },
+          { id: 3, name: "Carlos Pérez", age: 28, city: "Monterrey" },
+        ];
+        ---
 
-            <!-- ---Right -->
-            <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
-          </div>
-        </div>
+        <table class="table-auto w-full text-white not-content overflow-x-scroll">
+          <thead class="bg-gray-950">
+            {
+              labels.map((label) => (
+                <th class="border-y border-white/20 px-6 py-4 md:px-12 md:py-6 font-light">
+                  {label}
+                </th>
+              ))
+            }
+          </thead>
+          <tbody>
+            {
+              rows.map((row) => (
+                <tr class="border-y border-white/20 hover:border-white/50 transition-colors duration-200">
+                  <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.id}</td>
+                  <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.name}</td>
+                  <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.age}</td>
+                  <td class="px-6 py-4 md:px-12 md:py-6 font-light">{row.city}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+
       ```
 
   </TabItem>

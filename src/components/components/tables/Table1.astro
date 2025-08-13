@@ -1,8 +1,10 @@
 ---
-// Static data for the table
+//2 Instruction in this component
 
+// Here you can edit and add the column titles ↓. ❶
 const labels = ["ID", "Name", "Age", "City"];
 
+// Here you can edit and add the rows ↓. ❷
 const rows = [
   { id: 1, name: "Alan Ramos", age: 30, city: "Ciudad de México" },
   { id: 2, name: "Laura Martínez", age: 25, city: "Guadalajara" },
@@ -10,7 +12,7 @@ const rows = [
 ];
 ---
 
-<table class="table-auto w-full text-white not-content">
+<table class="table-auto w-full text-white not-content overflow-x-scroll">
   <thead class="bg-gray-950">
     {
       labels.map((label) => (
