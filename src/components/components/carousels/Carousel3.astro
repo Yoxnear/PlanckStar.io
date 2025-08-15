@@ -12,7 +12,7 @@ const slides = [
 <!-- Carousel -->
 <div class="flex relative overflow-hidden w-full text-white/80 not-content">
   <div
-    id="carousel2"
+    id="carousel3"
     class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
   >
     {
@@ -31,7 +31,7 @@ const slides = [
   <!-- Buttons -->
 
   <div
-    id="prevBtn2"
+    id="prevBtn3"
     class="absolute overflow-hidden left-0 top-0 h-full w-[20%] flex justify-start items-center group"
   >
     <button
@@ -54,7 +54,7 @@ const slides = [
   </div>
 
   <div
-    id="nextBtn2"
+    id="nextBtn3"
     class="absolute overflow-hidden right-0 top-0 h-full w-[20%] flex justify-end items-center group"
   >
     <button
@@ -80,20 +80,26 @@ const slides = [
 <!-- Script -->
 
 <script>
-  const nextBtn2 = document.getElementById("nextBtn2");
-  const prevBtn2 = document.getElementById("prevBtn2");
-  const carousel2 = document.getElementById("carousel2");
+  const nextBtn3 = document.getElementById("nextBtn3");
+  const prevBtn3 = document.getElementById("prevBtn3");
+  const carousel3 = document.getElementById("carousel3");
 
-  let carouselIndex2 = 0;
-  const totalSlides2 = carousel2.children.length;
+  let carouselIndex3 = 0;
+  const totalSlides3 = carousel3.children.length;
+  const carouselInterval3 = 5000;
 
-  nextBtn2.addEventListener("click", () => {
-    carouselIndex2 = (carouselIndex2 + 1) % totalSlides2;
-    carousel2.style.transform = `translateX(-${100 * carouselIndex2}%)`;
+  setInterval(() => {
+    carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;
+    carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
+  }, carouselInterval3);
+
+  nextBtn3.addEventListener("click", () => {
+    carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;
+    carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
   });
 
-  prevBtn2.addEventListener("click", () => {
-    carouselIndex2 = (carouselIndex2 - 1 + totalSlides2) % totalSlides2;
-    carousel2.style.transform = `translateX(-${100 * carouselIndex2}%)`;
+  prevBtn3.addEventListener("click", () => {
+    carouselIndex3 = (carouselIndex3 - 1 + totalSlides3) % totalSlides3;
+    carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
   });
 </script>
