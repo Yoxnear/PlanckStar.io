@@ -48,12 +48,16 @@ const socialItems = [
 
 <!-- Here is where the HTML begins. ❽ -->
 <footer class="relative w-full text-white border-t border-white/30 not-content">
-  <p class="absolute bottom-4 right-6 text-xs text-gray-400">
+  <p
+    class="absolute bottom-2 right-2 md:bottom-4 md:right-6 text-xs text-gray-400"
+  >
     Copyright "_Edit_Here_" © 2025 All Rights Reserved
   </p>
 
-  <div class="flex justify-around items-start py-16">
-    <div class="flex flex-col items-center">
+  <div
+    class="flex flex-col md:flex-row justify-around items-center md:items-start py-16"
+  >
+    <div class="flex flex-col items-center mb-14 md:mb-0">
       <Image class="w-16 mb-4" src={yourLogo} alt="_Your Logo_" />
       <p class="mt-6 mb-4 w-full">
         Subscribe to our newsletter and stay <br /> up to date with upcoming projects.
@@ -77,7 +81,7 @@ const socialItems = [
       </form>
     </div>
 
-    <div class="flex justify-around">
+    <div class="flex justify-around mb-8">
       {
         links.map((section) => (
           <div class="flex flex-col last:ml-20">
