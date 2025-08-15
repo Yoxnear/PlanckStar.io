@@ -1,0 +1,62 @@
+---
+
+---
+
+<section
+  class="w-2xl mx-auto p-12 border border-white/30 text-white not-content"
+>
+  <h2 class="text-4xl font-regular mb-12">Contact Us</h2>
+  <p class="text-lg text-center mb-12 font-light bg-gray-950 py-6">
+    Fill out the form and our team will be in touch.
+  </p>
+  <form action="#" method="POST" class="space-y-4">
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-lg font-light"> Name </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        required
+        class="mt-1 w-full border-b border-b-white/30 font-light p-4 focus:outline-none focus:border-white/50"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-lg font-light"> Email </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="mt-1 w-full border-b font-light border-b-white/30 p-4 focus:outline-none focus:border-white/50"
+      />
+    </div>
+
+    <!-- Message -->
+    <div>
+      <label for="message" class="block text-lg font-light"> Message </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="2"
+        placeholder="Tell us your thoughts"
+        required
+        class="mt-1 w-full border-b font-light border-white/30 p-4 focus:outline-none focus:border-white/50"
+      ></textarea>
+    </div>
+
+    <!-- Button -->
+    <div class="flex justify-center">
+      <button
+        id="Button"
+        class="text-gray-400 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-600 rounded-xl transition-colors cursor-pointer mt-12"
+      >
+        Send Message
+      </button>
+    </div>
+  </form>
+</section>

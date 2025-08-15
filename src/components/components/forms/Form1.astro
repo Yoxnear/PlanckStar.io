@@ -1,15 +1,29 @@
-<form class="newsletter-form" action="/subscribe" method="POST">
-  <label for="email" class="newsletter-label">Subscribe to our newsletter</label
-  >
-  <div class="newsletter-input-group">
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Enter your email"
-      required
-      class="newsletter-input"
-    />
-    <button type="submit" class="newsletter-button">Subscribe</button>
-  </div>
-</form>
+---
+import { Image } from "astro:assets";
+// Start editing the component here ↓, choose the path to your logo. ❶
+import yourLogo from "../../../assets/icons/planckstar.svg";
+---
+
+<div class="flex flex-col items-center mb-14 md:mb-0">
+  <Image class="w-16 mb-4" src={yourLogo} alt="_Your Logo_" />
+  <p class="mt-6 mb-4 w-full">
+    Subscribe to our newsletter and stay <br /> up to date with upcoming projects.
+  </p>
+  <form class="font-light" action="/subscribe" method="POST">
+    <div class="relative bg-gray-900 p-4 pr-28 rounded-md">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="outline-none"
+      />
+      <button
+        type="submit"
+        class="absolute top-1 bottom-1 right-1 bg-gray-950 px-2 rounded-md cursor-pointer"
+        >Subscribe</button
+      >
+    </div>
+  </form>
+</div>
