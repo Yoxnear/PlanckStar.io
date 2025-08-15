@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 // Get the container element where the scene will be rendered
-const container = document.getElementById("canvas-container");
+const container = document.getElementById("canvas-container1");
 
 // Create a new Three.js scene
 const scene = new THREE.Scene();

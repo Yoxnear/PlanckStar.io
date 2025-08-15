@@ -3,15 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import CardOne from "../../components/components/cards/Card1.astro";
 import CardTwo from "../../components/components/cards/Card2.astro";
 import CardThree from "../../components/components/cards/Card2.astro";
-import FooterOne from "../../components/components/footers/Footer2.astro";
-import SwitchOne from "../../components/components/switches/Switch1.astro";
-import Combobox1 from "../../components/components/comboxes/Combobox1.astro";
-import Button from "../../components/components/buttons/Button1.astro";
-import Header from "../../components/components/headers/Header3.astro";
 import TableOne from "../../components/components/tables/Table1.astro";
 import TableTwo from "../../components/components/tables/Table2.astro";
 import TableThree from "../../components/components/tables/Table3.astro";
 import Contact from "../../components/components/forms/Form2.astro";
+import SrollArea from "../../components/components/scrollAreas/ScrollArea1.astro";
 const scale = 2; //  Modify this line to change the size
 
 const width = 10 * scale;
@@ -24,15 +20,7 @@ const height = 6 * scale;
     <CardTwo />
     <CardThree />
   </section>
-  <Header />
-  <!-- Rounded switch -->
-  <Button />
-  <SwitchOne />
-  <Combobox1 />
-  <TableOne />
-  <TableTwo />
-  <TableThree />
-  <Contact />
+  <SrollArea />
   <div class="relative w-full overflow-hidden bg-gray-900 py-6">
     <div class="absolute top-0 left-0 h-full w-full">
       <div class="flex w-[200%] animate-[scroll_5s_linear_infinite]">
@@ -63,5 +51,4 @@ const height = 6 * scale;
       }
     </style>
   </div>
-  <FooterOne />
 </Layout>

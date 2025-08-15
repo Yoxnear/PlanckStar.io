@@ -1,0 +1,74 @@
+---
+title: Scroll area
+description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import ScrollAreaOne from "/src/components/components/scrollAreas/ScrollArea1.astro";
+import ScrollAreaTwo from "/src/components/components/scrollAreas/ScrollArea2.astro";
+import ScrollAreaThree from "/src/components/components/scrollAreas/scrollArea3.astro";
+
+Frames add an extra touch to your design and help highlight containers and sections.
+
+You can apply them directly to your container—just place them inside, and the frame will automatically
+adapt to the container’s dimensions. Also, the container must have the relative
+class for it to work properly.
+
+```jsx
+<!-- src/components/Projects.astro -->
+
+---
+// Import
+import Frame from "../components/Frame.astro";
+---
+(...)
+<div class="relative + Type your container dimensions here">
+  (...)
+  <-- You can add it anywhere you want, as long as it’s inside the container -->
+  <Frame />
+  (...)
+</div>
+(...)
+
+```
+
+---
+
+## 1. Crossed Corners
+
+Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
+
+<Tabs>
+  <TabItem label="Preview">
+    <ScrollAreaOne />
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+        <!-- src/components/CrossedFrame.astro -->
+        <div class="relative w-full h-80 border border-white/10 not-content">
+          <div>
+            <!-- Top -->
+            <!-- ---Left -->
+            <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
+            <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
+
+            <!-- ---Right -->
+            <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
+            <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
+
+            <!-- Bottom -->
+            <!-- ---Left -->
+            <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
+            <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
+
+            <!-- ---Right -->
+            <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
+            <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
+          </div>
+        </div>
+      ```
+
+  </TabItem>
+</Tabs>
