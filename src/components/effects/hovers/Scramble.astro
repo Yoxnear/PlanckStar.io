@@ -1,0 +1,32 @@
+<a href="#" class="decode-link text-white font-mono">Effects</a>
+
+<script>
+  const chars = "!<>-_\\/[]{}—=+*^?#$%&@";
+
+  function decodeEffect(el) {
+    const text = el.dataset.text || el.innerText;
+    el.dataset.text = text;
+    let iteration = 0;
+
+    const interval = setInterval(() => {
+      el.innerText = text
+        .split("")
+        .map((letter, index) => {
+          if (index < iteration) return text[index];
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join("");
+
+      if (iteration >= text.length) {
+        clearInterval(interval);
+        el.innerText = text;
+      }
+
+      iteration += 1 / 3;
+    }, 20);
+  }
+
+  document.querySelectorAll(".decode-link").forEach((el) => {
+    el.addEventListener("mouseenter", () => decodeEffect(el));
+  });
+</script>

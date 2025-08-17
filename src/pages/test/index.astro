@@ -3,12 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import CardOne from "../../components/components/cards/Card1.astro";
 import CardTwo from "../../components/components/cards/Card2.astro";
 import CardThree from "../../components/components/cards/Card2.astro";
-import TableOne from "../../components/components/tables/Table1.astro";
-import TableTwo from "../../components/components/tables/Table2.astro";
-import TableThree from "../../components/components/tables/Table3.astro";
-import Contact from "../../components/components/forms/Form2.astro";
 import SrollArea from "../../components/components/scrollAreas/ScrollArea1.astro";
 import Idr from "../../components/components/carousels/Carousel4.astro";
+import Underline from "../../components/effects/hovers/Underline.astro";
+import Frame from "../../components/effects/hovers/Frame.astro";
+import Scramble from "../../components/effects/hovers/Scramble.astro";
 const scale = 2; //  Modify this line to change the size
 
 const width = 10 * scale;
@@ -21,6 +20,9 @@ const height = 6 * scale;
     <CardTwo />
     <CardThree />
   </section>
-  <SrollArea />
-  <Idr />
+  <div class="flex w-full justify-around my-40">
+    <Underline />
+    <Frame />
+    <Scramble />
+  </div>
 </Layout>
