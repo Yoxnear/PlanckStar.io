@@ -8,6 +8,7 @@ import TableTwo from "../../components/components/tables/Table2.astro";
 import TableThree from "../../components/components/tables/Table3.astro";
 import Contact from "../../components/components/forms/Form2.astro";
 import SrollArea from "../../components/components/scrollAreas/ScrollArea1.astro";
+import Idr from "../../components/components/carousels/Carousel4.astro";
 const scale = 2; //  Modify this line to change the size
 
 const width = 10 * scale;
@@ -21,34 +22,5 @@ const height = 6 * scale;
     <CardThree />
   </section>
   <SrollArea />
-  <div class="relative w-full overflow-hidden bg-gray-900 py-6">
-    <div class="absolute top-0 left-0 h-full w-full">
-      <div class="flex w-[200%] animate-[scroll_5s_linear_infinite]">
-        <!-- Logos - se repiten 2 veces para efecto infinito -->
-        <div class="flex w-1/2 items-center justify-around space-x-12">
-          <span class="text-white">Logo 1</span>
-          <span class="text-white">Logo 2</span>
-          <span class="text-white">Logo 3</span>
-          <span class="text-white">Logo 4</span>
-        </div>
-        <div class="flex w-1/2 items-center justify-around space-x-12">
-          <span class="text-white">Logo 1</span>
-          <span class="text-white">Logo 2</span>
-          <span class="text-white">Logo 3</span>
-          <span class="text-white">Logo 4</span>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      @keyframes scroll {
-        0% {
-          transform: translateX(0%);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-    </style>
-  </div>
+  <Idr />
 </Layout>

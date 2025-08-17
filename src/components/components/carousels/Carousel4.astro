@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+import Logo1 from "../../../assets/icons/planckstar.svg";
+import Logo2 from "../../../assets/icons/planckstar.svg";
+import Logo3 from "../../../assets/icons/planckstar.svg";
+
+const logosRoutes = [
+  {
+    src: Logo1,
+    alt: "Logo 1",
+  },
+  {
+    src: Logo2,
+    alt: "Logo 2",
+  },
+  {
+    src: Logo3,
+    alt: "Logo 3",
+  },
+];
+---
+
+<div
+  class="relative w-full overflow-hidden bg-gray-950 py-8 flex items-center not-content"
+>
+  <div class="w-full">
+    <div class="flex w-[200%] animate-[scroll_5s_linear_infinite]">
+      <div class="flex w-1/2 items-center justify-around">
+        {
+          logosRoutes.map((logo) => (
+            <Image src={logo.src} alt={logo.alt} class="size-16" />
+          ))
+        }
+      </div>
+      <div class="flex w-1/2 items-center justify-around">
+        {
+          logosRoutes.map((logo) => (
+            <Image src={logo.src} alt={logo.alt} class="size-16" />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
