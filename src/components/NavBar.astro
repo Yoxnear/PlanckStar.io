@@ -65,75 +65,61 @@ import planckstar from "../assets/icons/planckstar.svg";
     </div>
     <button
       id="menu-toggle"
-      class="flex md:hidden col-start-3 text-xl focus:outline-none cursor-pointer my-auto mr-0 ml-auto"
+      class="flex md:hidden col-start-3 text-xl focus:outline-none cursor-pointer my-6 mr-0 ml-auto flex-col justify-around"
       aria-label="Toggle menu"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1"
-        stroke="currentColor"
-        class="size-8"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-      </svg>
+      <span
+        class="block w-6 h-[1px] bg-white transition-transform duration-300 ease-in-out origin-center menu-top"
+      ></span>
+      <span
+        class="block w-6 h-[1px] bg-white transition-opacity duration-300 ease-in-out menu-middle"
+      ></span>
+      <span
+        class="block w-6 h-[1px] bg-white transition-transform duration-300 ease-in-out origin-center menu-bottom"
+      ></span>
     </button>
 
     <div
       id="mobile-menu"
-      class="hidden md:hidden fixed right-0 top-0 h-screen sm:w-[50%] w-[70%] bg-background border-l border-tertiary/30 space-y-3 bg-primary/90 backdrop-blur-xs"
+      class="hidden md:hidden absolute right-0 bottom-0 h-screen w-full translate-y-full -z-10"
     >
-      <button
-        id="close-toggle"
-        class="flex text-xl focus:outline-none cursor-pointer w-full justify-end mb-6 mt-6 pr-8"
-        aria-label="Toggle menu close"
+      <div
+        id="close-area"
+        class="absolute w-full h-full top-0 left-0 backdrop-blur-xs"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1"
-          stroke="currentColor"
-          class="size-8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-      <ul class="flex flex-col w-full h-full items-center">
-        <li class="flex justify-center w-full border-t border-tertiary/30">
-          <a href="#components" class="w-full h-full text-center py-8"
-            >Components</a
-          >
-        </li>
-        <li class="flex justify-center w-full border-t border-tertiary/30">
-          <a href="#backgrounds" class="w-full h-full text-center py-8"
-            >Backgrounds</a
-          >
-        </li>
-        <li class="flex justify-center w-full border-y border-tertiary/30">
-          <a href="#effects" class="w-full h-full text-center py-8">Effects</a>
-        </li>
-        <li class="flex justify-around w-full border-b border-tertiary/30">
-          <a
-            href="https://github.com/Yoxnear"
-            target="_blank"
-            class="flex justify-center items-center py-8 w-full border-r border-tertiary/30"
-          >
-            <span class="sr-only">Link GitHub</span>
-            <svg
-              role="img"
-              class="fill-tertiary size-6"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              ><title>GitHub</title><path
-                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 
+      </div>
+      <div
+        class="absolute top-0 right-0 h-full sm:w-[50%] w-[70%] bg-background border-l border-tertiary/30 space-y-3 bg-primary/90"
+      >
+        <ul class="flex flex-col w-full h-full items-center">
+          <li class="flex justify-center w-full border-t border-tertiary/30">
+            <a href="#components" class="w-full h-full text-center py-8"
+              >Components</a
+            >
+          </li>
+          <li class="flex justify-center w-full border-t border-tertiary/30">
+            <a href="#backgrounds" class="w-full h-full text-center py-8"
+              >Backgrounds</a
+            >
+          </li>
+          <li class="flex justify-center w-full border-y border-tertiary/30">
+            <a href="#effects" class="w-full h-full text-center py-8">Effects</a
+            >
+          </li>
+          <li class="flex justify-around w-full border-b border-tertiary/30">
+            <a
+              href="https://github.com/Yoxnear"
+              target="_blank"
+              class="flex justify-center items-center py-8 w-full border-r border-tertiary/30"
+            >
+              <span class="sr-only">Link GitHub</span>
+              <svg
+                role="img"
+                class="fill-tertiary size-6"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                ><title>GitHub</title><path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 
             11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633
              17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 
              3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 
@@ -141,28 +127,29 @@ import planckstar from "../assets/icons/planckstar.svg";
               1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84
                1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015
                 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-              ></path>
-            </svg>
-          </a>
-          <a
-            href="https://x.com/Ramas_te"
-            target="_blank"
-            class="flex justify-center items-center py-8 w-full"
-          >
-            <span class="sr-only">Link X</span>
-            <svg
-              role="img"
-              class="fill-tertiary size-6"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              ><title>X</title><path
-                d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://x.com/Ramas_te"
+              target="_blank"
+              class="flex justify-center items-center py-8 w-full"
+            >
+              <span class="sr-only">Link X</span>
+              <svg
+                role="img"
+                class="fill-tertiary size-6"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                ><title>X</title><path
+                  d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 
             7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
-              ></path>
-            </svg>
-          </a>
-        </li>
-      </ul>
+                ></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
@@ -171,16 +158,21 @@ import planckstar from "../assets/icons/planckstar.svg";
   document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
-    const closeToggle = document.getElementById("close-toggle");
+    const closeArea = document.getElementById("close-area");
+    const top = toggle.querySelector(".menu-top");
+    const middle = toggle.querySelector(".menu-middle");
+    const bottom = toggle.querySelector(".menu-bottom");
 
-    if (!toggle || !mobileMenu || !closeToggle) return;
+    if (!toggle || !mobileMenu || !closeArea) return;
 
     toggle.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
+      toggleMenuAnimation();
     });
 
-    closeToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+    closeArea.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      toggleMenuAnimation();
     });
 
     const mobileLinks = mobileMenu.querySelectorAll("a");
@@ -189,5 +181,17 @@ import planckstar from "../assets/icons/planckstar.svg";
         mobileMenu.classList.add("hidden");
       });
     });
+
+    function toggleMenuAnimation() {
+      if (mobileMenu.classList.contains("hidden")) {
+        top.style.transform = "rotate(0) translateY(0)";
+        middle.style.opacity = "1";
+        bottom.style.transform = "rotate(0) translateY(0)";
+      } else {
+        top.style.transform = "rotate(45deg) translateY(11px)";
+        middle.style.opacity = "0";
+        bottom.style.transform = "rotate(-45deg) translateY(-10px)";
+      }
+    }
   });
 </script>
