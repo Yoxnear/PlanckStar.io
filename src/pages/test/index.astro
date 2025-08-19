@@ -5,9 +5,18 @@ import CardTwo from "../../components/components/cards/Card2.astro";
 import CardThree from "../../components/components/cards/Card2.astro";
 import SrollArea from "../../components/components/scrollAreas/ScrollArea1.astro";
 import Idr from "../../components/components/carousels/Carousel4.astro";
-import Underline from "../../components/effects/hovers/Underline.astro";
+import UnderlineOne from "../../components/effects/hovers/Underline1.astro";
+import UnderlineTwo from "../../components/effects/hovers/Underline2.astro";
 import Frame from "../../components/effects/hovers/Frame.astro";
-import Scramble from "../../components/effects/hovers/Scramble.astro";
+import Scramble from "../../components/effects/hovers/Decode.astro";
+import ButtonFrameOne from "../../components/effects/hovers/ButtonFrame1.astro";
+import ButtonFrameTwo from "../../components/effects/hovers/ButtonFrame2.astro";
+import ButtonBgOne from "../../components/effects/hovers/ButtonBg1.astro";
+import ButtonBgTwo from "../../components/effects/hovers/ButtonBg2.astro";
+import ButtonFrameThree from "../../components/effects/hovers/ButtonFrame3.astro";
+import ButtonBg3 from "../../components/effects/hovers/ButtonBg3.astro";
+import Typing from "../../components/effects/hovers/Typing.astro";
+import CursorFollower from "../../components/effects/cursors/CursorFollower1.astro";
 const scale = 2; //  Modify this line to change the size
 
 const width = 10 * scale;
@@ -21,8 +30,22 @@ const height = 6 * scale;
     <CardThree />
   </section>
   <div class="flex w-full justify-around my-40">
-    <Underline />
+    <UnderlineOne />
+    <UnderlineTwo />
     <Frame />
     <Scramble />
   </div>
+  <div class="flex w-full justify-around my-40">
+    <ButtonFrameOne />
+    <ButtonFrameTwo />
+    <ButtonBgOne />
+    <ButtonBgTwo />
+  </div>
+  <div class="flex w-full justify-around my-40">
+    <Typing />
+    <ButtonFrameThree />
+    <ButtonBg3 />
+  </div>
+  <CursorFollower />
+  <div class="flex w-full justify-around my-40"></div>
 </Layout>

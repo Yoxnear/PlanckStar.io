@@ -1,0 +1,49 @@
+<div
+  id="mouse-area"
+  class="cursor-none relative w-full h-screen bg-gray-900 overflow-hidden"
+>
+  <div
+    id="follower"
+    class="absolute size-4 rounded-full bg-white/20 transition-colors duration-300"
+  >
+  </div>
+</div>
+
+<script>
+  const follower = document.getElementById("follower");
+  const area = document.getElementById("mouse-area");
+
+  const followerSize = 24; // 6rem = 24px (ajusta según tu w-6 h-6)
+  let mouseX = 0;
+  let mouseY = 0;
+  let posX = 0;
+  let posY = 0;
+
+  area.addEventListener("mousemove", (e) => {
+    const rect = area.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
+
+  function animate() {
+    const speed = 0.1; // retraso
+    posX += (mouseX - posX) * speed;
+    posY += (mouseY - posY) * speed;
+
+    // Centrar el punto en el cursor
+    follower.style.transform = `translate(${posX - followerSize / 2}px, ${posY - followerSize / 2}px)`;
+
+    const distance = Math.hypot(posX - mouseX, posY - mouseY);
+    if (distance < 5) {
+      follower.classList.add("bg-white/50");
+      follower.classList.remove("bg-white/20");
+    } else {
+      follower.classList.add("bg-white/20");
+      follower.classList.remove("bg-white/50");
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>

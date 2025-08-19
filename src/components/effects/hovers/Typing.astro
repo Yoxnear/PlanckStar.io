@@ -1,0 +1,48 @@
+<a href="#" class="typewriter relative inline-block font-mono text-white"
+  >Effects</a
+>
+
+<style>
+  .typewriter.writing::after {
+    content: "|";
+    position: absolute;
+    right: -8px;
+    animation: blink 0.7s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function typewriter(el) {
+    if (el.dataset.typing === "true") return;
+    el.dataset.typing = "true";
+    el.classList.add("writing");
+
+    const text = el.dataset.text || el.innerText;
+    el.dataset.text = text;
+    el.innerText = "";
+    let index = 0;
+
+    function writeNext() {
+      if (index < text.length) {
+        el.innerText += text[index];
+        index++;
+        setTimeout(writeNext, 100);
+      } else {
+        el.dataset.typing = "false";
+        el.classList.remove("writing");
+      }
+    }
+
+    writeNext();
+  }
+
+  document.querySelectorAll(".typewriter").forEach((el) => {
+    el.addEventListener("mouseenter", () => typewriter(el));
+  });
+</script>
