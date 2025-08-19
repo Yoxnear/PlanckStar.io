@@ -1,48 +1,67 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "/src/layouts/Layout.astro";
 ---
 
 <Layout>
-  <div
-    id="dot-grid"
-    class="relative w-full h-screen overflow-hidden bg-gray-950"
-  >
+  <div class="relative w-full h-screen bg-gray-950 overflow-hidden">
+    <div
+      id="cursor-container"
+      class="absolute top-0 left-0 w-full h-full pointer-events-none z-50"
+    >
+      <!-- Círculo exterior -->
+      <div
+        id="circle1"
+        class="absolute size-10 rounded-full border-t border-white/90"
+      >
+      </div>
+      <!-- Círculo interior -->
+      <div
+        id="circle2"
+        class="absolute size-8 rounded-full border-r border-white/70"
+      >
+      </div>
+    </div>
   </div>
 
   <script>
-    const container = document.getElementById("dot-grid");
-    const dotNumber = 35;
-    const dotSize = 2;
+    const container = document.getElementById("cursor-container");
+    const circle1 = document.getElementById("circle1");
+    const circle2 = document.getElementById("circle2");
 
-    function createGrid() {
-      container.innerHTML = "";
+    let mouseX = container.clientWidth / 2;
+    let mouseY = container.clientHeight / 2;
+    let lastX = mouseX;
+    let lastY = mouseY;
+    let speed = 0;
 
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+    let angle1 = 0;
+    let angle2 = 0;
 
-      // Usamos solo spacingX (en función del ancho)
-      const spacing = Math.max(dotNumber, Math.floor(width / dotNumber));
+    window.addEventListener("mousemove", (e) => {
+      const rect = container.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
 
-      const cols = Math.ceil(width / spacing);
-      const rows = Math.ceil(height / spacing);
+      // Calcular velocidad
+      const dx = mouseX - lastX;
+      const dy = mouseY - lastY;
+      speed = Math.min(Math.sqrt(dx * dx + dy * dy), 90); // limitar velocidad
+      lastX = mouseX;
+      lastY = mouseY;
+    });
 
-      for (let i = 0; i <= cols; i++) {
-        for (let j = 0; j <= rows; j++) {
-          const dot = document.createElement("div");
-          dot.className = `absolute bg-white/40 rounded-full`;
-          dot.style.width = `${dotSize}px`;
-          dot.style.height = `${dotSize}px`;
+    function animate() {
+      requestAnimationFrame(animate);
 
-          // Cuadrícula perfecta
-          dot.style.left = `${Math.min(i * spacing, width - dotSize)}px`;
-          dot.style.top = `${Math.min(j * spacing, height - dotSize)}px`;
+      // Rotación según velocidad del mouse
+      angle1 += 0.05 * (1 + speed / 10);
+      angle2 -= 0.07 * (1 + speed / 10);
 
-          container.appendChild(dot);
-        }
-      }
+      // Centrar los círculos en el mouse
+      circle1.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) rotate(${angle1}rad)`;
+      circle2.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) rotate(${angle2}rad)`;
     }
 
-    createGrid();
-    window.addEventListener("resize", () => createGrid());
+    animate();
   </script>
 </Layout>

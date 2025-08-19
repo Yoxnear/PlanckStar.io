@@ -33,7 +33,7 @@
     follower.style.transform = `translate(${posX - followerSize / 2}px, ${posY - followerSize / 2}px)`;
 
     const distance = Math.hypot(posX - mouseX, posY - mouseY);
-    if (distance < 5) {
+    if (distance < 8) {
       follower.classList.add("bg-white/50");
       follower.classList.remove("bg-white/20");
     } else {
