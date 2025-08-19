@@ -1,6 +1,6 @@
 <div
   id="mouse-area"
-  class="cursor-none relative w-full h-screen bg-gray-900 overflow-hidden"
+  class="cursor-none relative w-full h-screen bg-gray-950 overflow-hidden"
 >
   <div
     id="follower"
@@ -13,7 +13,7 @@
   const follower = document.getElementById("follower");
   const area = document.getElementById("mouse-area");
 
-  const followerSize = 24; // 6rem = 24px (ajusta según tu w-6 h-6)
+  const followerSize = 24;
   let mouseX = 0;
   let mouseY = 0;
   let posX = 0;
@@ -26,11 +26,10 @@
   });
 
   function animate() {
-    const speed = 0.1; // retraso
+    const speed = 0.1;
     posX += (mouseX - posX) * speed;
     posY += (mouseY - posY) * speed;
 
-    // Centrar el punto en el cursor
     follower.style.transform = `translate(${posX - followerSize / 2}px, ${posY - followerSize / 2}px)`;
 
     const distance = Math.hypot(posX - mouseX, posY - mouseY);
