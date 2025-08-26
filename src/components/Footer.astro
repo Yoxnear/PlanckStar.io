@@ -1,7 +1,190 @@
+---
+import { Image } from "astro:assets";
+
+import XRP from "/src/assets/images/XRPdonation.jpg";
+import SOL from "/src/assets/images/SOLdonation.jpg";
+---
+
 <footer
-  class="bg-primary h-28 flex border-b border-tertiary/30 items-center justify-between text-tertiary"
+  class="bg-primary flex justify-center border-b border-tertiary/30 items-center text-tertiary"
 >
-  <div class="w-[15%] h-full border-r border-tertiary/30"></div>
-  <p class="text-center">Built by your unfriendly neighborhood Yoxnear</p>
-  <div class="w-[15%] h-full border-l border-tertiary/30"></div>
+  <div
+    class="w-[70%] flex flex-col items-center border-x border-tertiary/30 z-2"
+  >
+    <p class="text-center mt-12">
+      Built by your unfriendly neighborhood Yoxnear
+    </p>
+    <div class="flex flex-col items center w-[80%]">
+      <button
+        id="donationButton"
+        class="flex items-center space-x-2 mx-auto my-6 cursor-pointer underline underline-offset-4"
+        ><p>Donation</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1"
+          stroke="currentColor"
+          class="size-4 transition-all duration-200"
+          id="donationIcon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+        </svg>
+      </button>
+      <div
+        id="donationSection"
+        class="flex flex-col items center w-full max-h-0 overflow-hidden transition-all duration-300"
+      >
+        <p class="text-center">
+          This project is meant to remain free and sustainable, as that is its
+          main goal. However, if you'd like to support its development with a
+          cryptocurrency donation, any contribution is greatly appreciated. You
+          can find the details here:
+        </p>
+        <div class="flex flex-col lg:flex-row justify-around my-12">
+          <div class="flex">
+            <div class="w-[50%] space-y-4">
+              <p>XRP</p>
+              <Image
+                src={XRP}
+                alt={"XRP QR donation"}
+                class="size-48 container"
+              />
+              <p>Address:</p>
+              <button
+                id="copyBtn1"
+                class="flex items-center space-x-4 cursor-pointer"
+              >
+                <p class="w-[70%] overflow-x-scroll py-4">
+                  rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                  ></path>
+                </svg>
+              </button>
+              <p>Memo / Tag:</p>
+              <button id="copyBtn2" class="flex space-x-4 cursor-pointer">
+                <p>3370598447</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="w-[50%] space-y-4">
+              <p>SOL</p>
+              <Image
+                src={SOL}
+                alt={"XRP QR donation"}
+                class="size-48 container mx-auto"
+              />
+              <p>Address:</p>
+              <button
+                id="copyBtn3"
+                class="flex items-center space-x-4 cursor-pointer"
+              >
+                <p class="w-[70%] overflow-x-scroll py-4">
+                  7jMa7TnyNWjHE8bwjkLmrFrjaUET3ZbHycvYm6tE1r1r
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <p class="mx-auto mb-12">Thank you!</p>
+      </div>
+    </div>
+  </div>
+  <div
+    id="tooltip"
+    class="fixed p-4 text-sm bg-primary text-white/30 rounded pointer-events-none transition-opacity duration-300 border border-white/30 z-10"
+  >
+    Copied
+  </div>
 </footer>
+
+<script>
+  const donationButton = document.getElementById("donationButton");
+  const donationSection = document.getElementById("donationSection");
+  const donationIcon = document.getElementById("donationIcon");
+  const tooltip = document.getElementById("tooltip");
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  const copyButtons = [
+    { id: "copyBtn1", text: "rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg" },
+    { id: "copyBtn2", text: "3370598447" },
+    { id: "copyBtn3", text: "7jMa7TnyNWjHE8bwjkLmrFrjaUET3ZbHycvYm6tE1r1r" },
+  ];
+
+  copyButtons.forEach((btn) => {
+    document.getElementById(btn.id).addEventListener("click", (e) => {
+      copy(btn.text, e);
+    });
+  });
+
+  donationButton.addEventListener("click", () => {
+    donationSection.classList.toggle("max-h-0");
+    donationIcon.classList.toggle("rotate-180");
+  });
+
+  function copy(text, e) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        tooltip.style.left = e.clientX + 20 + "px";
+        tooltip.style.top = e.clientY + 20 + "px";
+
+        tooltip.classList.remove("opacity-0");
+        tooltip.classList.add("opacity-100");
+
+        setTimeout(() => {
+          tooltip.classList.remove("opacity-100");
+          tooltip.classList.add("opacity-0");
+        }, 1700);
+      })
+      .catch((err) => {
+        console.error("Error al copiar: ", err);
+      });
+  }
+</script>
