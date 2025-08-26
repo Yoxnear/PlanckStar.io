@@ -81,7 +81,7 @@ import planckstar from "../assets/icons/planckstar.svg";
 
     <div
       id="mobile-menu"
-      class="hidden md:hidden absolute right-0 bottom-0 h-screen w-full translate-y-full -z-10"
+      class="translate-x-full md:hidden absolute right-0 -bottom-[1px] h-screen w-full translate-y-full -z-10 transition-transform duration-300"
     >
       <div
         id="close-area"
@@ -92,7 +92,7 @@ import planckstar from "../assets/icons/planckstar.svg";
         class="absolute top-0 right-0 h-full sm:w-[50%] w-[70%] bg-background border-l border-tertiary/30 space-y-3 bg-primary/90"
       >
         <ul class="flex flex-col w-full h-full items-center">
-          <li class="flex justify-center w-full border-t border-tertiary/30">
+          <li class="flex justify-center w-full">
             <a href="#components" class="w-full h-full text-center py-8"
               >Components</a
             >
@@ -166,12 +166,12 @@ import planckstar from "../assets/icons/planckstar.svg";
     if (!toggle || !mobileMenu || !closeArea) return;
 
     toggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("translate-x-full");
       toggleMenuAnimation();
     });
 
     closeArea.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.add("translate-x-full");
       toggleMenuAnimation();
     });
 
@@ -183,7 +183,7 @@ import planckstar from "../assets/icons/planckstar.svg";
     });
 
     function toggleMenuAnimation() {
-      if (mobileMenu.classList.contains("hidden")) {
+      if (mobileMenu.classList.contains("translate-x-full")) {
         top.style.transform = "rotate(0) translateY(0)";
         middle.style.opacity = "1";
         bottom.style.transform = "rotate(0) translateY(0)";

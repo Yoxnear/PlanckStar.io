@@ -5,8 +5,82 @@ sidebar:
   order: 3
 ---
 
-import HoverGrid from "/src/components/effects/Cursors/CursorFollower1.astro";
-import Ahh from "/src/components/effects/Cursors/CursorCircles.astro";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import CursorFollowerOne from "/src/components/effects/Cursors/CursorFollower1.astro";
+import CursorFollowerTwo from "/src/components/effects/Cursors/CursorFollower2.astro";
+import CursorClickOne from "/src/components/effects/Cursors/CursorClick1.astro";
+import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
 
-<HoverGrid />
-<Ahh />
+## 1. ---
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <CursorFollowerOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. ---
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <CursorFollowerTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 3. ---
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <CursorClickOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 4. ---
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <CursorClickTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+
+  </TabItem>
+</Tabs>

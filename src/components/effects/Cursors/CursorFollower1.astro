@@ -1,7 +1,9 @@
+<!-- 4 Instructions in this component -->
 <div
   id="mouse-area"
-  class="cursor-none relative w-full h-screen bg-gray-950 overflow-hidden not-content"
+  class="cursor-none relative w-full h-80 bg-gray-950 overflow-hidden not-content"
 >
+  <!-- You can change the size of the follower by adjusting the `size` class. ❶-->
   <div
     id="follower"
     class="absolute size-4 rounded-full bg-white/20 transition-colors duration-300"
@@ -13,7 +15,17 @@
   const follower = document.getElementById("follower");
   const area = document.getElementById("mouse-area");
 
-  const followerSize = 24;
+  // Define the colors here. ❷
+  const color1 = "bg-white/50";
+  const color2 = "bg-white/20";
+
+  // Speed of the follower's movement. ❸
+  const speed = 0.1;
+
+  // Distance threshold to change color. ❹
+  const distanceThreshold = 8;
+
+  const followerSize = follower.offsetWidth;
   let mouseX = 0;
   let mouseY = 0;
   let posX = 0;
@@ -26,19 +38,19 @@
   });
 
   function animate() {
-    const speed = 0.1;
     posX += (mouseX - posX) * speed;
     posY += (mouseY - posY) * speed;
 
     follower.style.transform = `translate(${posX - followerSize / 2}px, ${posY - followerSize / 2}px)`;
 
     const distance = Math.hypot(posX - mouseX, posY - mouseY);
-    if (distance < 8) {
-      follower.classList.add("bg-white/50");
-      follower.classList.remove("bg-white/20");
+
+    if (distance < distanceThreshold) {
+      follower.classList.add(color1);
+      follower.classList.remove(color2);
     } else {
-      follower.classList.add("bg-white/20");
-      follower.classList.remove("bg-white/50");
+      follower.classList.add(color2);
+      follower.classList.remove(color1);
     }
 
     requestAnimationFrame(animate);

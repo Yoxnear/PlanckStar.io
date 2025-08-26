@@ -1,37 +1,34 @@
----
-import Layout from "/src/layouts/Layout.astro";
----
-
-<Layout>
-  <div class="relative w-full h-screen bg-gray-950 overflow-hidden not-content">
-    <div
-      id="click-container"
-      class="absolute top-0 left-0 w-full h-full pointer-events-none"
-    >
-    </div>
+<div
+  class="relative w-full h-80 bg-gray-950 overflow-hidden not-content flex items-center justify-center"
+>
+  <p class="font-light uppercase">Click anywhere</p>
+  <div
+    id="click-container1"
+    class="absolute top-0 left-0 w-full h-full pointer-events-none"
+  >
   </div>
-</Layout>
+</div>
 
 <script>
-  const container = document.getElementById("click-container");
+  const container1 = document.getElementById("click-container1");
 
   function createRadialLines(x, y, count = 12) {
     const lines = [];
     for (let i = 0; i < count; i++) {
       const line = document.createElement("div");
-      line.className = "absolute w-[2px] h-5 bg-cyan-400 rounded-sm rotate-90";
+      line.className = "absolute w-[2px] h-5 bg-white/40 rounded-sm";
       line.style.left = `${x}px`;
       line.style.top = `${y}px`;
       line.angle = ((i * 360) / count) * (Math.PI / 180);
       line.distance = 0;
-      container.appendChild(line);
+      container1.appendChild(line);
       lines.push(line);
     }
     return lines;
   }
 
   window.addEventListener("click", (e) => {
-    const rect = container.getBoundingClientRect();
+    const rect = container1.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 

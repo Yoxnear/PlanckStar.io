@@ -1,4 +1,104 @@
 ---
-title: How to Useds it
+title: Statics
 description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 2
 ---
+
+import GridBgOne from "/src/components/backgrounds/GridBg1.astro";
+import GridBgTwo from "/src/components/backgrounds/GridBg2.astro";
+import GridBgThree from "/src/components/backgrounds/GridBg3.astro";
+import Bg3DOne from "/src/components/backgrounds/Bg3D1.astro";
+import Bg3DTwo from "/src/components/backgrounds/Bg3D2.astro";
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+---
+
+## 1. Grid background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <GridBgOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. Dots background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <GridBgTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 3. Cross background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">   
+        <GridBgThree /> 
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 4. 3D Room background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <Bg3DOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 5. Idk
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <Bg3DTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    ```
+  </TabItem>
+</Tabs>

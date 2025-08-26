@@ -1,0 +1,47 @@
+<div
+  id="grid-bg3"
+  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+>
+</div>
+
+<script>
+  const bg3 = document.getElementById("grid-bg3");
+  const crossNumber = 4;
+  const crossSize = 13;
+  const color = "rgba(190,190,190,.8)";
+
+  function drawGrid1() {
+    bg3.innerHTML = "";
+
+    const crossStep = (bg3.offsetWidth - crossSize) / crossNumber;
+
+    for (let x = 0; x < bg3.offsetWidth; x += crossStep) {
+      for (let y = 0; y < bg3.offsetHeight; y += crossStep) {
+        bg3.appendChild(document.createElement("div")).style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: ${y}px;
+          width: 0;
+          height: ${crossSize}px;
+          border-left: 1px solid ${color}; 
+          transform: translate(${crossSize / 2}px);
+        `;
+        bg3.appendChild(document.createElement("div")).style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: ${y}px;
+          width: ${crossSize}px;
+          height: 0;
+          border-top: 1px solid ${color};
+          transform: translate(0, ${crossSize / 2}px);
+        `;
+      }
+    }
+  }
+
+  drawGrid1();
+
+  window.addEventListener("resize", () => {
+    drawGrid1();
+  });
+</script>

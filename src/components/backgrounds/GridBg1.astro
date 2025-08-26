@@ -1,0 +1,43 @@
+<div
+  id="grid-bg1"
+  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+>
+</div>
+
+<script>
+  const bg1 = document.getElementById("grid-bg1");
+  const lineNumbers = 14;
+  const color = "rgba(190,190,190,0.4)";
+
+  function drawGrid1() {
+    bg1.innerHTML = "";
+    const step = (bg1.offsetWidth - 1) / lineNumbers;
+
+    for (let x = 0; x < bg1.offsetWidth; x += step) {
+      bg1.appendChild(document.createElement("div")).style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: 0;
+          width: 0;
+          height: 100%;
+          border-left: 2px solid ${color};
+        `;
+    }
+    for (let y = 0; y < bg1.offsetHeight; y += step) {
+      bg1.appendChild(document.createElement("div")).style.cssText = `
+          position: absolute;
+          left: 0;
+          top: ${y}px;
+          width: 100%;
+          height: 0;
+          border-top: 2px solid ${color};
+        `;
+    }
+  }
+
+  drawGrid1();
+
+  window.addEventListener("resize", () => {
+    drawGrid1();
+  });
+</script>

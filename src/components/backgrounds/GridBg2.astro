@@ -1,0 +1,38 @@
+<div
+  id="grid-bg2"
+  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+>
+</div>
+
+<script>
+  const bg2 = document.getElementById("grid-bg2");
+  const circlesNumber = 6;
+  const circlesSize = 6;
+  const color = "rgba(190,190,190,.3)";
+
+  function drawGrid1() {
+    bg2.innerHTML = "";
+
+    const circlesStep = (bg2.offsetWidth - circlesSize) / circlesNumber;
+
+    for (let x = 0; x < bg2.offsetWidth; x += circlesStep) {
+      for (let y = 0; y < bg2.offsetHeight; y += circlesStep) {
+        bg2.appendChild(document.createElement("div")).style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: ${y}px;
+          width: ${circlesSize}px;
+          height: ${circlesSize}px;
+          background-color: ${color};
+          border-radius: 50%;
+        `;
+      }
+    }
+  }
+
+  drawGrid1();
+
+  window.addEventListener("resize", () => {
+    drawGrid1();
+  });
+</script>
