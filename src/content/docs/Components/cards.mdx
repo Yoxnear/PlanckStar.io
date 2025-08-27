@@ -1,0 +1,50 @@
+---
+title: Cards
+description: Learn more about my project in this docs site built with Starlight.
+sidebar:
+  order: 2 
+---
+
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import CardOne from "../../../components/components/cards/Card1.astro";
+
+...
+
+```jsx
+<!-- src/components/Projects.astro -->
+
+---
+// Import
+import Carousel from "../components/Carousel.astro";
+---
+(...)
+<div class="Type your container dimensions here">
+  <Carousel />
+</div>
+(...)
+
+```
+
+---
+
+## 1. 
+
+...
+<Tabs>
+  <TabItem label="Preview">
+    <div class="w-full flex justify-center">
+      <CardOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/Carousel.astro -->
+      
+      ```
+
+  </TabItem>
+</Tabs>
+
+---
+

@@ -1,28 +1,45 @@
 ---
-import { Image } from "astro:assets";
-import yourCardImage from "../../../assets/images/Lorem.jpg";
+const features = ["Hosting", "Domain", "UI planckstar components"];
 ---
 
-<div class="w-90 border border-white/30 rounded-xl flex flex-col">
-  <Image
-    src={yourCardImage}
-    alt="An axolotl programming intensely"
-    class="w-full h-1% rounded-t-xl cont"
-  />
-  <div class="w-full p-4 pt-6 flex justify-center items-center">
-    <p class="h-full w-full text-white text-center font-light text-xl">
-      Header Ipsum
-    </p>
+<div class="w-90 border border-white/30 flex flex-col text-white not-content">
+  <p class="uppercase mt-8 mx-auto text-2xl">Basic</p>
+  <div class="flex items-end m-4">
+    <p class="text-4xl">$23</p>
+    <p class="font-light text-gray-300 ml-2">/Month</p>
   </div>
-  <div class="px-6 text-start text-white font-light">
-    <p class="text-lg">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu turpis
-      et justo sodales aliquam. Suspendisse lacinia mauris sapien, at tincidunt
-      magna faucibus a.
-    </p>
+  <p class="m-4 mb-10">
+    Get all you need with this package and unlock the power of us tools.
+  </p>
+  <div class="">
+    {
+      features.map((feature) => (
+        <div class="flex border-b border-white/30 space-y-12 w-full items-center first:border-t">
+          <div class="flex rounded-full bg-gray-950 items-center size-8 my-6 mx-6 p-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1"
+              stroke="currentColor"
+              class="size-full"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m4.5 12.75 6 6 9-13.5"
+              />
+            </svg>
+          </div>
+          <p>{feature}</p>
+        </div>
+      ))
+    }
   </div>
-
-  <div class="px-6 py-6 w-full flex text-white font-extralight text-end">
-    <p class="w-full text-xs">Aliquam non pretium dolor</p>
-  </div>
+  <button
+    id="Button"
+    class="text-gray-200 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-500 rounded-xl transition-colors cursor-pointer mx-4 my-12"
+  >
+    Get started
+  </button>
 </div>
