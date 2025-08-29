@@ -3,6 +3,12 @@ import HeaderOne from "../../components/headers/Header1.astro";
 import HeaderTwo from "../../components/headers/Header2.astro";
 import HeaderThree from "../../components/headers/Header3.astro";
 
+import Carousel from "../../components/carousels/Carousel4.astro";
+
+import FrameOne from "../../components/frames/Frame1.astro";
+import FrameTwo from "../../components/frames/Frame2.astro";
+import FrameThree from "../../components/frames/Frame3.astro";
+
 import Switch from "../../components/switches/Switch1.astro";
 import Combobox from "../../components/comboxes/Combobox1.astro";
 import Button from "../../components/buttons/Button1.astro";
@@ -35,17 +41,40 @@ import FooterThree from "../../components/footers/Footer3.astro";
       </div>
     </div>
   </div>
+  <!-- ------ Frames ------ -->
 
-  <!-- ------ Divs ------ -->
+  <div class="col-star-5 row-start-2 overflow-hidden">
+    <div
+      id="frames"
+      class="transition duration-1000 w-full h-full -translate-y-[200%]"
+    >
+      <div class="w-full h-full flex items-center justify-center">
+        <FrameOne />
+      </div>
+      <div
+        class="transition duration-1000 w-full h-full flex items-center justify-center"
+      >
+        <FrameTwo />
+      </div>
+      <div
+        class="transition duration-1000 w-full h-full flex items-center justify-center"
+      >
+        <FrameThree />
+      </div>
+    </div>
+  </div>
+
+  <!-- ------ Carousel ------ -->
 
   <div
-    class="col-start-3 md:col-start-4 row-start-2 border-r row-span-3 border-tertiary/30"
+    class="flex justify-center items-center col-start-1 md:col-start-1 row-start-2 border-r row-span-2 col-span-4 border-tertiary/30"
   >
+    <Carousel />
   </div>
 
   <!-- ------Buttons------ -->
   <div
-    class="col-start-4 md:col-start-5 col-span-2 md:col-span-1 row-start-2 md:row-start-3 border-b md:border-t border-tertiary/30 overflow-hidden"
+    class="col-start-4 md:col-start-5 col-span-2 md:col-span-1 row-start-2 md:row-start-3 md:border-t border-tertiary/30 overflow-hidden"
   >
     <div id="buttons" class="transition duration-1000 w-full h-full">
       <div class="w-full h-full flex items-center justify-center">
@@ -66,10 +95,10 @@ import FooterThree from "../../components/footers/Footer3.astro";
 
   <!-- ------Footers------ -->
   <div
-    class="col-start-1 row-start-5 col-span-5 row-span-2 flex overflow-hidden border-t border-tertiary/30"
+    class="col-start-1 row-start-4 col-span-5 row-span-3 flex overflow-hidden border-t border-tertiary/30"
   >
     <div id="footers" class="transition duration-1000 flex -translate-x-[200%]">
-      <div class="min-w-full h-full -translate-y-[25%]">
+      <div class="min-w-full h-full">
         <FooterThree />
       </div>
       <div class="min-w-full h-full">

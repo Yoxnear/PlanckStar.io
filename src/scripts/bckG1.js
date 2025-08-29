@@ -1,7 +1,7 @@
   const canvas = document.getElementById('grid-bg');
   const ctx = canvas.getContext('2d');
 
-  let gridSize = 8; // Cambia este valor para hacer el grid más grande o más pequeño
+  let gridSize = 8; 
 
   function drawGrid(size = gridSize, color = 'rgba(0,0,0,2)') {
     canvas.width = window.innerWidth;
