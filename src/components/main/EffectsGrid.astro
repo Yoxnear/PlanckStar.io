@@ -23,20 +23,16 @@ const effectsCards = [
 
 ---
 <div>
-  <div class="absolute z-2 top-1/6 left-0 w-full overflow-hidden">
-    <Tron/>
-  </div>
-
 <div
   class="absolute top-0 left-0 w-full h-full overflow-hidden"
 >
   <div class="h-full flex items-center justify-center bg-gray-900 [perspective:1200px] border-t border-white/30">
-  <div id="effectsDisk" class="rotateEffects relative flex  rounded-full h-full aspect-square rotate-x-90 translate-y-52 -translate-z-48 [transform-style:preserve-3d] [animation:spinEffects_5s_linear_infinite]">
+  <div id="effectsDisk" class="rotateEffects relative flex  rounded-full h-full aspect-square rotate-x-90 translate-y-40 md:translate-y-52 -translate-z-48 [transform-style:preserve-3d] [animation:spinEffects_5s_linear_infinite]">
     {
       effectsCards.map((effect) => (
         <div class=`absolute size-48 [transform-style:preserve-3d] flex justify-center ${effect.class}`>
-            <div class=` size-3/5 border border-tertiary/30 flex justify-center items-center ${effect.classChld}`>
-              <effect.component/>
+            <div class=`size-3/5 border border-tertiary/30 flex justify-center items-center ${effect.classChld}`>
+              <effect.component text="Effects" href="#"/>
             </div>
         </div>
       ))

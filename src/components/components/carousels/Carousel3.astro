@@ -1,11 +1,14 @@
 ---
 //2 Instruction in this component
+import { Image } from "astro:assets";
 
 // ↓ Here you can add the images/slides. ❶
+import Image1 from "../../../assets/images/Lorem.jpg";
+
 const slides = [
-  { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
-  { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
-  { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
+  { src: Image1, alt: "First image" },
+  { src: Image1, alt: "Second image" },
+  { src: Image1, alt: "Third image" },
 ];
 
 // Here you can change the interval time (milliseconds). ❷
@@ -22,11 +25,7 @@ const intervalTime = 5000;
     {
       slides.map((slide) => (
         <div class="w-full flex-shrink-0">
-          <img
-            src={slide.src}
-            alt={slide.alt}
-            class="w-full h-auto object-cover rounded-xl filter"
-          />
+          <Image src={slide.src} alt={slide.alt} class="w-full h-full object-cover rounded-xl"/>
         </div>
       ))
     }

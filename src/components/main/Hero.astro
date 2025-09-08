@@ -1,11 +1,17 @@
 ---
 import Button from "../../components/main/Button.astro";
 import pkg from "../../../package.json";
+import { Image } from "astro:assets";
+
+import Three from "../../assets/icons/threedotjs.svg";
+import AstroI from "../../assets/icons/astro.svg";
+import Tailwind from "../../assets/icons/tailwindcss.svg";
+
 const version = pkg.version;
 ---
 
 <section
-  class="text-tertiary w-full h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-center pt-32 md:pt-0"
+  class="text-tertiary w-full h-screen grid grid-cols-1 md:grid-cols-2 items-center justify-center pt-20 md:pt-0"
 >
   <div
     class="relative flex flex-col items-center justify-center text-center border-t md:border-t-0 border-b md:border-b-0 md:border-r border-tertiary/30 h-full px-12 bg-primary"
@@ -74,31 +80,19 @@ const version = pkg.version;
         <div
           class="h-[5.5rem] flex items-center justify-center gap-5 text-5xl md:text-6xl font-bold"
         >
-          <img
-            src="/src/assets/icons/astro.svg"
-            alt="Astro SVG"
-            class="h-[80%] fill-tertiary"
-          />
+          <AstroI class="h-[80%]"/>
           <span>Astro</span>
         </div>
         <div
           class="h-[5.5rem] flex items-center justify-center gap-4 text-5xl md:text-6xl font-bold"
         >
-          <img
-            src="/src/assets/icons/tailwindcss.svg"
-            alt="Tailwind SVG"
-            class="h-[80%]"
-          />
+          <Tailwind class="h-[80%]"/>
           <span>Tailwind</span>
         </div>
         <div
           class="h-[5.5rem] flex items-center justify-center gap-4 text-5xl md:text-6xl font-bold"
         >
-          <img
-            src="/src/assets/icons/threedotjs.svg"
-            alt="Three.js SVG"
-            class="h-[80%]"
-          />
+          <Three class="h-[80%]"/>
           <span>Three.js</span>
         </div>
       </div>
