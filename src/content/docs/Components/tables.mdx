@@ -1,6 +1,6 @@
 ---
 title: Tables
-description: Learn more about my project in this docs site built with Starlight.
+description: A catalog of tables designed to showcase important information for you or your users, featuring a responsive and minimalist design for a clean and professional look.
 sidebar:
   order: 2
 ---
@@ -31,9 +31,10 @@ import Table from "../components/Table.astro";
 
 ---
 
-## 1. S/T Table
+## 1. Simple Table
 
-Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
+A simple table with clearly labeled column headers, designed to effectively display information 
+in an organized and easy-to-read format.
 
 <Tabs>
   <TabItem label="Preview">
@@ -41,7 +42,7 @@ Adjust the time interval and image paths so the carousel runs automatically with
   </TabItem>
   <TabItem label="Code">
      ```jsx
-        <!-- src/components/CrossedFrame.astro -->
+        <!-- src/components/Table.astro -->
         ---
         //2 Instruction in this component
 
@@ -56,7 +57,9 @@ Adjust the time interval and image paths so the carousel runs automatically with
         ];
         ---
 
-        <table class="table-auto w-full text-white not-content overflow-x-scroll">
+        <table class="table-auto w-full text-white overflow-x-scroll">
+
+          <!-- Column titles -->
           <thead class="bg-gray-950">
             {
               labels.map((label) => (
@@ -66,6 +69,8 @@ Adjust the time interval and image paths so the carousel runs automatically with
               ))
             }
           </thead>
+
+          <!-- Rows content -->
           <tbody>
             {
               rows.map((row) => (

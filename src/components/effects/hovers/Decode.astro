@@ -1,7 +1,8 @@
-<a href="#" class="decode-link text-white font-mono">Effects</a>
+<a href="#1-decode" class="decode-link text-white font-mono">Effects</a>
 
 <script>
   const chars = "!<>-_\\/[]{}—=+*^?#$%&@";
+  const IntervalSpeed = 20;
 
   function decodeEffect(el) {
     const text = el.dataset.text || el.innerText;
@@ -23,7 +24,7 @@
       }
 
       iteration += 1 / 3;
-    }, 20);
+    }, IntervalSpeed);
   }
 
   document.querySelectorAll(".decode-link").forEach((el) => {

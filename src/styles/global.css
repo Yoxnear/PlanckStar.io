@@ -10,19 +10,8 @@
   --color-primary: #050506;
   --color-secondary: #389bd9;
   --color-tertiary: #d3daec;
-  --color-quaternary: #0b0b0c;
+  --color-quaternary: #121214;
   --animate-wiggle: wiggle 0.5s ease-in-out forwards;
-  @keyframes wiggle {
-    0%,
-    100% {
-      border-color: transparent;
-    }
-    2% {
-      border-color: #d3daec;
-    }
-    50% {
-    }
-  }
 }
 
 .not-content {

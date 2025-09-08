@@ -39,37 +39,36 @@ import Frame from "../components/Frame.astro";
 
 ## 1. Crossed Corners
 
-Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
 
 <Tabs>
   <TabItem label="Preview">
-    <FrameOne />
+    <div class="h-64">
+      <FrameOne />
+    </div>
   </TabItem>
   <TabItem label="Code">
      ```jsx
-        <!-- src/components/CrossedFrame.astro -->
-        <div class="relative w-full h-80 border border-white/10 not-content">
-          <div>
-            <!-- Top -->
-            <!-- ---Left -->
-            <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
+      <!-- src/components/CrossedFrame.astro -->
+      <div>
+        <!-- Top -->
+        <!-- ---Left -->
+        <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
+        <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
 
-            <!-- ---Right -->
-            <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
+        <!-- ---Right -->
+        <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
+        <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
 
-            <!-- Bottom -->
-            <!-- ---Left -->
-            <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
+        <!-- Bottom -->
+        <!-- ---Left -->
+        <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
+        <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
 
-            <!-- ---Right -->
-            <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
-          </div>
-        </div>
-      ```
+        <!-- ---Right -->
+        <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
+        <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
+    </div>
+    ```
 
   </TabItem>
 </Tabs>
@@ -78,12 +77,11 @@ Adjust the time interval and image paths so the carousel runs automatically with
 
 ## 2. Half-Square
 
-Add navigation controls so the user can manually move forward or backward between
-slides. Adjust the image paths and customize the button styles to match your project’s design.
-
 <Tabs>
   <TabItem label="Preview">
-    <FrameTwo/>
+    <div class="h-64">
+      <FrameTwo/>
+    </div>
   </TabItem>
   <TabItem label="Code">
      ```jsx
@@ -119,12 +117,11 @@ slides. Adjust the image paths and customize the button styles to match your pro
 
 ## 3. Dotted
 
-Add navigation controls so the user can manually move forward or backward between
-slides. Adjust the image paths and customize the button styles to match your project’s design.
-
 <Tabs>
   <TabItem label="Preview">
-    <FrameThree/>
+    <div class="h-64">
+      <FrameThree/>
+    </div>
   </TabItem>
     <TabItem label="Code">
        ```jsx
@@ -151,19 +148,14 @@ slides. Adjust the image paths and customize the button styles to match your pro
         <div class="absolute bottom-6 left-2 size-1 rounded-full bg-white"></div>
         <div class="absolute bottom-2 left-2 size-1 rounded-full bg-white"></div>
         <div class="absolute bottom-2 left-6 size-1 rounded-full bg-white"></div>
-    </div>
-
+      </div>
       ```
-
   </TabItem>
 </Tabs>
 
 ---
 
 ## 4. Curved Corners
-
-Add navigation controls so the user can manually move forward or backward between
-slides. Adjust the image paths and customize the button styles to match your project’s design.
 
 <Tabs>
   <TabItem label="Preview">
@@ -173,33 +165,32 @@ slides. Adjust the image paths and customize the button styles to match your pro
      ```jsx
     <!-- src/components/HeaderMinimal.astro -->
     <div>
-        <!-- Top -->
-        <!-- ---Left -->
-        <div
-          class="absolute top-0 left-0 size-4 bg-white [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
-        >
-        </div>
+      <!-- Top -->
+      <!-- ---Left -->
+      <div
+        class="absolute top-0 left-0 size-4 bg-white [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+      >
+      </div>
 
-        <!-- ---Right -->
-        <div
-          class="absolute top-0 right-0 size-4 bg-white rotate-90 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
-        >
-        </div>
+      <!-- ---Right -->
+      <div
+        class="absolute top-0 right-0 size-4 bg-white rotate-90 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+      >
+      </div>
 
-        <!-- Bottom -->
-        <!-- ---Left -->
-        <div
-          class="absolute bottom-0 left-0 size-4 bg-white rotate-[270deg] [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
-        >
-        </div>
+      <!-- Bottom -->
+      <!-- ---Left -->
+      <div
+        class="absolute bottom-0 left-0 size-4 bg-white rotate-[270deg] [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+      >
+      </div>
 
-        <!-- ---Right -->
-        <div
-          class="absolute bottom-0 right-0 size-4 bg-white rotate-180 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
-        >
+      <!-- ---Right -->
+      <div
+        class="absolute bottom-0 right-0 size-4 bg-white rotate-180 [clip-path:polygon(0%_0%,100%_0%,45%_25%,25%_45%,0%_100%)]"
+      >
+      </div>
     </div>
-
       ```
-
   </TabItem>
 </Tabs>

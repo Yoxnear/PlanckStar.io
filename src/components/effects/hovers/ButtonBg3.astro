@@ -1,10 +1,15 @@
-<button
+---
+const { text, href } = Astro.props;
+---
+
+<a
   type="button"
-  class="relative text-white cursor-pointer border border-gray-900 px-4 py-3 group overflow-hidden mx-auto"
+  class="relative text-white border border-gray-900 px-4 py-3 group overflow-hidden mx-auto"
+  href={href}
 >
-  Effects
+  {text}
   <span
     class="absolute bottom-0 left-0 translate-x-full group-hover:-translate-x-full w-[200%] h-full bg-[linear-gradient(135deg,rgba(255,255,255,0)_15%,rgba(117,117,117,0.5)_50%,rgba(255,255,255,0)_85%)] transition-all duration-500"
   >
   </span>
-</button>
+</a>

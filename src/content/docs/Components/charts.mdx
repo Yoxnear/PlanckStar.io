@@ -1,0 +1,307 @@
+---
+title: Charts 
+description: A minimalist catalog of charts for your website.
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import ChartOne from "/src/components/components/charts/Chart1.astro";
+import ChartTwo from "/src/components/components/charts/Chart2.astro";
+import ChartThree from "/src/components/components/charts/Chart3.astro";
+
+Show your data in a simple and minimalist way to your clients, driving more engagement 
+with your numbers. 
+
+These charts are designed to display only the essential data (not too much), 
+but you can add as many as you need. Place the component anywhere you like within your project.
+
+```jsx
+<!-- src/pages/statistics/index.astro -->
+
+---
+// Import
+import Chart from "../components/Chart.astro";
+(...)
+---
+
+(...)
+  <Chart />
+(...)
+
+```
+
+---
+
+## 1. Simple Chart
+
+A simplified and elegant way to showcase your data, complete with your logo. Fully automated—just add your numbers.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-full my-12 justify-center items-center">
+      <ChartOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/Chart.astro -->
+      ---
+      //3 Instructions in this component
+
+      import type { map } from "astro:schema";
+      import { Image } from "astro:assets";
+
+      // ↓ Here you can add your data. ❶
+      const dataA = [283, 331, 97, 373, 223, 709, 233, 593];
+
+      // Here you can change the title. ❷
+      const title = "Last months downloads";
+
+      // Here you can add your logo. ❸
+      import yourLogo from "../../../assets/icons/planckstar.svg";
+
+
+      const max = Math.max(...dataA);
+      const total = dataA.reduce((acc, val) => acc + val, 0);
+
+      const points = dataA.map((value, index) => {
+        const x = (index / (dataA.length - 1)) * 200; 
+        const y = 100 - (value / max) * 98;
+        return `${x},${y}`;
+      }).join(" ");
+
+      ---
+
+      <div class="w-md not-content">
+
+          <div class="relative w-full border border-white/30 p-6 rounded-lg">
+
+              <Image src={yourLogo} alt="YourLogo" class="absolute top-0 right-0 m-8 size-8"></Image>
+              <p class="font-light ">{title}</p>
+              <p class="text-4xl font-black"><span class="font-light">+</span>{total}</p>
+
+              <div id="chart1" class="w-full aspect-[2/1] mt-6 flex" >
+                  <svg viewBox="0 0 200 100" width="100%" height="100%" class="p-2 text-white/30">
+                      <polyline 
+                        points={points} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="1"
+                      />
+                      {
+                          dataA.map((value, index) => {
+                            const x = (index / (dataA.length - 1)) * 200;
+                            const y = 100 - (value / max) * 98;
+                            return <circle cx={x} cy={y} r="2" fill="white" />;
+                          })
+                      }
+                  </svg>
+              </div>
+          </div>
+      </div>
+
+
+     ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. Chart with Labels
+
+A chart designed to display your data with labels, providing your clients with clearer and more detailed insights.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-full my-12 justify-center items-center">
+      <ChartTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/LabelChart.astro -->
+      ---
+      //3 Instructions in this component
+
+      import type { map } from "astro:schema";
+      import { Image } from "astro:assets";
+
+      // ↓ Here you can add your data. ❶
+      const dataA = [283, 331, 97, 373, 223, 709, 233, 593];
+
+      // Here you can change the title. ❷
+      const title = "Last months downloads";
+
+      // Here you can add your logo. ❸
+      import yourLogo from "../../../assets/icons/planckstar.svg";
+
+      const labelXmax = dataA.length - 1;
+      const max = Math.max(...dataA);
+      const total = dataA.reduce((acc, val) => acc + val, 0);
+
+      const points = dataA.map((value, index) => {
+        const x = (index / (dataA.length - 1)) * 200; 
+        const y = 100 - (value / max) * 98;
+        return `${x},${y}`;
+      }).join(" ");
+
+      ---
+
+      <div class="w-md not-content">
+
+          <div class="relative w-full border border-white/30 p-6 rounded-lg">
+
+              <Image src={yourLogo} alt="YourLogo" class="absolute top-0 right-0 m-8 size-8"></Image>
+              <p class="font-light ">{title}</p>
+              <p class="text-4xl font-black"><span class="font-light">+</span>{total}</p>
+
+              <div id="chart1" class="relative w-5/6 aspect-[2/1] my-6 flex mx-auto" >
+                  <div class="absolute flex justify-between top-0 left-0 w-full h-full -z-1">
+                      <div class="h-full border-r border-white/4"></div>
+                      <div class="h-full border-r border-white/4"></div>
+                      <div class="h-full border-r border-white/4"></div>
+                  </div>
+                  <div class="absolute flex justify-between bottom-0 left-0 w-full translate-y-full text-gray-700 text-xs pt-2 px-2">
+                      <p>0</p>
+                      <p>{labelXmax/2}</p>
+                      <p>{labelXmax}</p>
+                  </div>
+                  <div class="absolute flex flex-col justify-between top-0 left-0 w-full h-full -z-1">
+                      <div class="w-full border-b border-white/4"></div>
+                      <div class="w-full border-b border-white/4"></div>
+                      <div class="w-full border-b border-white/4"></div>
+                  </div>
+                  <div class="absolute flex flex-col justify-between top-0 right-0 h-1/2 translate-x-full text-gray-700 text-xs pl-2">
+                      <p>{max}</p>
+                      <p>{max/2}</p>
+                  </div>
+                  <svg viewBox="0 0 200 100" width="100%" height="100%" class="p-2 text-white/30">
+                      <polyline 
+                        points={points} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="1"
+                      />
+
+                      {
+                          dataA.map((value, index) => {
+                            const x = (index / (dataA.length - 1)) * 200;
+                            const y = 100 - (value / max) * 98;
+                            return <circle cx={x} cy={y} r="2" fill="white" />;
+                          })
+                      }
+                  </svg>
+              </div>
+          </div>
+      </div>
+     ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 3. Toroid Chart
+
+With this toroidal (2D, lol) visualization, you can showcase your data in a simple way. Just enter 
+your figures and their concepts, and the component will take care of everything else.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-full my-12 justify-center items-center">
+      <ChartThree />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/ToroidChart.astro -->
+      ---
+      //2 Instructions in this component
+
+      // Here you can change the title. ❶
+      const title = "Sales by Service"; 
+
+      // ↓ Here you can add your data. ❷
+      const dataA = [
+          {data:365, concept:"Hosting"},
+          {data:219, concept:"Databases"},
+          {data:146, concept:"Authentication"},
+          {data:73, concept:"APIs"}
+       // {data:X, concept:"Add more..."}  <--- You can add more items here
+      ];
+
+      const total = dataA.reduce((acc, item) => acc + item.data, 0);
+
+      const r = 15.91549430918954;
+      const C = 2 * Math.PI * r;  
+
+      const gapPercent = 0.3;
+      const gapLen = (gapPercent / 100) * C;
+
+      let accPercent = 0;
+      const segmentsInfo = dataA.map((item) => {
+        const percent = (item.data / total) * 100;
+        const segLen = (percent / 100) * C - gapLen;
+        const dashArray = `${segLen} ${C - segLen}`;
+        const dashOffset = -(accPercent / 100) * C;
+        accPercent += percent;
+        return { ...item, percent, dashArray, dashOffset };
+      });
+
+      ---
+
+      <div class="flex justify-center items-center space-x-16 border border-white/30 rounded-md p-16 not-content">
+
+        <div id="legend">
+
+          <p class="mb-8 text-2xl text-white">{title}</p>
+
+          {
+          segmentsInfo.map((s, i) => (
+            <p><span data-index={i} class="inline-block size-4 mr-4 bg-white/30 transition-colors duration-300 ease-in-out rounded-xs"></span><span class="font-regular">{s.concept}:</span> ${s.data} ({s.percent.toFixed(1)}%)</p>
+          ))
+          }
+
+        </div>
+
+        <svg viewBox="0 0 36 36" class="size-48">
+          <g transform="rotate(-90 18 18)">
+            {segmentsInfo.map((s, i) => (
+              <circle
+                data-index={i}
+                cx="18" cy="18" r={r}
+                class="text-white/30 hover:text-white/60 transition-colors duration-300 ease-in-out cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-dasharray={s.dashArray}
+                stroke-dashoffset={s.dashOffset}
+                stroke-linecap="butt" 
+              />
+            ))}
+          </g>
+        </svg>
+      </div>
+
+      <script>
+        const circles = document.querySelectorAll("circle[data-index]");
+        const squares = document.querySelectorAll("#legend span[data-index]");
+
+        circles.forEach(circle => {
+          circle.addEventListener("mouseenter", () => {
+            const i = circle.getAttribute("data-index");
+            squares[i].classList.add("bg-white/80");
+          });
+          circle.addEventListener("mouseleave", () => {
+            const i = circle.getAttribute("data-index");
+            squares[i].classList.remove("bg-white/80");
+          });
+        });
+
+      </script>
+     ```
+
+  </TabItem>
+</Tabs>

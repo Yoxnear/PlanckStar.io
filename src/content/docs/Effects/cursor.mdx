@@ -1,6 +1,6 @@
 ---
 title: Cursor
-description: A free and open source initiative designed to empower developers of all levels.
+description: Some interesting effects for your website..
 sidebar:
   order: 3
 ---
@@ -11,7 +11,38 @@ import CursorFollowerTwo from "/src/components/effects/Cursors/CursorFollower2.a
 import CursorClickOne from "/src/components/effects/Cursors/CursorClick1.astro";
 import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
 
-## 1. ---
+The cursor effects add an extra layer of detail to your website, 
+making it more interactive and appealing to users, while giving it an 
+elegant touch that reflects quality and dedication to your work. These
+components can be applied across the entire site or to specific elements/sections, 
+depending on your focus and design.
+
+Add the ID to the element where you want to apply the effect and import the component. 
+Although it only includes a script, in this example it will be imported as an Astro 
+component to maintain consistency with the rest of the components.
+
+```jsx
+<!-- src/layouts/Layout.astro -->
+
+---
+import OrbitDot from "../components/OrbitDot.astro";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    (...)
+  </head>
+  <body id="mouse-area" class="relative <-- Add the class">
+    (...)
+    <OrbitDot />
+  </body>
+</html>
+```
+---
+
+## 1. Orbit Dot
 
 <Tabs>
   <TabItem label="Preview">
@@ -21,8 +52,79 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/OrbitDot.astro -->
     ---
+    // 4 Instructions in this component 
+
+    // Start here adjusting the size of the dot (px). ❶
+    const size = 16;
+
+    // Pick two colors from Tailwind's color palette. ❷
+    const color1 = "bg-white/50"; // Color when close to the cursor
+    const color2 = "bg-white/20"; // Color when far from the cursor
+
+    // Adjust the speed of the follower (0.1 is slow, 0.3 is fast). ❸
+    const speed = 0.1;
+
+    //Finally add the "mouse-area" Id to your element. ❹
+    ---
+
+    <div
+      id="follower"
+      data-color1={color1}
+      data-color2={color2}
+      data-speed={speed}
+      class="absolute rounded-full bg-white/20 transition-colors duration-300"
+      style=`width: ${size}px; height: ${size}px;`
+    >
+    </div>
+
+    <script>
+      const follower = document.getElementById("follower");
+      const area = document.getElementById("mouse-area");
+
+      const color1 = follower.dataset.color1;
+      const color2 = follower.dataset.color2;
+
+      const speed = follower.dataset.speed;
+
+      const distanceThreshold = 8;
+
+      const followerSize = follower.offsetWidth;
+      let mouseX = 0;
+      let mouseY = 0;
+      let posX = 0;
+      let posY = 0;
+
+      area.addEventListener("mousemove", (e) => {
+        const rect = area.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+
+      function animate() {
+        posX += (mouseX - posX) * speed;
+        posY += (mouseY - posY) * speed;
+
+        follower.style.transform = `translate(${posX - followerSize / 2}px, ${posY - followerSize / 2}px)`;
+
+        const distance = Math.hypot(posX - mouseX, posY - mouseY);
+
+        if (distance < distanceThreshold) {
+          follower.classList.add(color1);
+          follower.classList.remove(color2);
+        } else {
+          follower.classList.add(color2);
+          follower.classList.remove(color1);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+
+
     ```
 
   </TabItem>
@@ -30,7 +132,7 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
 
 ---
 
-## 2. ---
+## 2. Loop Follow 
 
 <Tabs>
   <TabItem label="Preview">
@@ -40,8 +142,71 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/LoopFollow.astro -->
     ---
+    // 2 Instructions in this component
+
+    // Start here adjusting the size of the circles (px). ❶
+    const size1 = 40;
+    const size2 = 32;
+
+    //Finally add the "cursor-container" Id to your element. ❷
+
+    ---
+    <div class="absolute w-full h-full overflow-hidden">
+        <div
+          id="circle1"
+          class="absolute size-10 rounded-full border-t border-white/90"
+          style=`width: ${size1}; height: ${size1};`
+        >
+        </div>
+        <div
+          id="circle2"
+          class="absolute size-8 rounded-full border-r border-white/70"
+          style=`width: ${size2}; height: ${size2};`
+        >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const container = document.getElementById("cursor-container");
+      const circle1 = document.getElementById("circle1");
+      const circle2 = document.getElementById("circle2");
+
+      let mouseX = container.clientWidth / 2;
+      let mouseY = container.clientHeight / 2;
+      let lastX = mouseX;
+      let lastY = mouseY;
+      let speed = 0;
+
+      let angle1 = 0;
+      let angle2 = 0;
+
+      window.addEventListener("mousemove", (e) => {
+        const rect = container.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+
+        const dx = mouseX - lastX;
+        const dy = mouseY - lastY;
+        speed = Math.min(Math.sqrt(dx * dx + dy * dy), 90);
+        lastX = mouseX;
+        lastY = mouseY;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        angle1 += 0.05 * (1 + speed / 10);
+        angle2 -= 0.07 * (1 + speed / 10);
+
+        circle1.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) rotate(${angle1}rad)`;
+        circle2.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) rotate(${angle2}rad)`;
+      }
+
+      animate();
+    </script>
     ```
 
   </TabItem>
@@ -49,7 +214,7 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
 
 ---
 
-## 3. ---
+## 3. Pulse Circle
 
 <Tabs>
   <TabItem label="Preview">
@@ -59,8 +224,76 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/PulseCircle.astro -->
     ---
+    // 3 Instructions in this component
+
+    // Start here adjusting the number of lines. ❶
+    const numberLines = 12;
+
+    // Adjust how far the lines will travel (px). ❷
+    const lineDistance = 150; 
+
+    // Choose the line color from Tailwind's color palette. ❸
+    const color = "bg-white/40"; 
+    ---
+
+    <div
+      id="click-container1"
+      data-number={numberLines}
+      data-distance={lineDistance}
+      data-color={color}
+      class="absolute top-0 left-0 w-full h-full pointer-events-none"
+    >
+    </div>
+
+    <script>
+      const container1 = document.getElementById("click-container1");
+      const numberLines = container1.dataset.number;
+      const lineDistance = container1.dataset.distance;
+      const color = container1.dataset.color;
+
+      function createRadialLines(x, y, count = numberLines) {
+        const lines = [];
+        for (let i = 0; i < count; i++) {
+          const line = document.createElement("div");
+          line.className = `absolute w-[2px] h-5 ${color} rounded-sm`;
+          line.style.left = `${x}px`;
+          line.style.top = `${y}px`;
+          line.angle = ((i * 360) / count) * (Math.PI / 180);
+          line.distance = 0;
+          container1.appendChild(line);
+          lines.push(line);
+        }
+        return lines;
+      }
+
+      window.addEventListener("click", (e) => {
+        const rect = container1.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const lines = createRadialLines(mouseX, mouseY);
+
+        function animateLines() {
+          let alive = false;
+          lines.forEach((line) => {
+            if (line.distance < lineDistance) {
+              alive = true;
+              line.distance += 4;
+              line.style.transform = `translate(${Math.cos(line.angle) * line.distance}px, ${Math.sin(line.angle) * line.distance}px) rotate(${line.angle}rad)`;
+              line.style.opacity = 1 - line.distance / 150;
+            } else {
+              line.remove();
+            }
+          });
+          if (alive) requestAnimationFrame(animateLines);
+        }
+
+        animateLines();
+      });
+    </script>
+
     ```
 
   </TabItem>
@@ -68,7 +301,7 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
 
 ---
 
-## 4. ---
+## 4. Soft Click
 
 <Tabs>
   <TabItem label="Preview">
@@ -78,8 +311,77 @@ import CursorClickTwo from "/src/components/effects/Cursors/CursorClick2.astro";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/SoftClick.astro -->
     ---
+    //3 Instructions in this component
+
+    // Start here adjusting the number of lines. ❶
+    const numberLines = 8;
+
+    // Adjust how far the lines will travel (px). ❷
+    const lineDistance = 30;
+
+    // Choose the line color from Tailwind's color palette. ❸
+    const color = "bg-white/40";
+    ---
+
+    <div
+      id="click-container2"
+      data-number={numberLines}
+      data-distance={lineDistance}
+      data-color={color}
+      class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden"
+    >
+    </div>
+
+    <script>
+      const container2 = document.getElementById("click-container2");
+      const numberLines = container2.dataset.number;
+      const lineDistance = container2.dataset.distance;
+      const color = container2.dataset.color;
+
+      function createRadialLines(x, y, count = numberLines) {
+        const lines = [];
+        for (let i = 0; i < count; i++) {
+          const line = document.createElement("div");
+
+          line.className = `absolute w-[2px] h-2 ${color} rounded-sm rotate-90`;
+          line.style.left = `${x}px`;
+          line.style.top = `${y}px`;
+          line.angle = ((i * 360) / count) * (Math.PI / 180);
+          line.distance = 0;
+          container2.appendChild(line);
+          lines.push(line);
+        }
+        return lines;
+      }
+
+      window.addEventListener("click", (e) => {
+        const rect = container2.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const lines = createRadialLines(mouseX, mouseY);
+
+        function animateLines() {
+          let alive = false;
+          lines.forEach((line) => {
+            if (line.distance < lineDistance) {
+              alive = true;
+              line.distance += 0.8;
+              line.style.transform = `translate(${Math.cos(line.angle) * line.distance}px, ${Math.sin(line.angle) * line.distance}px) rotate(${line.angle + Math.PI / 2}rad)`;
+              line.style.opacity = 1 - line.distance / 30;
+            } else {
+              line.remove();
+            }
+          });
+          if (alive) requestAnimationFrame(animateLines);
+        }
+
+        animateLines();
+      });
+    </script>
+
     ```
 
   </TabItem>

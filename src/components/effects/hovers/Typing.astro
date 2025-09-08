@@ -1,4 +1,4 @@
-<a href="#" class="typewriter relative inline-block font-mono text-white"
+<a href="#2-typing" class="typewriter relative inline-block font-mono text-white"
   >Effects</a
 >
 
@@ -18,6 +18,11 @@
 </style>
 
 <script>
+  // 1 Instruction in this component
+
+  // Choose the speed (milliseconds). ❶
+  const speed = 100;
+
   function typewriter(el) {
     if (el.dataset.typing === "true") return;
     el.dataset.typing = "true";
@@ -32,7 +37,7 @@
       if (index < text.length) {
         el.innerText += text[index];
         index++;
-        setTimeout(writeNext, 100);
+        setTimeout(writeNext, speed);
       } else {
         el.dataset.typing = "false";
         el.classList.remove("writing");

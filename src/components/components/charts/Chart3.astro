@@ -1,0 +1,85 @@
+---
+//2 Instructions in this component
+
+// Here you can change the title. ❶
+const title = "Sales by Service"; 
+
+// ↓ Here you can add your data. ❷
+const dataA = [
+    {data:365, concept:"Hosting"},
+    {data:219, concept:"Databases"},
+    {data:146, concept:"Authentication"},
+    {data:73, concept:"APIs"}
+ // {data:X, concept:"Add more..."}  <--- You can add more items here
+];
+
+const total = dataA.reduce((acc, item) => acc + item.data, 0);
+
+const r = 15.91549430918954;
+const C = 2 * Math.PI * r;  
+
+const gapPercent = 0.3;
+const gapLen = (gapPercent / 100) * C;
+
+let accPercent = 0;
+const segmentsInfo = dataA.map((item) => {
+  const percent = (item.data / total) * 100;
+  const segLen = (percent / 100) * C - gapLen;
+  const dashArray = `${segLen} ${C - segLen}`;
+  const dashOffset = -(accPercent / 100) * C;
+  accPercent += percent;
+  return { ...item, percent, dashArray, dashOffset };
+});
+
+---
+
+<div class="flex justify-center items-center space-x-16 border border-white/30 rounded-md p-16 not-content">
+
+  <div id="legend">
+
+    <p class="mb-8 text-2xl text-white">{title}</p>
+
+    {
+    segmentsInfo.map((s, i) => (
+      <p><span data-index={i} class="inline-block size-4 mr-4 bg-white/30 transition-colors duration-300 ease-in-out rounded-xs"></span><span class="font-regular">{s.concept}:</span> ${s.data} ({s.percent.toFixed(1)}%)</p>
+    ))
+    }
+
+  </div>
+
+  <svg viewBox="0 0 36 36" class="size-48">
+    <g transform="rotate(-90 18 18)">
+      {segmentsInfo.map((s, i) => (
+        <circle
+          data-index={i}
+          cx="18" cy="18" r={r}
+          class="text-white/30 hover:text-white/60 transition-colors duration-300 ease-in-out cursor-pointer"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-dasharray={s.dashArray}
+          stroke-dashoffset={s.dashOffset}
+          stroke-linecap="butt" 
+        />
+      ))}
+    </g>
+  </svg>
+</div>
+
+
+<script>
+  const circles = document.querySelectorAll("circle[data-index]");
+  const squares = document.querySelectorAll("#legend span[data-index]");
+
+  circles.forEach(circle => {
+    circle.addEventListener("mouseenter", () => {
+      const i = circle.getAttribute("data-index");
+      squares[i].classList.add("bg-white/80");
+    });
+    circle.addEventListener("mouseleave", () => {
+      const i = circle.getAttribute("data-index");
+      squares[i].classList.remove("bg-white/80");
+    });
+  });
+
+</script>

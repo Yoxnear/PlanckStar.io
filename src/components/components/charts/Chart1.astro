@@ -1,0 +1,55 @@
+---
+//3 Instructions in this component
+
+import type { map } from "astro:schema";
+import { Image } from "astro:assets";
+
+// ↓ Here you can add your data. ❶
+const dataA = [283, 331, 97, 373, 223, 709, 233, 593];
+
+// Here you can change the title. ❷
+const title = "Last months downloads";
+
+// Here you can add your logo. ❸
+import yourLogo from "../../../assets/icons/planckstar.svg";
+
+
+const max = Math.max(...dataA);
+const total = dataA.reduce((acc, val) => acc + val, 0);
+
+const points = dataA.map((value, index) => {
+  const x = (index / (dataA.length - 1)) * 200; 
+  const y = 100 - (value / max) * 98;
+  return `${x},${y}`;
+}).join(" ");
+
+---
+
+<div class="w-md not-content">
+
+    <div class="relative w-full border border-white/30 p-6 rounded-lg">
+
+        <Image src={yourLogo} alt="YourLogo" class="absolute top-0 right-0 m-8 size-8"></Image>
+        <p class="font-light ">{title}</p>
+        <p class="text-4xl font-black"><span class="font-light">+</span>{total}</p>
+
+        <div id="chart1" class="w-full aspect-[2/1] mt-6 flex" >
+            <svg viewBox="0 0 200 100" width="100%" height="100%" class="p-2 text-white/30">
+                <polyline 
+                  points={points} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  stroke-width="1"
+                />
+                {
+                    dataA.map((value, index) => {
+                      const x = (index / (dataA.length - 1)) * 200;
+                      const y = 100 - (value / max) * 98;
+                      return <circle cx={x} cy={y} r="2" fill="white" />;
+                    })
+                }
+            </svg>
+        </div>
+    </div>
+</div>
+

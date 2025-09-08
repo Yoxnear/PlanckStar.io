@@ -1,5 +1,5 @@
 ---
-//1 Instruction in this component
+//2 Instruction in this component
 
 // ↓ Here you can add the images/slides. ❶
 const slides = [
@@ -7,12 +7,16 @@ const slides = [
   { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
   { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
 ];
+
+// Here you can change the interval time (milliseconds). ❷
+const intervalTime = 5000; 
 ---
 
 <!-- Carousel -->
 <div class="flex relative overflow-hidden w-full text-white/80 not-content">
   <div
     id="carousel3"
+    data-interval={intervalTime} 
     class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
   >
     {
@@ -86,7 +90,7 @@ const slides = [
 
   let carouselIndex3 = 0;
   const totalSlides3 = carousel3.children.length;
-  const carouselInterval3 = 5000;
+  const carouselInterval3 = carousel3.dataset.interval;
 
   setInterval(() => {
     carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;

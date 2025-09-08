@@ -1,25 +1,38 @@
 ---
+//3 Instructions in this component
+
 import { Image } from "astro:assets";
+
 // Start editing the component here ↓, choose the path to your logo. ❶
 import yourLogo from "../../../assets/icons/planckstar.svg";
+
+// Add a description. ❷
+const description = "Subscribe to our newsletter and stay up to date with upcoming projects.";
 ---
 
-<div class="flex flex-col items-center mb-14 md:mb-0">
+<div class="flex flex-col items-center mb-14 md:mb-0 not-content">
+
+  <!-- Logo -->
   <Image class="w-16 mb-4" src={yourLogo} alt="_Your Logo_" />
-  <p class="mt-6 mb-4 w-full">
-    Subscribe to our newsletter and stay <br /> up to date with upcoming projects.
+
+  <!-- Description -->
+  <p class="mt-6 mb-4 w-3/5">
+    {description}
   </p>
+
+  <!-- Form -->
   <form class="font-light" action="/subscribe" method="POST">
     <div class="relative bg-gray-900 p-4 pr-28 rounded-md">
       <input
         type="email"
-        id="email"
+        id="emailInput"
         name="email"
         placeholder="Enter your email"
         required
         class="outline-none"
       />
       <button
+        id="subscribeButton"
         type="submit"
         class="absolute top-1 bottom-1 right-1 bg-gray-950 px-2 rounded-md cursor-pointer"
         >Subscribe</button
@@ -27,3 +40,18 @@ import yourLogo from "../../../assets/icons/planckstar.svg";
     </div>
   </form>
 </div>
+
+<script>
+  const subButton = document.getElementById('subscribeButton');
+  const emailInput = document.getElementById('emailInput');
+
+  subButton.addEventListener('click', () => {
+  const email = emailInput.value.trim();
+
+  // Here you can add the logic for your subscription functionality. ❸
+
+  alert(`Thank you for subscribing with: ${email}`);
+  emailInput.value = '';
+  });
+
+</script>

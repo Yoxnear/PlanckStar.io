@@ -1,6 +1,6 @@
 ---
 title: Cards
-description: Learn more about my project in this docs site built with Starlight.
+description: Minimalist, Responsive Cards for Various Purposes.
 sidebar:
   order: 2 
 ---
@@ -9,18 +9,22 @@ sidebar:
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import CardOne from "../../../components/components/cards/Card1.astro";
 
-...
+Customize each card according to your needs, add them wherever you like. 
+It’s recommended to place them inside a flex container to justify the spacing between them (if there are multiple).
 
 ```jsx
-<!-- src/components/Projects.astro -->
+<!-- src/components/Pricing.astro -->
 
 ---
 // Import
-import Carousel from "../components/Carousel.astro";
+import Card from "../components/Card.astro";
 ---
 (...)
-<div class="Type your container dimensions here">
-  <Carousel />
+<div class="Type your container dimensions here flex justify-between items-center">
+  ...
+  <!-- Add Here -->
+  <Card />
+  ...
 </div>
 (...)
 
@@ -28,9 +32,11 @@ import Carousel from "../components/Carousel.astro";
 
 ---
 
-## 1. 
+## 1. Pricing Card
 
-...
+Show your clients your pricing packages with their corresponding features, the price, 
+and a button to redirect them to your checkout page.
+
 <Tabs>
   <TabItem label="Preview">
     <div class="w-full flex justify-center">
@@ -39,8 +45,74 @@ import Carousel from "../components/Carousel.astro";
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/Carousel.astro -->
-      
+      <!-- src/components/CardPrice.astro -->
+      ---
+      // 4 Instructions in this component
+
+      // Start here by choosing the name of the package. ❶ 
+      const packageName = 'Basic';
+
+      // Choose the price of the package. ❷
+      const price = '23';
+
+      // Add a description. ❸
+      const description = 'Get all you need with this package and unlock the power of us tools.';
+
+      // Add all the features. ❹
+      const features = ["Hosting", "Domain", "UI planckstar components"];
+      ---
+
+      <div class="w-90 border border-white/30 flex flex-col text-white">
+
+        <!-- Name -->
+        <p class="uppercase mt-8 mx-auto text-2xl">{packageName}</p>
+
+        <!-- Price -->
+        <div class="flex items-end m-4">
+          <p class="text-4xl">${price}</p>
+          <p class="font-light text-gray-300 ml-2">/Month</p>
+        </div>
+
+        <!-- Description -->
+        <p class="m-4 mb-10">
+          {description}
+        </p>
+
+        <!-- Features -->
+        <div>
+          {
+            features.map((feature) => (
+              <div class="flex border-b border-white/30 space-y-8 w-full items-center first:border-t">
+                <div class="flex rounded-full bg-gray-950 items-center size-8 my-6 mx-6 p-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-full"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
+                  </svg>
+                </div>
+                <p>{feature}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Button -->
+        <button
+          class="text-gray-200 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-500 rounded-xl transition-colors cursor-pointer mx-4 my-12"
+        >
+          Get started
+        </button>
+      </div>
+
       ```
 
   </TabItem>

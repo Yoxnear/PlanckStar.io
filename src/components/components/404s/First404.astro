@@ -4,8 +4,10 @@
 import { Image } from "astro:assets";
 
 // Start editing the component here ↓, choose the path to your logo. ❶
-
 import bgImage from "../../../assets/images/Lorem.jpg";
+
+// Add the message here. ❷
+const message = "Everything is fine you just need to come back home.";
 ---
 
 <section
@@ -17,7 +19,7 @@ import bgImage from "../../../assets/images/Lorem.jpg";
     <h1 class="text-9xl font-semibold mb-12">404</h1>
     <h2 class="text-2xl mb-2 font-regular">Whops!</h2>
     <p class="text-lg mb-8 font-light">
-      Everything is fine you just need to come back home.
+      {message}
     </p>
     <button
       class="bg-gray-950 transition-colors duration-150 p-4 rounded-xl border border-white/10 hover:border-white/30 cursor-pointer mx-auto"

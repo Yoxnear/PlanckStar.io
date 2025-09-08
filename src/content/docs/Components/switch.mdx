@@ -1,12 +1,30 @@
 ---
 title: Switch
-description: Learn more about my project in this docs site built with Starlight.
+description: Beautiful and simple Switch for your website.
 sidebar:
   order: 2
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Switch from '../../../components/components/switches/Switch1.astro';
+
+The switch component is an easy-to-use UI element that can be added anywhere in your layout, allowing users to toggle options quickly and intuitively.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+// Import
+import Switch from "../components/Switch.astro";
+---
+(...)
+<Switch />
+(...)
+
+```
+---
+
+## 1. Switch
 
 <Tabs>
   <TabItem label="Preview">
@@ -21,7 +39,7 @@ import Switch from '../../../components/components/switches/Switch1.astro';
     //0 Instructions in this component
     ---
 
-    <label class="relative inline-flex items-center cursor-pointer not-content">
+    <label class="relative inline-flex items-center cursor-pointer">
       <input type="checkbox" value="" class="sr-only peer" />
       <div class="w-14 h-8 bg-gray-900 peer-focus:outline-none rounded-full"></div>
       <div

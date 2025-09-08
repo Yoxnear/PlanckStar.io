@@ -1,18 +1,21 @@
 ---
+//2 Instructions in this component
 
+// Add your description here. ❶
+const description = "Fill out the form and our team will be in touch."
 ---
 
 <section
-  class="w-2xl mx-auto p-12 border border-white/30 text-white not-content"
+  class="w-xl mx-auto p-12 border border-white/30 text-white not-content"
 >
   <h2 class="text-4xl font-regular mb-12">Contact Us</h2>
-  <p class="text-lg text-center mb-12 font-light bg-gray-950 py-6">
-    Fill out the form and our team will be in touch.
+  <p class="text-md text-center mb-12 font-light bg-gray-950 py-6 border border-white/30">
+    {description}
   </p>
   <form action="#" method="POST" class="space-y-4">
     <!-- Name -->
     <div>
-      <label for="name" class="block text-lg font-light"> Name </label>
+      <label for="name" class="block text-md font-light"> Name </label>
       <input
         type="text"
         id="name"
@@ -25,7 +28,7 @@
 
     <!-- Email -->
     <div>
-      <label for="email" class="block text-lg font-light"> Email </label>
+      <label for="email" class="block text-md font-light"> Email </label>
       <input
         type="email"
         id="email"
@@ -38,7 +41,7 @@
 
     <!-- Message -->
     <div>
-      <label for="message" class="block text-lg font-light"> Message </label>
+      <label for="message" class="block text-md font-light"> Message </label>
       <textarea
         id="message"
         name="message"
@@ -52,7 +55,7 @@
     <!-- Button -->
     <div class="flex justify-center">
       <button
-        id="Button"
+        id="contactForm"
         class="text-gray-400 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-600 rounded-xl transition-colors cursor-pointer mt-12"
       >
         Send Message
@@ -60,3 +63,27 @@
     </div>
   </form>
 </section>
+
+<script>
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); 
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    //↓Here you can add your backend logic. ❷
+
+    console.log("Form submitted:", { name, email, message });
+
+    alert(`Thank you, ${name}! Your message has been sent.`);
+    form.reset();
+  });
+</script>

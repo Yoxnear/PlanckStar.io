@@ -1,12 +1,28 @@
-<!-- 4 Instructions in this component -->
+---
+// 3 Instructions in this component 
+
+// Start here adjusting the size of the dot (px). ❶
+const size = 16;
+
+// Pick two colors from Tailwind's color palette. ❷
+const color1 = "bg-white/50"; // Color when close to the cursor
+const color2 = "bg-white/20"; // Color when far from the cursor
+
+// Adjust the speed of the follower (0.1 is slow, 0.3 is fast). ❸
+const speed = 0.1;
+---
+
 <div
   id="mouse-area"
   class="cursor-none relative w-full h-80 bg-gray-950 overflow-hidden not-content"
 >
-  <!-- You can change the size of the follower by adjusting the `size` class. ❶-->
   <div
     id="follower"
-    class="absolute size-4 rounded-full bg-white/20 transition-colors duration-300"
+    data-color1={color1}
+    data-color2={color2}
+    data-speed={speed}
+    class="absolute rounded-full bg-white/20 transition-colors duration-300"
+    style=`width: ${size}px; height: ${size}px;`
   >
   </div>
 </div>
@@ -15,14 +31,11 @@
   const follower = document.getElementById("follower");
   const area = document.getElementById("mouse-area");
 
-  // Define the colors here. ❷
-  const color1 = "bg-white/50";
-  const color2 = "bg-white/20";
+  const color1 = follower.dataset.color1;
+  const color2 = follower.dataset.color2;
 
-  // Speed of the follower's movement. ❸
-  const speed = 0.1;
+  const speed = follower.dataset.speed;
 
-  // Distance threshold to change color. ❹
   const distanceThreshold = 8;
 
   const followerSize = follower.offsetWidth;

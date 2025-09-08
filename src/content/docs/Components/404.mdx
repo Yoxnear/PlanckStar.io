@@ -1,12 +1,40 @@
 ---
 title: 404 Pages
-description: Learn more about my project in this docs site built with Starlight.
+description: Find amazing 404 pages for your website.
 sidebar:
   order: 100
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import First404 from "/src/components/components/404s/First404.astro";
+import Second404 from "/src/components/components/404s/Second404.astro"
+
+Adding a custom 404 page gives personality to your website and is a nice touch. 
+To add it, create a 404.astro file directly in the pages folder, import your 
+layout, and include the component inside it.
+
+```jsx
+<!-- src/pages/404.astro -->
+
+---
+// Import your layout
+import Layout404 from "../layouts/Layout404.astro";
+
+//Import the page
+import Simple404 from "../components/Simple404.astro"
+---
+<Layout404>
+  <Simple404 />
+</Layout404>
+
+```
+---
+
+## 1. Simple 404 Page
+
+404 page component that displays a large '404' error message, accompanied by a short
+description and a background image. Perfect for customizing the user experience when 
+visiting non-existent routes on your site.
 
 <Tabs>
   <TabItem label="Preview">
@@ -18,30 +46,105 @@ import First404 from "/src/components/components/404s/First404.astro";
     ```jsx
     <!-- src/components/Buttons.astro -->
     ---
-    //2 Instructions in this component
+    // 2 Instructions in this component
 
-    // ↓ Here you can change the label of the button. ❶
-    const labelButton = "Button";
+    import { Image } from "astro:assets";
+
+    // Start editing the component here ↓, choose the path to your logo. ❶
+    import bgImage from "../../../assets/images/Lorem.jpg";
+
+    // Add the message here. ❷
+    const message = "Everything is fine you just need to come back home.";
     ---
 
-    <button
-      id="Button"
-      class="text-gray-400 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-600 rounded-xl transition-colors cursor-pointer"
+    <section
+      class="relative h-screen w-full flex items-center justify-center bg-gray-950 not-content"
     >
-      {labelButton}
-    </button>
-
-    <!-- Script -->
-
-    <script>
-      const myButton = document.getElementById("Button");
-
-      myButton.addEventListener("click", () => {
-        console.log("Click");
-        // Here you can add your logic when the button is clicked. ❷
-      });
-    </script>
+      <div
+        class="flex flex-col justify-center text-center text-white z-1 w-full h-full"
+      >
+        <h1 class="text-9xl font-semibold mb-12">404</h1>
+        <h2 class="text-2xl mb-2 font-regular">Whops!</h2>
+        <p class="text-lg mb-8 font-light">
+          {message}
+        </p>
+        <button
+          class="bg-gray-950 transition-colors duration-150 p-4 rounded-xl border border-white/10 hover:border-white/30 cursor-pointer mx-auto"
+        >
+          <a href="/">Go back</a>
+        </button>
+      </div>
+      ¿
+      <div
+        class="absolute top-0 left-0 w-full h-full z-0 [clip-path:polygon(0_0,_100%_0,_100%_75%,_0_50%)]"
+      >
+        <Image
+          src={bgImage}
+          alt="404 background image"
+          class="absolute object-cover w-full h-full grayscale-100 brightness-[0.1]"
+        />
+      </div>
+    </section>
     ```
+  </TabItem>
+</Tabs>
 
+---
+
+## 2. Chef’s Special 404 Page
+
+A 404 page with your logo on it, with a touch of Planckstar’s design, sober yet effective,
+ featuring a clean and elegant background.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <Second404 />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Buttons.astro -->
+    ---
+    // 2 Instructions in this component
+
+    import { Image } from "astro:assets";
+
+    // Start editing the component here ↓, choose the path to your logo. ❶
+    import yourLogo from "../../../assets/icons/planckstar.svg";
+
+    // Add the message here. ❷
+    const message = "The page you are looking for does not exist.";
+
+    ---
+    <section class="relative h-screen w-full flex items-center justify-center">
+
+      <div class="absolute flex flex-col justify-between top-0 left-0 w-full h-full z-0">
+        <div class="w-full border-b border-white/10"></div>
+        <div class="w-full border-b border-white/10"></div>
+        <div class="w-full border-b border-white/10"></div>
+        <div class="w-full border-b border-white/10"></div>
+      </div>
+
+      <div class="absolute flex justify-around top-0 left-0 w-full h-full z-0">
+        <div class="h-full border-r border-white/10"></div>
+        <div class="h-full border-r border-white/10"></div>
+        <div class="h-full border-r border-white/10"></div>
+      </div>
+
+      <div class="text-center text-white z-1 space-y-4 border border-white/10 p-8 rounded-xl backdrop-blur-[1px]">
+        <Image src={yourLogo} alt="Main Logo" class="size-28 mx-auto"/>
+        <h1 class="text-4xl font-bold mb-4"> <span class="mr-4 text-gray-400">404</span>Page Not Found</h1>
+        <p class="text-lg mb-8">{message}</p>
+
+        <button
+          class="bg-gray-950 transition-colors duration-150 p-4 rounded-xl border border-white/10 hover:border-white/30 cursor-pointer mx-auto"
+        >
+          <a href="/">Go back</a>
+        </button>
+      </div>
+    </section>
+
+    ```
   </TabItem>
 </Tabs>

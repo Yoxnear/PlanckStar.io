@@ -76,9 +76,9 @@ const fragmentShader = `
         float pattern = flow + vortex * 0.3;
 
         // Ultra dark color palette
-        vec3 baseColor = vec3(0.005, 0.01, 0.02); // Extremely dark blue
-        vec3 accentColor = vec3(0.03, 0.02, 0.04); // Almost black purple
-        vec3 glowColor = vec3(0.1, 0.1, 0.1); // Very dark bluish glow
+        vec3 baseColor = vec3(0.01, 0.01, 0.02); // Extremely dark blue
+        vec3 accentColor = vec3(0.04, 0.04, 0.05); // Almost black purple
+        vec3 glowColor = vec3(0.06, 0.06, 0.07); // Very dark bluish glow
 
         // Dynamic gradient
         vec3 color = mix(baseColor, accentColor, pattern * 0.7 + 0.3);

@@ -1,14 +1,30 @@
+---
+// 3 Instructions in this component
+
+// Choose the number of crosses. ❶
+const crossNumber = 4;
+
+// Choose the color of the circles. ❷
+const color = "rgba(190,190,190,0.8)"; 
+
+// Choose the size of the crosses (px). ❸
+const crossSize = 13;
+---
+
 <div
   id="grid-bg3"
-  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+  data-crosses={crossNumber}
+  data-color={color}
+  data-size={crossSize}
+  class="relative w-full h-80 not-content overflow-hidden opacity-30"
 >
 </div>
 
 <script>
   const bg3 = document.getElementById("grid-bg3");
-  const crossNumber = 4;
-  const crossSize = 13;
-  const color = "rgba(190,190,190,.8)";
+  const crossNumber = bg3.dataset.crosses;
+  const crossSize = bg3.dataset.size;
+  const color = bg3.dataset.color;
 
   function drawGrid1() {
     bg3.innerHTML = "";

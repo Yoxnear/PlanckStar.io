@@ -1,57 +1,69 @@
+---
+// 3 Instructions in this component
+
+// Pick the number of circles. ❶
+const numberLines = 8;
+
+// Choose the color of the circles. ❷
+const color = "rgba(190,190,190,.3)"; 
+
+---
+
 <div
-  id="grid-3d2"
   class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30 perspective-dramatic"
 >
   <div
-    id="BgRoofTwo"
+    id="BgRoofOne"
+    data-lines={numberLines}
+    data-color={color}
     class="absolute flex justify-around top-0 w-full h-full rotate-x-90 -translate-y-16"
   >
   </div>
   <div
-    id="BgRoofTwoP"
+    id="BgRoofOneP"
     class="absolute flex flex-col justify-around top-0 w-full h-full rotate-x-90 -translate-y-16"
   >
   </div>
   <div
-    id="BgFloorTwo"
+    id="BgFloorOne"
     class="absolute flex justify-around bottom-0 w-full h-full rotate-x-90 translate-y-16"
   >
   </div>
   <div
-    id="BgFloorTwoP"
+    id="BgFloorOneP"
     class="absolute flex flex-col justify-around bottom-0 w-full h-full rotate-x-90 translate-y-16"
   >
   </div>
 </div>
 
 <script>
-  const bgRoofTwo = document.getElementById("BgRoofTwo");
-  const bgFloorTwo = document.getElementById("BgFloorTwo");
-  const bgRoofTwoP = document.getElementById("BgRoofTwoP");
-  const bgFloorTwoP = document.getElementById("BgFloorTwoP");
-  const color = "rgba(190,190,190,.3)";
-
-  const numberOfLines2 = 10;
+  const bgRoofOne = document.getElementById("BgRoofOne");
+  const bgFloorOne = document.getElementById("BgFloorOne");
+  const bgRoofOneP = document.getElementById("BgRoofOneP");
+  const bgFloorOneP = document.getElementById("BgFloorOneP");
+  
+  const color = bgRoofOne.dataset.color;
+  const numberLines1 = bgRoofOne.dataset.lines;
 
   function draw3D() {
-    for (let x = 0; x < numberOfLines2; x += 1) {
-      bgRoofTwo.appendChild(document.createElement("div")).style.cssText = `
+    for (let x = 0; x < numberLines1; x += 1) {
+      bgRoofOne.appendChild(document.createElement("div")).style.cssText = `
           width: 0;
           height: 100%;
           border-left: 2px solid ${color};
         `;
-      bgRoofTwoP.appendChild(document.createElement("div")).style.cssText =
+      bgRoofOneP.appendChild(document.createElement("div")).style.cssText =
         `     
           width: 100%;
           height: 0;
           border-top: 2px solid ${color};
         `;
-      bgFloorTwo.appendChild(document.createElement("div")).style.cssText = `
+      bgFloorOne.appendChild(document.createElement("div")).style.cssText = `
           width: 0;
           height: 100%;
           border-left: 2px solid ${color};
         `;
-      bgFloorTwoP.appendChild(document.createElement("div")).style.cssText = `
+      bgFloorOneP.appendChild(document.createElement("div")).style.cssText = `
           width: 100%;
           height: 0;
           border-top: 2px solid ${color};

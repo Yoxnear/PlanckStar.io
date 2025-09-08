@@ -1,21 +1,56 @@
 ---
 title: Dynimics
-description: Learn more about my project in this docs site built with Starlight.
+description: The finest selection of high-quality, high-performance backgrounds for your website.
 sidebar:
   order: 3
 ---
 
-import GridBgOne from "/src/components/backgrounds/GridBg1.astro";
-import GridBgTwo from "/src/components/backgrounds/GridBg2.astro";
-import GridBgThree from "/src/components/backgrounds/GridBg3.astro";
-import Bg3DOne from "/src/components/backgrounds/Bg3D1.astro";
-import Bg3DTwo from "/src/components/backgrounds/Bg3D2.astro";
+import GridBgOne from "/src/components/backgrounds/dynamics/Bg1.astro";
+import GridBgTwo from "/src/components/backgrounds/dynamics/Bg2.astro";
+import GridBgThree from "/src/components/backgrounds/dynamics/Bg3.astro";
+import BgFour from "/src/components/backgrounds/dynamics/Bg4.astro";
+import BgFive from "/src/components/backgrounds/dynamics/Bg5.astro";
+import BgSix from "/src/components/backgrounds/dynamics/Bg6.astro"
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Aside } from '@astrojs/starlight/components';
+
+The dynamic backgrounds bring movement and interactivity to your website, 
+creating an engaging experience that adapts to the user’s actions. Their fluid 
+motion and subtle animations provide a distinctive contrast to static designs, 
+making your page look modern and sophisticated. 
+
+They are best suited for your
+index page but can also be applied to specific components to give them a unique 
+and interactive touch.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+import Layout from "../layouts/Layout.astro";
+
+// Import your Background
+import Background from "../layouts/Background.astro";
+
+---
+<Layout>
+  <Background />
+  (...)
+</Layout>
+
+```
+---
+
+<Aside type="tip">
+Every one of these components is powered by Three.js.
+</Aside>
 
 ---
 
-## 1. Grid background
+## 1. Infinity Dance
+
+A mesmerizing effect, watching each particle come and go in an endless dance, as part of the breathing of a greater force.
 
 <Tabs>
   <TabItem label="Preview">
@@ -25,15 +60,115 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/InifinityBg.astro -->
     ---
+    // 2 Instructions in this component
+
+    // Start here adjusting the number of particles. ❶
+    const numberParticles = 5000; 
+    ---
+
+    <div id="three-container1" data-particles={numberParticles} class="fixed w-full h-full -z-10">
+    </div>
+
+    <script>
+        import * as THREE from 'three';
+
+        const container = document.getElementById('three-container1');
+        const particleCount = container.dataset.particles;
+
+        const scene = new THREE.Scene();
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+        camera.position.z = 8; 
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 35; 
+            positions[i + 1] = (Math.random() - 0.5) * 20; 
+            positions[i + 2] = (Math.random() - 0.5) * 3; 
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const vertexShader = `
+            uniform float uTime;
+            varying vec3 vPosition;
+            void main() {
+                vPosition = position;
+                vec3 pos = position;
+
+                pos.y += sin(pos.x * 0.4 + uTime * 0.5) * cos(pos.z * 0.4 + uTime * 0.4) * 0.5;
+
+                gl_PointSize = 2.2; // Large particles
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+        `;
+        // Here is where you can play with colors and effects. ❷ ----------------------------------------------------------------|
+        const fragmentShader = `
+            uniform float uTime;
+            varying vec3 vPosition;
+            void main() {
+            
+                // Dark colors with soft glow
+                vec3 baseColor = vec3(0.014, 0.017, 0.1); // <---- Base black blue
+                vec3 glowColor = vec3(0.34, 0.44, 0.85); // <---- Dark bluish glow
+                float intensity = sin(uTime * 0.2 + vPosition.x * 0.2 + vPosition.y * 0.2) * 0.2 + 0.8;
+                vec3 color = mix(baseColor, glowColor, intensity);
+                gl_FragColor = vec4(color, 0.9); // <---- Transparency for softness
+
+            }
+        `;
+
+        const particleMaterial = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                uTime: { value: 0.0 }
+            },
+            transparent: true
+        });
+
+        const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+        scene.add(particleSystem);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            particleMaterial.uniforms.uTime.value += 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            renderer.setSize(newWidth, newHeight);
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+        });
+
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ---
 
-## 2. Dots background
+## 2. Silent Clouds
+
+The impression of watching clouds being carried by the wind in a perpetually dark sky, 
+yet illuminated by a glow that comes from nowhere.
 
 <Tabs>
   <TabItem label="Preview">
@@ -43,15 +178,148 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/SilentClouds.astro -->
     ---
+    // 1 Instruction in this component
+    ---
+
+    <div id="three-container2" class="fixed w-full h-full -z-10">
+    </div>
+
+    <script>
+        import * as THREE from 'three';
+
+        const container = document.getElementById('three-container2');
+        const scene = new THREE.Scene();
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const geometry = new THREE.PlaneGeometry(2, 2);
+
+        const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+
+        // Here is where you can start adjusting the visual style. Play whit the values and colors. ❶ -----------------------|
+        const fragmentShader = `
+            uniform float uTime;
+            uniform vec2 uResolution;
+            varying vec2 vUv;
+
+            // 2D Perlin noise function
+            float random(vec2 st) {
+                return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            float noise(vec2 st) {
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                vec2 u = f * f * (3.0 - 2.0 * f);
+                return mix(
+                    mix(random(i + vec2(0.0, 0.0)), random(i + vec2(1.0, 0.0)), u.x),
+                    mix(random(i + vec2(0.0, 1.0)), random(i + vec2(1.0, 1.0)), u.x),
+                    u.y
+                );
+            }
+
+            // fbm noise (fractional Brownian motion) for more complex patterns
+            float fbm(vec2 st) {
+                float v = 0.0;
+                float a = 0.5;
+                vec2 shift = vec2(100.0);
+                for (int i = 0; i < 6; ++i) {
+                    v += a * noise(st);
+                    st = st * 2.0 + shift;
+                    a *= 0.5;
+                }
+                return v;
+            }
+
+            void main() {
+                vec2 uv = vUv * uResolution / min(uResolution.x, uResolution.y);
+
+                // Create cosmic flow with fbm noise
+                vec2 flowUv = uv * 1.2 + uTime * 0.3; // Dynamic movement
+                float flow = fbm(flowUv);
+
+                // Add soft vortices
+                vec2 vortexUv = uv * 1.5 + vec2(cos(uTime * 0.2), sin(uTime * 0.2)) * 0.5;
+                float vortex = fbm(vortexUv + flow * 0.5) * 0.5;
+
+                // Combine patterns
+                float pattern = flow + vortex * 0.3;
+
+                // Ultra dark color palette
+                vec3 baseColor = vec3(0.01, 0.01, 0.02); // Extremely dark blue
+                vec3 accentColor = vec3(0.04, 0.04, 0.05); // Almost black purple
+                vec3 glowColor = vec3(0.06, 0.06, 0.07); // Very dark bluish glow
+
+                // Dynamic gradient
+                vec3 color = mix(baseColor, accentColor, pattern * 0.7 + 0.3);
+
+                // Pulsating glow effect
+                float glow = sin(uTime * 0.5 + pattern * 3.0) * 0.3 + 0.7;
+                color += glowColor * glow * 0.35;
+
+                // Add fine noise for texture
+                float fineNoise = noise(uv * 3.0 + uTime * 0.15) * 0.02;
+                color += vec3(fineNoise);
+
+                // Ensure the color doesn't exceed 1.0
+                color = clamp(color, 0.0, 1.0);
+
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                uTime: { value: 0.0 },
+                uResolution: { value: new THREE.Vector2(width, height) }
+            }
+        });
+
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            material.uniforms.uTime.value += 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            renderer.setSize(newWidth, newHeight);
+            material.uniforms.uResolution.value.set(newWidth, newHeight);
+        });
+
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ---
 
-## 3. Cross background
+## 3. Space Time
+
+An oscillating field that reacts to your presence, making it sway with greater force.
 
 <Tabs>
   <TabItem label="Preview">
@@ -61,44 +329,554 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/SpaceTime.astro -->
     ---
+    // 2 Instructions in this component
+
+    // Start here adjusting the grid size (number of particles). ❶
+    const gridSizeX = 50;
+    const gridSizeY = 40;
+
+    ---
+
+    <div id="three-container3" data-gridx={gridSizeX} data-gridy={gridSizeY} class="fixed w-full h-full -z-10"></div>
+
+    <script>
+        import * as THREE from 'three';
+
+        const container = document.getElementById('three-container3');
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.z = 12;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const gridSizeX = container.dataset.gridx;
+        const gridSizeY = container.dataset.gridy;
+        const particleCount = gridSizeX * gridSizeY;
+        const positions = new Float32Array(particleCount * 3);
+
+        let index = 0;
+        for (let y = 0; y < gridSizeY; y++) {
+            for (let x = 0; x < gridSizeX; x++) {
+                positions[index] = (x / gridSizeX - 0.5) * 40; 
+                positions[index + 1] = (y / gridSizeY - 0.5) * 20; 
+                positions[index + 2] = 0; 
+                index += 3;
+            }
+        }
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const vertexShader = `
+            uniform float uTime;
+            uniform vec2 uMouse;
+            varying vec3 vPosition;
+            void main() {
+                vPosition = position;
+                vec3 pos = position;
+
+                // Ambient movement
+                pos.z += sin(pos.x * 0.3 + uTime * 0.5) * cos(pos.y * 0.3 + uTime * 0.4) * 0.2;
+
+                // Hover effect
+                vec2 mouse3D = uMouse; 
+                float dist = distance(pos.xy, mouse3D);
+                if (dist < 2.5) {
+                    pos.z += (2.0 - dist) * 2.0 * (sin(uTime * 1.0) * 0.3 + 0.6);
+                }
+                gl_PointSize = 4.0;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+        `;
+
+        // Here is where you can start adjusting the visual style. Play whit the values and colors. ❶ -----------------------|
+        const fragmentShader = `
+            uniform float uTime;
+            varying vec3 vPosition;
+            void main() {
+                vec2 uv = gl_PointCoord - vec2(0.5);
+                if (abs(uv.x) > 0.4 || abs(uv.y) > 0.4) discard;
+
+                vec3 baseColor = vec3(0.8, 0.8, 0.8); 
+                vec3 glowColor = vec3(0.8, 0.8, 0.8);   
+                float intensity = sin(uTime * 0.2 + vPosition.x * 0.2 + vPosition.y * 0.2) * 0.2 + 0.8;
+                vec3 color = mix(baseColor, glowColor, intensity);
+                gl_FragColor = vec4(color, 0.3);
+            }
+        `;
+
+        const particleMaterial = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                uTime: { value: 0 },
+                uMouse: { value: new THREE.Vector2(0, 0) }
+            },
+            transparent: true
+        });
+
+        const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+        scene.add(particleSystem);
+
+    const mouse = new THREE.Vector2();
+    const vector = new THREE.Vector3();
+
+    container.addEventListener('mousemove', (event) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        vector.set(mouse.x, mouse.y, 0.5); 
+        vector.unproject(camera); 
+        const dir = vector.sub(camera.position).normalize();
+        const distance = -camera.position.z / dir.z; 
+        const pos = camera.position.clone().add(dir.multiplyScalar(distance));
+
+        particleMaterial.uniforms.uMouse.value.set(pos.x, pos.y);
+    });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particleMaterial.uniforms.uTime.value += 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        function updateRendererSize() {
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            renderer.setSize(newWidth, newHeight);
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+        }
+
+        window.addEventListener('resize', updateRendererSize);
+        updateRendererSize();
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ---
 
-## 4. 3D Room background
+## 4. Planck Grid
+
+An incredible background for your components, adding a touch of elegance and giving users a reason to return to your site.
 
 <Tabs>
   <TabItem label="Preview">
     <div class="flex justify-center">
-      <Bg3DOne />
+      <BgFive />
     </div>
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/PlanckGrid.astro -->
     ---
+    // 1 Instruction in this component
+
+    // Start here adjusting the grid size (number of particles). ❶
+    const gridSizeX = 80;
+    const gridSizeY = 50;
+    ---
+
+    <div id="dynamic-bg" data-gridx={gridSizeX} data-gridy={gridSizeY} class="fixed w-full h-full -z-10" ></div>
+
+    <script>
+    import * as THREE from 'three';
+    import { contain } from 'three/src/extras/TextureUtils.js';
+
+    const container = document.getElementById('dynamic-bg');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.z = 20;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    let gridX = container.dataset.gridx;
+    let gridY = container.dataset.gridy;
+    let particles = null;
+    let material = null;
+
+    function createParticles() {
+
+        const vFOV = camera.fov * Math.PI / 180;
+        const heightVisible = 2 * Math.tan(vFOV / 2) * camera.position.z;
+        const widthVisible = heightVisible * camera.aspect;
+
+        const positions = new Float32Array(gridX * gridY * 3);
+        for (let y = 0; y < gridY; y++) {
+            for (let x = 0; x < gridX; x++) {
+                const i = (y * gridX + x) * 3;
+                positions[i] = (x / (gridX - 1) - 0.5) * widthVisible;     
+                positions[i + 1] = (y / (gridY - 1) - 0.5) * heightVisible; 
+                positions[i + 2] = 0; 
+            }
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const vertexShader = `
+        uniform vec2 uMouse;
+        varying float vDist;
+
+        void main() {
+            vec3 pos = position;
+            vec2 mouse3D = uMouse;
+            float dist = distance(pos.xy, mouse3D);
+            vDist = dist;
+
+            // Hover: elevar partículas cercanas al cursor
+            if(dist < 6.0){
+              pos.z += (6.0 - dist) * 0.6;
+            }
+
+            gl_PointSize = 4.0;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+        }`;
+
+        const fragmentShader = `
+        varying float vDist;
+
+        void main() {
+            vec2 uv = gl_PointCoord - vec2(0.5);
+            if(length(uv) > 0.5) discard;
+
+            vec3 baseColor = vec3(0.05, 0.05, 0.2);
+            vec3 highlight = vec3(0.3, 0.6, 1.0);
+            float intensity = smoothstep(0.0, 5.0, 5.0 - vDist);
+            vec3 color = mix(baseColor, highlight, intensity);
+
+            gl_FragColor = vec4(color, 0.9);
+        }`;
+
+        material = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: { uMouse: { value: new THREE.Vector2(0,0) } },
+            transparent: true
+        });
+
+        if (particles) scene.remove(particles);
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+    }
+
+    createParticles();
+
+    const mouse = new THREE.Vector2();
+    const vector = new THREE.Vector3();
+
+    container.addEventListener('mousemove', (event) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        vector.set(mouse.x, mouse.y, 0.5);
+        vector.unproject(camera);
+        const dir = vector.sub(camera.position).normalize();
+        const distance = -camera.position.z / dir.z;
+        const pos = camera.position.clone().add(dir.multiplyScalar(distance));
+
+        material.uniforms.uMouse.value.set(pos.x, pos.y);
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    function resize() {
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        createParticles(); 
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    </script>
     ```
   </TabItem>
 </Tabs>
 
 ---
 
-## 5. Idk
+## 5. Perpetual Mist 
+
+A foggy, distorted background with pleasant colors, illuminated by the flickering glow of your presence, like a guiding beacon.
 
 <Tabs>
   <TabItem label="Preview">
     <div class="flex justify-center">
-      <Bg3DTwo />
+      <BgFour />
     </div>
   </TabItem>
   <TabItem label="Code">
     ```jsx
-    <!-- src/components/Buttons.astro -->
+    <!-- src/components/Mist.astro -->
     ---
+    // 1 Instruction in this component
+    ---
+
+    <div id="three-container4" class="fixed w-full h-full -z-10">
+    </div>
+
+    <script>
+        import * as THREE from 'three';
+
+        const container = document.getElementById('three-container4');
+        const scene = new THREE.Scene();
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const geometry = new THREE.PlaneGeometry(2, 2);
+
+        const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+
+        // Here is where you can start adjusting the visual style. Play whit the values and colors. ❶ -----------------------|
+
+        const fragmentShader = `
+            uniform float uTime;
+            uniform vec2 uResolution;
+            uniform vec2 uMouse;
+            varying vec2 vUv;
+
+            // Simple random noise function
+            float random(vec2 st) {
+                return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            void main() {
+                vec2 uv = vUv * uResolution / min(uResolution.x, uResolution.y);
+
+                // Larger waves (lower frequency for a wider texture)
+                float wave1 = sin(uv.x * 2.0 + uTime * 0.2) * cos(uv.y * 2.0 + uTime * 0.15) * 0.2;
+                float wave2 = sin(uv.x * 1.0 - uTime * 0.3) * cos(uv.y * 1.0 - uTime * 0.2) * 0.15;
+
+                // Combine waves
+                float wave = wave1 + wave2;
+
+                // Darker color palette
+                vec3 baseColor = vec3(0.01, 0.02, 0.01); // Very dark blue
+                vec3 accentColor = vec3(0.03, 0.05, 0.1); // Very dark purple
+                vec3 glowColor = vec3(0.1, 0.1, 0.2); // Dark bluish glow
+
+                // Gradient based on waves
+                vec3 color = mix(baseColor, accentColor, wave * 0.5 + 0.5);
+
+                // Glow effect with a larger interaction radius
+                float distToMouse = distance(uv, uMouse * uResolution / min(uResolution.x, uResolution.y));
+                float glow = exp(-distToMouse * 2.0) * 0.4; // Larger radius and stronger glow
+                color += glowColor * glow * (sin(uTime * 1.2) * 0.2 + 0.8);
+
+                // Bigger texture with less dense noise
+                float noise = random(uv * 0.5 + uTime * 0.03) * 0.05; // Reduced scale for a larger texture
+                color += vec3(noise);
+
+                // Clamp colors to avoid exceeding 1.0
+                color = clamp(color, 0.0, 1.0);
+
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                uTime: { value: 0.0 },
+                uResolution: { value: new THREE.Vector2(width, height) },
+                uMouse: { value: new THREE.Vector2(0.5, 0.5) }
+            }
+        });
+
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            material.uniforms.uTime.value += 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        container.addEventListener('mousemove', (event) => {
+            const rect = container.getBoundingClientRect();
+            material.uniforms.uMouse.value.set(
+                (event.clientX - rect.left) / rect.width,
+                1 - (event.clientY - rect.top) / rect.height
+            );
+        });
+
+        window.addEventListener('resize', () => {
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            renderer.setSize(newWidth, newHeight);
+            material.uniforms.uResolution.value.set(newWidth, newHeight);
+        });
+
+    </script>
     ```
   </TabItem>
 </Tabs>
+
+---
+
+## 6. Ignite
+
+A series of ephemeral sparks that ignite and fade, giving life to others in an endless cycle.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <BgSix />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Ignite.astro -->
+    ---
+    // 1 Instruction in this component
+
+    // Start here adjusting the number of particles (sparks). ❶
+    const sparkCount = 50;
+    ---
+
+    <div id="spark-container" data-count={sparkCount} class="fixed w-full h-full -z-10"></div>
+
+    <script>
+    import * as THREE from 'three';
+
+    const container = document.getElementById('spark-container');
+    const scene = new THREE.Scene();
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    const sparkCount = container.dataset.count;
+    const positions = new Float32Array(sparkCount * 3);
+    const offsets = new Float32Array(sparkCount);
+
+    const vFOV = camera.fov * Math.PI / 180;
+    const heightVisible = 2 * Math.tan(vFOV / 2) * camera.position.z;
+    const widthVisible = heightVisible * camera.aspect;
+
+    for (let i = 0; i < sparkCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * widthVisible;    
+      positions[i * 3 + 1] = (Math.random() - 0.5) * heightVisible;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 2.0;         
+      offsets[i] = Math.random() * 100;                           
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('offset', new THREE.BufferAttribute(offsets, 1));
+
+    const vertexShader = `
+      uniform float uTime;
+      attribute float offset;
+      varying float vAlpha;
+
+      void main() {
+        float sparkLife = sin(uTime * 2.0 + offset);
+        vAlpha = max(sparkLife, 0.0);
+
+        gl_PointSize = vAlpha * 6.0; 
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      varying float vAlpha;
+
+      void main() {
+        vec2 uv = gl_PointCoord - vec2(0.5);
+        float d = length(uv);
+        if(d > 0.5) discard;
+
+        vec3 color = vec3(1.0, 0.8, 0.8);
+        gl_FragColor = vec4(color, vAlpha);
+      }
+    `;
+
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 }
+      },
+      vertexShader,
+      fragmentShader,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    const sparks = new THREE.Points(geometry, material);
+    scene.add(sparks);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      material.uniforms.uTime.value += 0.02;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const newWidth = container.clientWidth;
+      const newHeight = container.clientHeight;
+      renderer.setSize(newWidth, newHeight);
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+
+      const vFOV = camera.fov * Math.PI / 180;
+      const heightVisible = 2 * Math.tan(vFOV / 2) * camera.position.z;
+      const widthVisible = heightVisible * camera.aspect;
+
+      for (let i = 0; i < sparkCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * widthVisible;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * heightVisible;
+      }
+      geometry.attributes.position.needsUpdate = true;
+    });
+    </script>
+
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+
+

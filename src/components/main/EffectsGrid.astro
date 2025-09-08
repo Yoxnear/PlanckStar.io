@@ -1,0 +1,94 @@
+---
+import effectOne from '../effects/hovers/ButtonBg1.astro'
+import effectTwo from '../effects/hovers/ButtonBg2.astro'
+import effectThree from '../effects/hovers/ButtonBg3.astro'
+import effectFour from '../effects/hovers/ButtonFrame1.astro'
+import effectFive from '../effects/hovers/ButtonFrame2.astro'
+import effectSix from '../effects/hovers/ButtonFrame3.astro'
+import effectSeven from '../effects/hovers/ButtonFrame4.astro'
+import effectEight from '../effects/hovers/ButtonFrame4.astro'
+import Tron from '../effects/extras/TronEffect.astro'
+
+const effectsCards = [
+  {component:effectOne , class:"top-0 right-[50%] translate-x-[50%] rotate-x-90 rotate-z-180 -translate-y-[50%]", classChld:"rotate-x-12"},
+  {component:effectTwo , class:"bottom-0 right-[50%] translate-x-[50%] -rotate-x-90 translate-y-[50%]", classChld:"rotate-x-12"},
+  {component:effectThree , class:"top-[50%] right-0 -translate-y-[50%] -rotate-x-90 rotate-y-90 translate-x-[50%]", classChld:"rotate-x-12"},
+  {component:effectFour , class:"top-[50%] left-0 -translate-y-[50%] -rotate-x-90 -rotate-y-90 -translate-x-[50%]", classChld:"rotate-x-12"},
+  {component:effectFive , class:"bottom-[15%] left-[15%] translate-y-[50%] -rotate-x-90  -translate-x-[50%] -rotate-y-45", classChld:"rotate-x-12"},
+  {component:effectSix , class:"bottom-[15%] left-[85%] translate-y-[50%] -rotate-x-90  -translate-x-[50%] rotate-y-45", classChld:"rotate-x-12"},
+  {component:effectSeven, class:"bottom-[85%] left-[85%] translate-y-[50%] rotate-x-90 rotate-z-180 -translate-x-[50%]  rotate-y-45", classChld:"rotate-x-12"},
+  {component:effectEight, class:"bottom-[85%] left-[15%] translate-y-[50%] rotate-x-90 rotate-z-180  -translate-x-[50%] -rotate-y-45", classChld:"rotate-x-12"}
+
+];
+
+---
+<div>
+  <div class="absolute z-2 top-1/6 left-0 w-full overflow-hidden">
+    <Tron/>
+  </div>
+
+<div
+  class="absolute top-0 left-0 w-full h-full overflow-hidden"
+>
+  <div class="h-full flex items-center justify-center bg-gray-900 [perspective:1200px] border-t border-white/30">
+  <div id="effectsDisk" class="rotateEffects relative flex  rounded-full h-full aspect-square rotate-x-90 translate-y-52 -translate-z-48 [transform-style:preserve-3d] [animation:spinEffects_5s_linear_infinite]">
+    {
+      effectsCards.map((effect) => (
+        <div class=`absolute size-48 [transform-style:preserve-3d] flex justify-center ${effect.class}`>
+            <div class=` size-3/5 border border-tertiary/30 flex justify-center items-center ${effect.classChld}`>
+              <effect.component/>
+            </div>
+        </div>
+      ))
+    }
+
+    <div id="effectsBg" class="absolute top-[50%] right-[50%] translate-x-[50%] -translate-y-[50%] rotate-x-90 h-[300%] aspect-square bg-black/90"></div>
+  </div>
+</div>
+</div>
+</div>
+<style>
+.line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: moveLight 2s linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes moveLight {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+</style>
+
+<script>
+  const diskButton = document.getElementById('buttonDisk');
+  const disk = document.getElementById('effectsDisk');
+  const bgEffects = document.getElementById('effectsBg');
+
+  let spinning;
+
+  diskButton.addEventListener('mouseenter', () => {
+    spinning = setInterval(() => {
+      let currentRotationZ = parseFloat(disk.getAttribute("data-rotation") || "0");
+      currentRotationZ = (currentRotationZ + 0.2) % 360; 
+      disk.style.transform = `rotateX(90deg) rotateZ(${currentRotationZ}deg)`;
+      bgEffects.style.transform = `rotateX(90deg) rotateY(-${currentRotationZ}deg)`
+      disk.setAttribute("data-rotation", currentRotationZ);
+    }, 16); 
+  });
+
+  diskButton.addEventListener('mouseleave', () => {
+    clearInterval(spinning);
+  });
+</script>
+

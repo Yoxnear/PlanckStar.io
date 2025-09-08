@@ -1,6 +1,6 @@
 ---
-title: Carousel (Instructions!)
-description: Learn more about my project in this docs site built with Starlight.
+title: Carousels
+description: Elegant, Fully Functional Carousels.
 sidebar:
   order: 2
 ---
@@ -46,51 +46,57 @@ Adjust the time interval and image paths so the carousel runs automatically with
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/Carousel.astro -->
-       ---
-       //2 Instructions in this component
-       
-       // ↓ Here you can add the images/slides. ❶
-       
-       const slides = [
-       { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
-       { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
-       { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
-       ];
-       
-       ---
-       
-       <div class="flex overflow-hidden w-full not-content">
-         <div
-           id="carousel1"
-           class="flex transition-transform duration-500 ease-in-out"
-         >
-           {slides.map((slide, i) => (
-             <div class="w-full flex-shrink-0 p-6">
-               <img
-                 src={slide.src}
-                 alt={slide.alt}
-                 class="w-full h-auto object-cover rounded-xl"
-               />
-             </div>
-           ))}
-         </div>
-       </div>
-       
-       <!-- Script to translate de element -->
-       
-       <script>
-         const carousel1 = document.getElementById("carousel1");
-       
-         let carouselIndex1 = 0;
-         const carouselInterval1 = 5000; //Here you can set the time. ❷
-         const totalSlides1 = carousel1.children.length;
-       
-         setInterval(() => {
-           carouselIndex1 = (carouselIndex1 + 1) % totalSlides1;
-           carousel1.style.transform = `translateX(-${100 * carouselIndex1}%)`;
-         }, carouselInterval1);
-       </script>
+      <!-- src/components/AutoCarousel.astro -->
+      ---
+      //2 Instructions in this component
+      
+      // ↓ Here you can add the images/slides. ❶
+      const slides = [
+        { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
+        { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
+        { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
+      ];
+      
+      // Here you can change the interval time (milliseconds). ❷
+      const intervalTime = 5000; 
+      
+      ---
+      
+      <div class="flex overflow-hidden w-full">
+        <div
+          id="carousel1"
+          data-interval={intervalTime} 
+          class="flex transition-transform duration-500 ease-in-out"
+        >
+          <!-- Images -->
+          {
+            slides.map((slide, i) => (
+              <div class="w-full flex-shrink-0 p-6">
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  class="w-full h-auto object-cover rounded-xl"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      
+      <!-- Script to translate de element -->
+      
+      <script>
+        const carousel1 = document.getElementById("carousel1");
+        const carouselInterval1 = carousel1.dataset.interval;
+        let carouselIndex1 = 0;
+        const totalSlides1 = carousel1.children.length;
+      
+        setInterval(() => {
+          carouselIndex1 = (carouselIndex1 + 1) % totalSlides1;
+          carousel1.style.transform = `translateX(-${100 * carouselIndex1}%)`;
+        }, carouselInterval1);
+      </script>
+
       ```
 
   </TabItem>
@@ -109,7 +115,7 @@ slides. Adjust the image paths and customize the button styles to match your pro
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/HeaderMinimal.astro -->
+      <!-- src/components/CarouselButtons.astro -->
       
         ---
         //1 Instruction in this component
@@ -124,7 +130,7 @@ slides. Adjust the image paths and customize the button styles to match your pro
 
         <!-- Carousel -->
 
-        <div class="flex relative overflow-hidden w-full text-white/80 not-content">
+        <div class="flex relative overflow-hidden w-full text-white/80">
           <div
             id="carousel"
             class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
@@ -220,7 +226,7 @@ slides. Adjust the image paths and customize the button styles to match your pro
 
 ---
 
-## 3. Carousel with both
+## 3. Hybrid Carousel
 
 Combine manual navigation with automatic sliding for a more dynamic carousel
 experience. Adjust the image paths, time interval, and button styles to fit your
@@ -233,10 +239,9 @@ play automatically.
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/HeaderMinimal.astro -->
-      
+      <!-- src/components/HybridCarousel.astro -->
       ---
-      //1 Instruction in this component
+      //2 Instruction in this component
 
       // ↓ Here you can add the images/slides. ❶
       const slides = [
@@ -244,12 +249,16 @@ play automatically.
         { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
         { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
       ];
+
+      // Here you can change the interval time (milliseconds). ❷
+      const intervalTime = 5000; 
       ---
 
       <!-- Carousel -->
-      <div class="flex relative overflow-hidden w-full text-white/80 not-content">
+      <div class="flex relative overflow-hidden w-full text-white/80">
         <div
           id="carousel3"
+          data-interval={intervalTime} 
           class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
         >
           {
@@ -323,7 +332,7 @@ play automatically.
 
         let carouselIndex3 = 0;
         const totalSlides3 = carousel3.children.length;
-        const carouselInterval3 = 5000;
+        const carouselInterval3 = carousel3.dataset.interval;
 
         setInterval(() => {
           carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;
@@ -363,113 +372,72 @@ keeping the layout lightweight and responsive.
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/HeaderMinimal.astro -->
-      
+      <!-- src/components/LogoCarousel.astro -->
       ---
-      //1 Instruction in this component
-
-      // ↓ Here you can add the images/slides. ❶
-      const slides = [
-        { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
-        { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
-        { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
+      //3 Instruction in this component
+      
+      import { Image } from "astro:assets";
+      
+      // ↓ Here you can add the images/logos. ❶
+      import Logo1 from "../../../assets/icons/planckstar.svg";
+      import Logo2 from "../../../assets/icons/planckstar.svg";
+      import Logo3 from "../../../assets/icons/planckstar.svg";
+      
+      // ↓ Then add the logos you imported with an alt description. ❷
+      const logosRoutes = [
+        {
+          src: Logo1,
+          alt: "Logo 1",
+        },
+        {
+          src: Logo2,
+          alt: "Logo 2",
+        },
+        {
+          src: Logo3,
+          alt: "Logo 3",
+        },
+      //{
+      //   src: LogoX,
+      //   alt: "Logo X",
+      //}
       ];
       ---
-
-      <!-- Carousel -->
-      <div class="flex relative overflow-hidden w-full text-white/80 not-content">
-        <div
-          id="carousel3"
-          class="flex transition-transform duration-500 ease-in-out p-4 space-x-8"
-        >
-          {
-            slides.map((slide) => (
-              <div class="w-full flex-shrink-0">
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  class="w-full h-auto object-cover rounded-xl filter"
-                />
-              </div>
-            ))
-          }
-        </div>
-
-        <!-- Buttons -->
-
-        <div
-          id="prevBtn3"
-          class="absolute overflow-hidden left-0 top-0 h-full w-[20%] flex justify-start items-center group"
-        >
-          <button
-            class="flex justify-center items-center size-12 md:-translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-            </svg>
-          </button>
-        </div>
-
-        <div
-          id="nextBtn3"
-          class="absolute overflow-hidden right-0 top-0 h-full w-[20%] flex justify-end items-center group"
-        >
-          <button
-            class="flex justify-center items-center size-12 md:translate-x-full group-hover:translate-x-0 bg-black/90 backdrop-blur-xs cursor-pointer transition-transform duration-100 ease-in-out rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-            </svg>
-          </button>
+      
+      <div
+        class="relative w-full overflow-hidden border-y border-white/30 py-8 flex items-center not-content"
+      >
+        <div class="w-full">
+          <!-- Here you can change the interval time ↓ (seconds). ❸ -->
+          <div class=`flex w-[200%] animate-[scroll_5s_linear_infinite]`>
+            <div class="flex w-1/2 items-center justify-around">
+              {
+                logosRoutes.map((logo) => (
+                  <Image src={logo.src} alt={logo.alt} class="size-16" />
+                ))
+              }
+            </div>
+            <div class="flex w-1/2 items-center justify-around">
+              {
+                logosRoutes.map((logo) => (
+                  <Image src={logo.src} alt={logo.alt} class="size-16" />
+                ))
+              }
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Script -->
-
-      <script>
-        const nextBtn3 = document.getElementById("nextBtn3");
-        const prevBtn3 = document.getElementById("prevBtn3");
-        const carousel3 = document.getElementById("carousel3");
-
-        let carouselIndex3 = 0;
-        const totalSlides3 = carousel3.children.length;
-        const carouselInterval3 = 5000;
-
-        setInterval(() => {
-          carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;
-          carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
-        }, carouselInterval3);
-
-        nextBtn3.addEventListener("click", () => {
-          carouselIndex3 = (carouselIndex3 + 1) % totalSlides3;
-          carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
-        });
-
-        prevBtn3.addEventListener("click", () => {
-          carouselIndex3 = (carouselIndex3 - 1 + totalSlides3) % totalSlides3;
-          carousel3.style.transform = `translateX(-${100 * carouselIndex3}%)`;
-        });
-      </script>
+      
+      <style>
+        @keyframes scroll {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      </style>
 
       ```
 

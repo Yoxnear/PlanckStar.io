@@ -3,7 +3,7 @@
 
   let gridSize = 8; 
 
-  function drawGrid(size = gridSize, color = 'rgba(0,0,0,2)') {
+  function drawGrid(size = gridSize, color = 'rgba(16, 16, 16, 1)') {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 

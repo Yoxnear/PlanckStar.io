@@ -1,9 +1,31 @@
-<button
+---
+const { text, href } = Astro.props;
+---
+
+<a
   type="button"
-  class="relative text-white border border-gray-900 px-4 py-3 group cursor-pointer mx-auto"
+  class="relative text-white border border-gray-900 px-4 py-3 group mx-auto"
+  href={href}
 >
-  Effects
+  {text}
   <span
-    class="-z-10 absolute top-[50%] left-[50%] -translate-[50%] group-hover:w-[130%] group-hover:animate-wiggle group-hover:h-[140%] border w-[calc(100%+2px)] h-[calc(100%+2px)] border-transparent transition-all duration-500"
+    class="-z-10 absolute top-[50%] left-[50%] -translate-[50%]  group-hover:animate-wiggle border w-[calc(100%+2px)] h-[calc(100%+2px)] border-transparent transition-all duration-200"
   ></span>
-</button>
+</a>
+
+<style>
+    @keyframes wiggle {
+    0% {
+      border-color: transparent;
+      transform: scaleX(1);
+    }
+    100% {
+      border-color: transparent;
+      width: 130%;
+      height: 140%;
+    }
+    1% {
+      border-color: #d3daec;
+    }
+  }
+</style>

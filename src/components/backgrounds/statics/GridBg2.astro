@@ -1,14 +1,30 @@
+---
+// 3 Instructions in this component
+
+// Pick the number of circles. ❶
+const circlesNumber = 6;
+
+// Choose the color of the circles. ❷
+const color = "rgba(190,190,190,0.4)"; 
+
+// Choose the size of the circles (px). ❸
+const circlesSize = 6;
+---
+
 <div
   id="grid-bg2"
-  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+  data-circles={circlesNumber}
+  data-color={color}
+  data-size={circlesSize}
+  class="relative w-full h-80 not-content overflow-hidden opacity-30"
 >
 </div>
 
 <script>
   const bg2 = document.getElementById("grid-bg2");
-  const circlesNumber = 6;
-  const circlesSize = 6;
-  const color = "rgba(190,190,190,.3)";
+  const circlesNumber = bg2.dataset.circles;
+  const circlesSize = bg2.dataset.size;
+  const color = bg2.dataset.color;
 
   function drawGrid1() {
     bg2.innerHTML = "";
@@ -35,4 +51,5 @@
   window.addEventListener("resize", () => {
     drawGrid1();
   });
+
 </script>

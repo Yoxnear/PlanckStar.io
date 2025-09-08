@@ -1,0 +1,213 @@
+---
+title: Forms
+description: Forms to add interactivity and give a professional touch to your website
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import FormOne from "/src/components/components/forms/Form1.astro";
+import FormTwo from "/src/components/components/forms/Form2.astro";
+
+Forms require your intervention to implement the logic. It is advisable to leverage 
+your favorite AI tool to add it quickly and efficiently. Place the form wherever you consider most appropriate.
+
+```jsx
+<!-- src/pages/contact/index.astro -->
+
+---
+// Import
+import Form from "../components/Form.astro";
+---
+(...)
+  <Form />
+(...)
+
+```
+
+---
+
+## 1. Newsletter Form
+
+Easily integrate a subscription form for your newsletter, featuring your business logo, to engage visitors and grow your audience effortlessly.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-full my-12 justify-center items-center">
+      <FormOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/NewsLetter.astro -->
+      ---
+      //3 Instructions in this component
+
+      import { Image } from "astro:assets";
+
+      // Start editing the component here ↓, choose the path to your logo. ❶
+      import yourLogo from "../../../assets/icons/planckstar.svg";
+
+      // Add a description. ❷
+      const description = "Subscribe to our newsletter and stay up to date with upcoming projects.";
+      ---
+
+      <div class="flex flex-col items-center mb-14 md:mb-0 not-content">
+
+        <!-- Logo -->
+        <Image class="w-16 mb-4" src={yourLogo} alt="_Your Logo_" />
+
+        <!-- Description -->
+        <p class="mt-6 mb-4 w-3/5">
+          {description}
+        </p>
+
+        <!-- Form -->
+        <form class="font-light" action="/subscribe" method="POST">
+          <div class="relative bg-gray-900 p-4 pr-28 rounded-md">
+            <input
+              type="email"
+              id="emailInput"
+              name="email"
+              placeholder="Enter your email"
+              required
+              class="outline-none"
+            />
+            <button
+              id="subscribeButton"
+              type="submit"
+              class="absolute top-1 bottom-1 right-1 bg-gray-950 px-2 rounded-md cursor-pointer"
+              >Subscribe</button
+            >
+          </div>
+        </form>
+      </div>
+
+      <script>
+        const subButton = document.getElementById('subscribeButton');
+        const emailInput = document.getElementById('emailInput');
+
+        subButton.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+
+        // Here you can add the logic for your subscription functionality. ❸
+
+        alert(`Thank you for subscribing with: ${email}`);
+        emailInput.value = '';
+        });
+
+      </script>
+     ```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. Complete Form
+
+A fully featured contact form designed to engage with your clients in a natural and seamless way.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex w-5/6 mx-auto justify-center items-center">
+      <FormTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+      <!-- src/components/Form.astro -->
+      ---
+      //2 Instructions in this component
+
+      // Add your description here. ❶
+      const description = "Fill out the form and our team will be in touch."
+      ---
+
+      <section
+        class="w-xl mx-auto p-12 border border-white/30 text-white not-content"
+      >
+        <h2 class="text-4xl font-regular mb-12">Contact Us</h2>
+        <p class="text-md text-center mb-12 font-light bg-gray-950 py-6 border border-white/30">
+          {description}
+        </p>
+        <form action="#" method="POST" class="space-y-4">
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-md font-light"> Name </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+              class="mt-1 w-full border-b border-b-white/30 font-light p-4 focus:outline-none focus:border-white/50"
+            />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-md font-light"> Email </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              class="mt-1 w-full border-b font-light border-b-white/30 p-4 focus:outline-none focus:border-white/50"
+            />
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-md font-light"> Message </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="2"
+              placeholder="Tell us your thoughts"
+              required
+              class="mt-1 w-full border-b font-light border-white/30 p-4 focus:outline-none focus:border-white/50"
+            ></textarea>
+          </div>
+
+          <!-- Button -->
+          <div class="flex justify-center">
+            <button
+              id="contactForm"
+              class="text-gray-400 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-600 rounded-xl transition-colors cursor-pointer mt-12"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <script>
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault(); 
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const message = document.getElementById("message").value.trim();
+
+          if (!name || !email || !message) {
+            alert("Please fill in all fields.");
+            return;
+          }
+
+          //↓Here you can add your backend logic. ❷
+
+          console.log("Form submitted:", { name, email, message });
+
+          alert(`Thank you, ${name}! Your message has been sent.`);
+          form.reset();
+        });
+      </script>
+     ```
+
+  </TabItem>
+</Tabs>
+

@@ -1,0 +1,17 @@
+<div class="w-full h-[1px] bg-white/10 overflow-x-hidden">
+  <span
+    class="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 h-full animate-sweep"
+    style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9));"
+  ></span>
+</div>
+
+<style>
+  @keyframes sweep {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(400%); } 
+  }
+  .animate-sweep {
+    animation: sweep 2.5s linear infinite; 
+    will-change: transform;
+  }
+</style>

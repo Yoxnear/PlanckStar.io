@@ -1,13 +1,26 @@
+---
+// 2 Instructions in this component
+
+// Choose the number of lines. ❶
+const lineNumbers = 14;
+
+// Choose the color of the lines. ❷
+const color = "rgba(190,190,190,0.4)"; 
+
+---
+
 <div
   id="grid-bg1"
-  class="relative w-full h-80 not-content bg-gray-950 overflow-hidden opacity-30"
+  data-color={color}
+  data-lines={lineNumbers}
+  class="relative w-full h-80 not-content overflow-hidden opacity-30"
 >
 </div>
 
 <script>
   const bg1 = document.getElementById("grid-bg1");
-  const lineNumbers = 14;
-  const color = "rgba(190,190,190,0.4)";
+  const lineNumbers = bg1.dataset.lines;
+  const color = bg1?.dataset.color;
 
   function drawGrid1() {
     bg1.innerHTML = "";

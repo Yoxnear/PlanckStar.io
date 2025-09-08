@@ -1,20 +1,40 @@
 ---
+// 4 Instructions in this component
+
+// Start here by choosing the name of the package. ❶ 
+const packageName = 'Basic';
+
+// Choose the price of the package. ❷
+const price = '23';
+
+// Add a description. ❸
+const description = 'Get all you need with this package and unlock the power of us tools.';
+
+// Add all the features. ❹
 const features = ["Hosting", "Domain", "UI planckstar components"];
 ---
 
 <div class="w-90 border border-white/30 flex flex-col text-white not-content">
-  <p class="uppercase mt-8 mx-auto text-2xl">Basic</p>
+
+  <!-- Name -->
+  <p class="uppercase mt-8 mx-auto text-2xl">{packageName}</p>
+
+  <!-- Price -->
   <div class="flex items-end m-4">
-    <p class="text-4xl">$23</p>
+    <p class="text-4xl">${price}</p>
     <p class="font-light text-gray-300 ml-2">/Month</p>
   </div>
+
+  <!-- Description -->
   <p class="m-4 mb-10">
-    Get all you need with this package and unlock the power of us tools.
+    {description}
   </p>
-  <div class="">
+
+  <!-- Features -->
+  <div>
     {
       features.map((feature) => (
-        <div class="flex border-b border-white/30 space-y-12 w-full items-center first:border-t">
+        <div class="flex border-b border-white/30 space-y-8 w-full items-center first:border-t">
           <div class="flex rounded-full bg-gray-950 items-center size-8 my-6 mx-6 p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +56,9 @@ const features = ["Hosting", "Domain", "UI planckstar components"];
       ))
     }
   </div>
+
+  <!-- Button -->
   <button
-    id="Button"
     class="text-gray-200 px-6 py-2 bg-gray-950 border-2 border-gray-950 hover:border-gray-500 rounded-xl transition-colors cursor-pointer mx-4 my-12"
   >
     Get started

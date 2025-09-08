@@ -1,0 +1,516 @@
+---
+title: Hovers
+description: A series of hover elements designed to give your website a sophisticated touch, including decoding and typewriting effects.
+sidebar:
+  order: 2
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import HoverGrid from "/src/components/effects/hovers/HoverGrid.astro";
+import HoverOne from "/src/components/effects/hovers/ButtonBg1.astro"
+import HoverTwo from "/src/components/effects/hovers/ButtonBg2.astro"
+import HoverThree from "/src/components/effects/hovers/ButtonBg3.astro"
+import HoverFour from "/src/components/effects/hovers/ButtonFrame1.astro"
+import HoverFive from "/src/components/effects/hovers/ButtonFrame2.astro"
+import HoverSix from "/src/components/effects/hovers/ButtonFrame3.astro"
+import HoverSeven from "/src/components/effects/hovers/ButtonFrame4.astro"
+import HoverEight from "/src/components/effects/hovers/Underline1.astro"
+import HoverNine from "/src/components/effects/hovers/Underline2.astro"
+
+import HoverDecode from "/src/components/effects/hovers/Decode.astro"
+import HoverType from "/src/components/effects/hovers/Typing.astro"
+
+## Catalog
+
+Explore our catalog of elegant hover effects that will give your website a unique touch.
+ They are divided into two categories: [Simple](#simple-hovers) and [Special](#special-hovers). In each section, you’ll find clear 
+ instructions on how to integrate them into your site. Enjoy!
+
+<HoverGrid />
+
+---
+## Simple Hovers
+
+The components in this section take advantage of Astro props, allowing them to be 
+reused multiple times on the same page. You can customize them by adding the desired 
+text and a link (if needed — otherwise, just leave it empty). Simply import the 
+component and tailor it to your needs.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+// Import
+import HoverButton from "../components/HoverButton.astro";
+---
+(...)
+<HoverButton text="Type your text here" href="Type your link here" />
+<HoverButton text="Type another text here" href="Type another link here" />
+(...)
+
+```
+---
+### 1. Left 2 Full
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverOne text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Left2Full.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+    
+    <a
+      class="text-white border border-gray-900 px-4 py-3 relative group mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="absolute top-0 left-0 h-full w-0 bg-white/10 group-hover:w-full transition-all duration-200"
+      ></span>
+    </a>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 2. Inflation Burst
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverTwo text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Inflation.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href} = Astro.props;
+    ---
+
+    <a
+      class="text-white border border-gray-900 px-4 py-3 relative group mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="absolute top-[50%] left-[50%] -translate-[50%] h-0 w-0 bg-white/10 group-hover:h-[100%] group-hover:w-full transition-all duration-200"
+      ></span>
+    </a>
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 3. Shine Swipe
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverThree text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Shine.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+
+    <a
+      class="relative text-white border border-gray-900 px-4 py-3 group overflow-hidden mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="absolute bottom-0 left-0 translate-x-full group-hover:-translate-x-full w-[200%] h-full bg-[linear-gradient(135deg,rgba(255,255,255,0)_15%,rgba(117,117,117,0.5)_50%,rgba(255,255,255,0)_85%)] transition-all duration-500"
+      >
+      </span>
+    </a>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 4. Crunch Collapse
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverFour text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Crunch.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href} = Astro.props;
+    ---
+
+    <a
+      class="relative text-white border border-gray-900 px-4 py-3 group mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="absolute top-[50%] left-[50%] -translate-[50%] w-[130%] h-[140%] border border-transparent group-hover:w-[calc(100%+2px)] group-hover:h-[calc(100%+2px)] group-hover:border-white transition-all duration-200"
+      ></span>
+    </a>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 5. Edge Fade
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverFive text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/EdgeFade.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+
+    <a
+      class="relative text-white border border-gray-900 px-4 py-3 group mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="-z-10 absolute top-[50%] left-[50%] -translate-[50%]  group-hover:animate-wiggle border w-[calc(100%+2px)] h-[calc(100%+2px)] border-transparent transition-all duration-200"
+      ></span>
+    </a>
+
+    <style>
+        @keyframes wiggle {
+        0% {
+          border-color: transparent;
+          transform: scaleX(1);
+        }
+        100% {
+          border-color: transparent;
+          width: 130%;
+          height: 140%;
+        }
+        1% {
+          border-color: #d3daec;
+        }
+      }
+    </style>
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 6. Corner Expand
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverSix text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/CornerExpand.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+
+    <a
+      class="relative text-white px-4 py-3 group mx-auto"
+      href={href}
+    >
+      {text}
+      <span
+        class="absolute top-0 left-0 size-2 group-hover:w-[50%] group-hover:h-[50%] border-t border-l border-white/70 transition-all duration-500"
+      ></span>
+      <span
+        class="absolute top-0 right-0 size-2 group-hover:w-[50%] group-hover:h-[50%] border-t border-r border-white/70 transition-all duration-500"
+      ></span>
+      <span
+        class="absolute bottom-0 left-0 size-2 group-hover:w-[50%] group-hover:h-[50%] border-b border-l border-white/70 transition-all duration-500"
+      ></span>
+      <span
+        class="absolute bottom-0 right-0 size-2 group-hover:w-[50%] group-hover:h-[50%] border-b border-r border-white/70 transition-all duration-500"
+      ></span>
+    </a>
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 7. Frame Expand
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverSeven text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/FrameExpand.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+
+    <a class="text-white py-2 px-4 relative group" href={href}>
+      {text}
+      <span
+        class="absolute bottom-0 left-0 size-2 border-l border-b border-transparent -translate-y-4 translate-x-6 group-hover:translate-0 group-hover:border-white transition-all duration-150 ease-in-out"
+      ></span>
+      <span
+        class="absolute top-0 right-0 size-2 border-r border-t border-transparent translate-y-4 -translate-x-6 group-hover:translate-0 group-hover:border-white transition-all duration-150 ease-in-out"
+      ></span>
+    </a>
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+
+### 8. Left Underline
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverEight text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Underline1.astro -->
+    ---
+    //0 Instructions in this component
+
+    const { text, href } = Astro.props;
+    ---
+
+    <a class="text-white py-2 relative group" href={href}>
+      {text} <span
+        class="absolute bottom-0 left-0 bg-white h-[1px] w-0 group-hover:w-full transition-all duration-150 ease-in-out"
+      ></span>
+    </a>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+
+### 9. Center Underline
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverNine text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Underline2.astro -->
+    ---
+    const { text, href } = Astro.props;
+    ---
+
+    <a class="text-white py-2 relative group" href={href}>
+      {text} <span
+        class="absolute bottom-0 left-[50%] -translate-x-[50%] bg-white h-[1px] w-0 group-hover:w-full transition-all duration-150 ease-in-out"
+      ></span>
+    </a>
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+## Special Hovers
+
+The special hovers are built with JavaScript so you can reuse them anywhere by simply adding the corresponding class, 
+while the script automatically applies the effect. 
+
+You can integrate them as we designed (directly inside an Astro component) or copy the script into your scripts 
+folder and import it later as a module. Feel free to choose the option that works best for you — we’ve implemented 
+it within an Astro component to keep consistency with the way we structured the other components.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+// Import
+import SpecialHover from "../components/SpecialHover.astro";
+---
+(...)
+<!-- You can add it anywhere you like.  -->
+<SpecialHover/>
+
+<!-- Add this class ↓ in the elements you want to apply the effect.  -->
+<button class="decode-link">Example</button>
+<a class="decode-link font-mono" href="#">Example</a>
+<p class="decode-link font-mono" >Example</p>
+
+(...)
+
+```
+---
+
+### 1. Decode
+
+For this element, you need to add the "decode-link" class to your elements.
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverDecode text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Decode.astro -->
+    <script>
+      // 1 Instruction in this component
+
+      // Choose the speed interval (milliseconds). ❶
+      const IntervalSpeed = 20;
+
+      const chars = "!<>-_\\/[]{}—=+*^?#$%&@";
+
+      function decodeEffect(el) {
+        const text = el.dataset.text || el.innerText;
+        el.dataset.text = text;
+        let iteration = 0;
+
+        const interval = setInterval(() => {
+          el.innerText = text
+            .split("")
+            .map((letter, index) => {
+              if (index < iteration) return text[index];
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
+
+          if (iteration >= text.length) {
+            clearInterval(interval);
+            el.innerText = text;
+          }
+
+          iteration += 1 / 3;
+        }, IntervalSpeed);
+      }
+
+      document.querySelectorAll(".decode-link").forEach((el) => {
+        el.addEventListener("mouseenter", () => decodeEffect(el));
+      });
+    </script>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---
+
+### 2. Typing
+
+For this element, you need to add the typewriter class. It’s also important to add the "inline-block" class to the element you’re applying the class to, so it works correctly.
+
+<Tabs>
+  <TabItem label="Preview">
+  <div class="not-content flex w-full justify-center">
+    <HoverType text="Effects" href="#"/>
+  </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Typing.astro -->
+    <style>
+      .typewriter.writing::after {
+        content: "|";
+        position: absolute;
+        right: -8px;
+        animation: blink 0.7s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <script>
+      // 1 Instruction in this component
+
+      // Choose the speed (milliseconds). ❶
+      const speed = 100;
+
+      function typewriter(el) {
+        if (el.dataset.typing === "true") return;
+        el.dataset.typing = "true";
+        el.classList.add("writing");
+
+        const text = el.dataset.text || el.innerText;
+        el.dataset.text = text;
+        el.innerText = "";
+        let index = 0;
+
+        function writeNext() {
+          if (index < text.length) {
+            el.innerText += text[index];
+            index++;
+            setTimeout(writeNext, speed);
+          } else {
+            el.dataset.typing = "false";
+            el.classList.remove("writing");
+          }
+        }
+
+        writeNext();
+      }
+
+      document.querySelectorAll(".typewriter").forEach((el) => {
+        el.addEventListener("mouseenter", () => typewriter(el));
+      });
+    </script>
+
+    ```
+  </TabItem>
+</Tabs> 
+
+---

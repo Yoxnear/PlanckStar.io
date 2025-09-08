@@ -2,19 +2,24 @@
 //2 Instructions in this component
 
 // ↓ Here you can add the images/slides. ❶
-
 const slides = [
   { src: "/src/assets/images/Lorem.jpg", alt: "First image" },
   { src: "/src/assets/images/Lorem.jpg", alt: "Second image" },
   { src: "/src/assets/images/Lorem.jpg", alt: "Third image" },
 ];
+
+// Here you can change the interval time (milliseconds). ❷
+const intervalTime = 5000; 
+
 ---
 
 <div class="flex overflow-hidden w-full not-content">
   <div
     id="carousel1"
+    data-interval={intervalTime} 
     class="flex transition-transform duration-500 ease-in-out"
   >
+    <!-- Images -->
     {
       slides.map((slide, i) => (
         <div class="w-full flex-shrink-0 p-6">
@@ -33,9 +38,8 @@ const slides = [
 
 <script>
   const carousel1 = document.getElementById("carousel1");
-
+  const carouselInterval1 = carousel1.dataset.interval;
   let carouselIndex1 = 0;
-  const carouselInterval1 = 5000;
   const totalSlides1 = carousel1.children.length;
 
   setInterval(() => {

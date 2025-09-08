@@ -1,3 +1,11 @@
+---
+// 2 Instructions in this component
+
+// Start here adjusting the size of the circles (px). ❶
+const size1 = 40;
+const size2 = 32;
+
+---
 <div class="relative w-full h-80 bg-gray-950 overflow-hidden not-content">
   <div
     id="cursor-container"
@@ -6,11 +14,13 @@
     <div
       id="circle1"
       class="absolute size-10 rounded-full border-t border-white/90"
+      style=`width: ${size1}; height: ${size1};`
     >
     </div>
     <div
       id="circle2"
       class="absolute size-8 rounded-full border-r border-white/70"
+      style=`width: ${size2}; height: ${size2};`
     >
     </div>
   </div>

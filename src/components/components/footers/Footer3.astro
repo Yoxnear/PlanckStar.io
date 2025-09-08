@@ -1,14 +1,12 @@
 ---
-// 10 Instructions in this component
+// 8 Instructions in this component
 
 import { Image } from "astro:assets";
 
 //Start editing the component here ↓, choose the path to your logo. ❶
-
 import yourLogo from "../../../assets/icons/planckstar.svg";
 
 // ↓ Here you can add as many columns as you want to your footer. ❷
-
 const links = [
   {
     title: "Main", //← Edit here the name/title of the column. ❸
@@ -32,26 +30,27 @@ const links = [
 ];
 
 //Here you add the path to your social media icons ↓. ❻
-
 import socialLogoFirst from "../../../assets/icons/x.svg";
 import socialLogoSecond from "../../../assets/icons/github.svg";
 import socialLogoThird from "../../../assets/icons/blackberry.svg";
 
 //↓ You can add as many icons as you like here, along with their links and alt text to follow accessibility best practices. ❼
-
 const socialItems = [
   { icon: socialLogoFirst, href: "x.com", alt: "Icon -----" },
   { icon: socialLogoSecond, href: "github.com", alt: "Icon -----" },
   { icon: socialLogoThird, href: "/blackberry.com", alt: "Icon -----" },
 ];
+
+// Add the name of your company here. ❽
+const company = "Your Company"
+
 ---
 
-<!-- Here is where the HTML begins. ❽ -->
 <footer class="relative w-full text-white border-white/30 not-content">
   <p
     class="absolute bottom-2 right-2 md:bottom-4 md:right-6 text-xs text-gray-400"
   >
-    Copyright "_Edit_Here_" © 2025 All Rights Reserved
+    Copyright {company} © 2025 All Rights Reserved
   </p>
 
   <div

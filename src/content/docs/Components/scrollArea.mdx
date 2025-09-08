@@ -1,6 +1,6 @@
 ---
-title: Scroll area
-description: Learn more about my project in this docs site built with Starlight.
+title: Scroll Area 
+description: Scroll area is a nice feature for your website.
 sidebar:
   order: 2
 ---
@@ -8,27 +8,29 @@ sidebar:
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import ScrollAreaOne from "/src/components/components/scrollAreas/ScrollArea1.astro";
 import ScrollAreaTwo from "/src/components/components/scrollAreas/ScrollArea2.astro";
-import ScrollAreaThree from "/src/components/components/scrollAreas/scrollArea3.astro";
 
-Frames add an extra touch to your design and help highlight containers and sections.
+Scroll area components are used as layout containers, meaning that the content you place 
+inside will follow the content’s own rules. Unlike other components, this one is specifically 
+designed to function as a layout.
 
-You can apply them directly to your container—just place them inside, and the frame will automatically
-adapt to the container’s dimensions. Also, the container must have the relative
-class for it to work properly.
+It is also necessary to use a container to define its dimensions, since it will take up 100% of 
+the size of the element it is placed in.
+
 
 ```jsx
-<!-- src/components/Projects.astro -->
+<!-- src/components/Features.astro -->
 
 ---
 // Import
-import Frame from "../components/Frame.astro";
+import ScrollArea from "../components/ScrollArea.astro";
 ---
 (...)
-<div class="relative + Type your container dimensions here">
-  (...)
-  <-- You can add it anywhere you want, as long as it’s inside the container -->
-  <Frame />
-  (...)
+<div class="Type your container dimensions here">
+  <ScrollArea>
+    (...)
+    <!-- Your content need to be here and the container will do all the job. -->
+    (...)
+  </ScrollArea>
 </div>
 (...)
 
@@ -36,39 +38,79 @@ import Frame from "../components/Frame.astro";
 
 ---
 
-## 1. Crossed Corners
+## 1. Vertical Scroll
 
-Adjust the time interval and image paths so the carousel runs automatically without requiring any user interaction.
+Vertical scroll is ideal for long lists that you don’t want to take up space or affect the aesthetics of the rest of your page.
 
 <Tabs>
   <TabItem label="Preview">
-    <ScrollAreaOne />
+  <div class="w-60 h-20 mx-auto">
+    <ScrollAreaOne>
+      <div class="h-20 flex items-center justify-center text-white">
+        Hello
+      </div>
+      <div class="h-20 flex items-center justify-center text-white">
+        From
+      </div>
+      <div class="h-20 flex items-center justify-center text-white">
+        Scroll
+      </div>
+      <div class="h-20 flex items-center justify-center text-white">
+        Vertical
+      </div>
+    </ScrollAreaOne>
+  </div>
   </TabItem>
   <TabItem label="Code">
      ```jsx
-        <!-- src/components/CrossedFrame.astro -->
-        <div class="relative w-full h-80 border border-white/10 not-content">
-          <div>
-            <!-- Top -->
-            <!-- ---Left -->
-            <div class="absolute top-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 left-4 h-4 border-r border-white"></div>
-
-            <!-- ---Right -->
-            <div class="absolute top-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute top-2 right-4 h-4 border-r border-white"></div>
-
-            <!-- Bottom -->
-            <!-- ---Left -->
-            <div class="absolute bottom-4 left-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 left-4 h-4 border-r border-white"></div>
-
-            <!-- ---Right -->
-            <div class="absolute bottom-4 right-2 w-4 border-b border-white"></div>
-            <div class="absolute bottom-2 right-4 h-4 border-r border-white"></div>
-          </div>
+        <!-- src/components/VerticalScroll.astro -->
+        ---
+        // 0 Instructions in this component
+        ---
+        <div class="h-full w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg border border-white/30 p-6 not-content">
+            <slot/>
         </div>
+
       ```
 
   </TabItem>
 </Tabs>
+
+---
+
+## 2. Horizontal Scroll
+
+Usually used as a way to contain multiple images in a reduced space.
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="w-xl h-xl mx-auto">
+      <ScrollAreaTwo>
+        <div class="min-w-[400px] h-40 m-2 rounded-lg flex items-center justify-center text-white">
+          Hello
+        </div>
+        <div class="min-w-[400px] h-40 m-2 rounded-lg flex items-center justify-center text-white">
+          From
+        </div>
+        <div class="min-w-[400px] h-40 m-2 rounded-lg flex items-center justify-center text-white">
+          Scroll
+        </div>
+        <div class="min-w-[400px] h-40 m-2 rounded-lg flex items-center justify-center text-white">
+          Horizontal
+        </div>
+      </ScrollAreaTwo>
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+     ```jsx
+        <!-- src/components/HorizontalScroll.astro -->
+        ---
+        // 0 Instructions in this component
+        ---
+        <div class="h-full w-full flex flex-row overflow-x-scroll scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg border border-white/30 p-6 not-content">
+          <slot/>
+        </div>
+      ```
+  </TabItem>
+</Tabs>
+

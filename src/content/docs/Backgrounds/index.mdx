@@ -1,0 +1,369 @@
+---
+title: Statics
+description: Our special selection of backgrounds for sophisticated and minimalist websites.
+sidebar:
+  order: 2
+---
+
+import GridBgOne from "/src/components/backgrounds/statics/GridBg1.astro";
+import GridBgTwo from "/src/components/backgrounds/statics/GridBg2.astro";
+import GridBgThree from "/src/components/backgrounds/statics/GridBg3.astro";
+import Bg3DOne from "/src/components/backgrounds/statics/Bg3D1.astro";
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+
+The static backgrounds are generated according to the parameters you consider 
+appropriate for your page, giving them a distinctive touch in contrast with
+ gradients and images, making your page look sophisticated.
+
+ It is recommended that you add it directly to your index page, 
+ but it can also be used to decorate specific components.
+
+```jsx
+<!-- src/pages/index.astro -->
+
+---
+import Layout from "../layouts/Layout.astro";
+
+// Import your Background
+import Background from "../layouts/Background.astro";
+
+---
+<Layout>
+  <Background />
+  (...)
+</Layout>
+
+```
+---
+
+## 1. Grid background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <GridBgOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Bg1.astro -->
+    ---
+    // 2 Instructions in this component
+
+    // Choose the number of lines. ❶
+    const lineNumbers = 14;
+
+    // Choose the color of the lines. ❷
+    const color = "rgba(190,190,190,0.4)"; 
+
+    ---
+
+    <div
+      class="fixed top-0 left-0 w-full h-screen -z-10 overflow-hidden opacity-30"
+    >
+      <div
+        id="grid-bg1"
+        data-color={color}
+        data-lines={lineNumbers}
+        class="relative w-full h-full";
+      >
+      </div>
+    </div>
+
+    <script>
+      const bg1 = document.getElementById("grid-bg1");
+      const lineNumbers = bg1.dataset.lines;
+      const color = bg1.dataset.color;
+
+      function drawGrid1() {
+        bg1.innerHTML = "";
+        const step = (bg1.offsetWidth - 1) / lineNumbers;
+
+        for (let x = 0; x < bg1.offsetWidth; x += step) {
+          bg1.appendChild(document.createElement("div")).style.cssText = `
+              position: absolute;
+              left: ${x}px;
+              top: 0;
+              width: 0;
+              height: 100%;
+              border-left: 2px solid ${color};
+            `;
+        }
+        for (let y = 0; y < bg1.offsetHeight; y += step) {
+          bg1.appendChild(document.createElement("div")).style.cssText = `
+              position: absolute;
+              left: 0;
+              top: ${y}px;
+              width: 100%;
+              height: 0;
+              border-top: 2px solid ${color};
+            `;
+        }
+      }
+
+      drawGrid1();
+
+      window.addEventListener("resize", () => {
+        drawGrid1();
+      });
+    </script>
+
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 2. Dots background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <GridBgTwo />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Bg2.astro -->
+    ---
+    // 3 Instructions in this component
+
+    // Pick the number of circles. ❶
+    const circlesNumber = 6;
+
+    // Choose the color of the circles. ❷
+    const color = "rgba(190,190,190,0.4)"; 
+
+    // Choose the size of the circles (px). ❸
+    const circlesSize = 6;
+    ---
+
+    <div
+      class="fixed top-0 left-0 w-full h-screen -z-10 overflow-hidden opacity-30"
+    >
+      <div
+        id="grid-bg2"
+        data-circles={circlesNumber}
+        data-color={color}
+        data-size={circlesSize}
+        class="relative w-full h-full";
+      >
+      </div>
+    </div>
+
+    <script>
+      const bg2 = document.getElementById("grid-bg2");
+      const circlesNumber = bg2.dataset.circles;
+      const circlesSize = bg2.dataset.size;
+      const color = bg2.dataset.color;
+
+      function drawGrid1() {
+        bg2.innerHTML = "";
+
+        const circlesStep = (bg2.offsetWidth - circlesSize) / circlesNumber;
+
+        for (let x = 0; x < bg2.offsetWidth; x += circlesStep) {
+          for (let y = 0; y < bg2.offsetHeight; y += circlesStep) {
+            bg2.appendChild(document.createElement("div")).style.cssText = `
+              position: absolute;
+              left: ${x}px;
+              top: ${y}px;
+              width: ${circlesSize}px;
+              height: ${circlesSize}px;
+              background-color: ${color};
+              border-radius: 50%;
+            `;
+          }
+        }
+      }
+
+      drawGrid1();
+
+      window.addEventListener("resize", () => {
+        drawGrid1();
+      });
+
+    </script>
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 3. Cross background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">   
+        <GridBgThree /> 
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/Bg3.astro -->
+    ---
+    // 3 Instructions in this component
+
+    // Choose the number of crosses. ❶
+    const crossNumber = 4;
+
+    // Choose the color of the circles. ❷
+    const color = "rgba(190,190,190,0.8)"; 
+
+    // Choose the size of the crosses (px). ❸
+    const crossSize = 13;
+    ---
+
+    <div
+      class="fixed top-0 left-0 w-full h-screen -z-10 overflow-hidden opacity-30"
+    >
+      <div
+        id="grid-bg3"
+        data-crosses={crossNumber}
+        data-color={color}
+        data-size={crossSize}
+        class="relative w-full h-full";
+      >
+      </div>
+    </div>
+
+    <script>
+      const bg3 = document.getElementById("grid-bg3");
+      const crossNumber = bg3.dataset.crosses;
+      const crossSize = bg3.dataset.size;
+      const color = bg3.dataset.color;
+
+      function drawGrid1() {
+        bg3.innerHTML = "";
+
+        const crossStep = (bg3.offsetWidth - crossSize) / crossNumber;
+
+        for (let x = 0; x < bg3.offsetWidth; x += crossStep) {
+          for (let y = 0; y < bg3.offsetHeight; y += crossStep) {
+            bg3.appendChild(document.createElement("div")).style.cssText = `
+              position: absolute;
+              left: ${x}px;
+              top: ${y}px;
+              width: 0;
+              height: ${crossSize}px;
+              border-left: 1px solid ${color}; 
+              transform: translate(${crossSize / 2}px);
+            `;
+            bg3.appendChild(document.createElement("div")).style.cssText = `
+              position: absolute;
+              left: ${x}px;
+              top: ${y}px;
+              width: ${crossSize}px;
+              height: 0;
+              border-top: 1px solid ${color};
+              transform: translate(0, ${crossSize / 2}px);
+            `;
+          }
+        }
+      }
+
+      drawGrid1();
+
+      window.addEventListener("resize", () => {
+        drawGrid1();
+      });
+    </script>
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## 4. 3D Room background
+
+<Tabs>
+  <TabItem label="Preview">
+    <div class="flex justify-center">
+      <Bg3DOne />
+    </div>
+  </TabItem>
+  <TabItem label="Code">
+    ```jsx
+    <!-- src/components/3DBg.astro -->
+    ---
+    // 2 Instructions in this component
+
+    // Pick the number of circles. ❶
+    const numberLines = 8;
+
+    // Choose the color of the circles. ❷
+    const color = "rgba(190,190,190,0.3)"; 
+
+    ---
+    <div class="fixed w-full h-screen -z-10">
+      <div
+        class="relative w-full h-full overflow-hidden opacity-30 perspective-dramatic"
+      >
+        <div
+          id="BgRoofOne"
+          data-lines={numberLines}
+          data-color={color}
+          class="absolute flex justify-around top-0 w-full h-full rotate-x-90 -translate-y-16"
+        >
+        </div>
+        <div
+          id="BgRoofOneP"
+          class="absolute flex flex-col justify-around top-0 w-full h-full rotate-x-90 -translate-y-16"
+        >
+        </div>
+        <div
+          id="BgFloorOne"
+          class="absolute flex justify-around bottom-0 w-full h-full rotate-x-90 translate-y-16"
+        >
+        </div>
+        <div
+          id="BgFloorOneP"
+          class="absolute flex flex-col justify-around bottom-0 w-full h-full rotate-x-90 translate-y-16"
+        >
+        </div>
+      </div>
+
+      <script>
+        const bgRoofOne = document.getElementById("BgRoofOne");
+        const bgFloorOne = document.getElementById("BgFloorOne");
+        const bgRoofOneP = document.getElementById("BgRoofOneP");
+        const bgFloorOneP = document.getElementById("BgFloorOneP");
+
+        const color = bgRoofOne.dataset.color;
+        const numberLines1 = bgRoofOne.dataset.lines;
+
+        function draw3D() {
+          for (let x = 0; x < numberLines1; x += 1) {
+            bgRoofOne.appendChild(document.createElement("div")).style.cssText = `
+                width: 0;
+                height: 100%;
+                border-left: 2px solid ${color};
+              `;
+            bgRoofOneP.appendChild(document.createElement("div")).style.cssText =
+              `     
+                width: 100%;
+                height: 0;
+                border-top: 2px solid ${color};
+              `;
+            bgFloorOne.appendChild(document.createElement("div")).style.cssText = `
+                width: 0;
+                height: 100%;
+                border-left: 2px solid ${color};
+              `;
+            bgFloorOneP.appendChild(document.createElement("div")).style.cssText = `
+                width: 100%;
+                height: 0;
+                border-top: 2px solid ${color};
+              `;
+          }
+        }
+        draw3D();
+      </script>
+    </div>
+    ```
+  </TabItem>
+</Tabs>
+
+---

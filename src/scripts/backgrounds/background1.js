@@ -47,18 +47,20 @@ const vertexShader = `
     }
 `;
 
-const fragmentShader = `
-    uniform float uTime;
-    varying vec3 vPosition;
-    void main() {
-        // Dark colors with soft glow
-        vec3 baseColor = vec3(0.002, 0.005, 0.03); // Almost black blue
-        vec3 glowColor = vec3(0.08, 0.12, 0.25); // Dark bluish glow
-        float intensity = sin(uTime * 0.2 + vPosition.x * 0.2 + vPosition.y * 0.2) * 0.2 + 0.8;
-        vec3 color = mix(baseColor, glowColor, intensity);
-        gl_FragColor = vec4(color, 0.7); // Transparency for softness
-    }
-`;
+    const fragmentShader = `
+        uniform float uTime;
+        varying vec3 vPosition;
+        void main() {
+
+            // Dark colors with soft glow
+            vec3 baseColor = vec3(0.014, 0.017, 0.1); // <---- Base black blue
+            vec3 glowColor = vec3(0.34, 0.44, 0.85); // <---- Dark bluish glow
+            float intensity = sin(uTime * 0.2 + vPosition.x * 0.2 + vPosition.y * 0.2) * 0.2 + 0.8;
+            vec3 color = mix(baseColor, glowColor, intensity);
+            gl_FragColor = vec4(color, 0.9); // <---- Transparency for softness
+
+        }
+    `;
 
 const particleMaterial = new THREE.ShaderMaterial({
     vertexShader,

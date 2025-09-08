@@ -1,12 +1,13 @@
 ---
 title: Headers
-description: Learn more about my project in this docs site built with Starlight.
+description: Navigation bar selection for minimalist and responsive websites.
 sidebar:
   order: 1 
   
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 import HeaderOne from '../../../components/components/headers/Header1.astro'
 import HeaderTwo from '../../../components/components/headers/Header2.astro'
 import HeaderThree from '../../../components/components/headers/Header3.astro'
@@ -18,7 +19,7 @@ Each header is fully functional and responsive. You only need to edit the sectio
 
 ---
 // Import
-import MinimalHeader from "../components/SingularHeader.astro";
+import MinimalHeader from "../components/MinimalHeader.astro";
 ---
 
 <!doctype html>
@@ -28,7 +29,7 @@ import MinimalHeader from "../components/SingularHeader.astro";
   </head>
   <body>
     <!-- Add Here -->
-    <SingularHeader />
+    <MinimalHeader />
     <main>
       <slot />
     </main>
@@ -40,6 +41,7 @@ import MinimalHeader from "../components/SingularHeader.astro";
 
 ## 1. Minimal Header
 
+
 A simple navigation bar with your site's logo and the sections or pages of your project.
 
 <Tabs>
@@ -50,7 +52,7 @@ A simple navigation bar with your site's logo and the sections or pages of your 
   </TabItem>
   <TabItem label="Code">
      ```jsx
-      <!-- src/components/HeaderMinimal.astro -->
+      <!-- src/components/MinimalHeader.astro -->
       ---
       // 2 Instructions in this component
 
@@ -58,7 +60,7 @@ A simple navigation bar with your site's logo and the sections or pages of your 
 
       // Start editing the component here ↓, choose the path to your logo. ❶
 
-      import planckstar from "../../../assets/icons/planckstar.svg";
+      import YourLogo from "../../../assets/icons/YourLogo.svg";
 
       // ↓ Here you can add the navigation items for your header. ❷
 
@@ -75,7 +77,7 @@ A simple navigation bar with your site's logo and the sections or pages of your 
         <nav class="flex w-full mx-auto justify-between items-center h-16">
           <!-- Logo  -->
           <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
-            <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+            <Image src={YourLogo} alt="Website main logo" class="w-full fill-tertiary" />
           </a>
 
           <!-- Button to toggle the mobile menu -->
@@ -206,7 +208,7 @@ A navbar with your logo, links to pages and sections of your project, and social
     import { Image } from "astro:assets";
 
     // Start editing the component here ↓, choose the path to your logo. ❶
-    import planckstar from "../../../assets/icons/planckstar.svg";
+    import YourLogo from "../../../assets/icons/YourLogo.svg";
 
     // ↓ Here you can add the navigation social icons for your header. ❷
     import githubIcon from "/src/assets/icons/github.svg";
@@ -249,7 +251,7 @@ A navbar with your logo, links to pages and sections of your project, and social
       >
         <!-- Logo  -->
         <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
-          <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+          <Image src={YourLogo} alt="Website main logo" class="w-full fill-tertiary" />
         </a>
 
         <!-- Button to toggle the mobile menu -->
@@ -386,7 +388,7 @@ A navbar with your logo, links to pages and sections of your project, and social
 </Tabs>
 
 
-## 3. Singular Header 🕳️
+## 3. Floating Singular Header 
 
 A navigation bar with a logo, navigation links, and social media icons  with a singular touch.
 
@@ -405,7 +407,7 @@ A navigation bar with a logo, navigation links, and social media icons  with a s
     import { Image } from "astro:assets";
     
     // Start editing the component here ↓, choose the path to your logo. ❶
-    import planckstar from "../../../assets/icons/planckstar.svg";
+    import YourLogo from "../../../assets/icons/YourLogo.svg";
     
     // ↓ Here you can add the navigation social icons for your header. ❷
     
@@ -448,7 +450,7 @@ A navigation bar with a logo, navigation links, and social media icons  with a s
       <nav class="flex w-full mx-auto justify-between items-center h-16">
         <!-- Logo  -->
         <a href="/" class="text-lg font-semibold tracking-wide text-white py-2 w-6">
-          <Image src={planckstar} alt="Planckstar" class="w-full fill-tertiary" />
+          <Image src={YourLogo} alt="Website main logo" class="w-full fill-tertiary" />
         </a>
     
         <!-- Button to toggle the mobile menu -->
