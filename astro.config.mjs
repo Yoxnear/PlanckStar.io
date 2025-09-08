@@ -5,19 +5,19 @@ import tailwindcss from '@tailwindcss/vite';
 
 import starlight from '@astrojs/starlight';
 
-import vercel from '@astrojs/vercel/serverless';
+
+import vercel from '@astrojs/vercel';
+
 
 // https://astro.build/config
 export default defineConfig({
-
-  output: 'server',
+  output: 'static',
   adapter: vercel({
     webAnalytics: {
       enabled: true,
     },
     maxDuration: 8,
   }),
-
   vite: {
     plugins: [tailwindcss()]
   },
@@ -25,8 +25,6 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-
-  
 
   integrations: [
     starlight({
@@ -68,4 +66,6 @@ export default defineConfig({
       ],
     }),
   ],
+
+  adapter: vercel(),
 });
