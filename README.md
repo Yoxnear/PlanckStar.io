@@ -1,6 +1,10 @@
-# PlanckStar 
+# Planckstar.io
 
-A easy solution for your astro projects 
+A complete library with **components, backgrounds, and effects** to enrich your website and boost development efficiency.  
 
-[![Visit the webpage](/public/favicon.svg)](https://planckstar.io)
+Find the full documentation at 👉 [planckstar.io](https://www.planckstar.io)  
 
+Feel free to leave feedback, suggestions, and/or contributions to help this library grow with the community.  
+
+## 📜 License
+This project is licensed under the [MIT License](./LICENSE).
