@@ -5,19 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 import starlight from '@astrojs/starlight';
 
-
 import vercel from '@astrojs/vercel';
-
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    maxDuration: 8,
-  }),
   vite: {
     plugins: [tailwindcss()]
   },
@@ -66,6 +57,10 @@ export default defineConfig({
       ],
     }),
   ],
-
-  adapter: vercel(),
+  output: 'static',
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
