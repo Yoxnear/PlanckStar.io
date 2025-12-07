@@ -3,6 +3,12 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
  
+const {
+  title = "PlanckStar",
+  description = "PlanckStar — Build your website with a full catalog of astro components, dynamic backgrounds and effects.",
+  image = "/og-image.png",
+  url = "https://planckstar.io", 
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,9 +16,26 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    
     <meta name="generator" content={Astro.generator} />
-    <title>PlanckStar</title>
+
+    <title>{title}</title>
   </head>
   <body class="m-0 w-full h-full bg-primary">
     <NavBar />

@@ -7,8 +7,24 @@ import starlight from '@astrojs/starlight';
 
 import vercel from '@astrojs/vercel';
 
+import astroRobotTxt from "astro-robots-txt";
+
 // https://astro.build/config
 export default defineConfig({
+  site: "https://planckstar.io", 
+  integrations: [
+    astroRobotTxt({
+      policy: [
+        {
+          userAgent: "*",
+          allow: "/",
+        },
+      ],
+      sitemap: "https://planckstar.com/sitemap-index.xml",
+      host: "https://planckstar.com",
+    }),
+  ],
+
   vite: {
     plugins: [tailwindcss()]
   },
