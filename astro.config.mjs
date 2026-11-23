@@ -51,7 +51,6 @@ export default defineConfig({
           label: 'GitHub',
           href: 'https://github.com/Axolotlfire/PlanckStarUI.io',
         },
-        { icon: 'x.com', label: 'X.com', href: 'https://x.com/planckstario?s=21' },
       ],
        sidebar: [
         {
